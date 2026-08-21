@@ -1,3 +1,99 @@
-/* Hero: od widocznej wizytówki do strony gotowej na komputer i telefon. */
-.hero{padding-top:28px;padding-bottom:68px}.hero-grid{min-height:575px}.hero-art.before-after{height:435px;margin-left:26px;display:grid;grid-template-columns:.7fr 78px 1.3fr;align-items:center;gap:15px;isolation:isolate}.before-card,.after-card{position:relative}.before-card>p,.after-card>p{font:600 12px "DM Mono",monospace;letter-spacing:.1em;margin:0 0 10px}.google-card{min-height:205px;background:#fff;border:1px solid var(--ink);box-shadow:7px 7px 0 var(--ink);padding:23px 18px;display:grid;align-content:center;gap:12px}.google-card b{font:700 25px/1 var(--serif);letter-spacing:-.05em}.google-card small{font:600 11px var(--sans);color:#e6a600;letter-spacing:.06em}.google-card small strong{color:var(--ink);letter-spacing:0}.google-card em{font:600 11px var(--sans);font-style:normal;color:var(--coral)}.google-pin{color:var(--coral);font-size:18px;line-height:1}.before-after-arrow{font:600 10px/1.2 "DM Mono",monospace;letter-spacing:.04em;text-align:center;white-space:nowrap;transform:rotate(-90deg)}.before-after-arrow b{color:var(--teal);font:700 34px/.8 var(--serif);letter-spacing:0}.site-card{min-height:297px;background:var(--teal);padding:17px;color:var(--ink);display:flex;flex-direction:column;border:1px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}.site-card-nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ink);padding-bottom:12px;font:600 9px var(--sans)}.site-card-nav i{width:7px;height:7px;border-radius:50%;background:var(--ink)}.site-card h3{font-size:37px;line-height:.93;margin:45px 0 14px}.site-card h3 em{font-style:normal;color:var(--paper)}.site-card small{font-size:10px}.site-card button{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:auto;border:0;background:var(--ink);color:var(--paper);padding:12px 13px;font:600 11px var(--sans)}.mobile-preview{position:absolute;right:-12px;bottom:-30px;width:105px;height:190px;background:var(--paper);border:5px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--lime);padding:24px 9px 10px;display:flex;flex-direction:column;gap:7px;transform:rotate(5deg)}.phone-speaker{position:absolute;top:8px;left:50%;width:27px;height:4px;border-radius:4px;background:var(--ink);transform:translateX(-50%)}.mobile-preview p{font:600 7px/1.15 var(--sans);margin:0}.mobile-preview b{font:700 17px/.92 var(--serif);letter-spacing:-.06em}.mobile-preview small{font-size:7px;line-height:1.35}.mobile-preview button{margin-top:auto;border:0;background:var(--lime);color:var(--ink);padding:7px 3px;font:700 7px var(--sans)}.mobile-preview em{font:600 7px var(--sans);font-style:normal;text-align:center}.hero .preview-start{padding:8px;gap:8px}.hero .preview-start input{padding:17px 16px}.hero .preview-start .button{padding:18px 21px}.hero .form-note{margin-top:13px}
-@media(max-width:760px){.hero{padding-top:22px;padding-bottom:52px}.hero-grid{min-height:0}.hero-art.before-after{height:282px;margin:34px 0 0;grid-template-columns:.72fr 30px 1.28fr;gap:7px}.before-card>p,.after-card>p{font-size:9px;margin-bottom:6px}.google-card{min-height:145px;padding:14px 11px;gap:8px;box-shadow:4px 4px 0 var(--ink)}.google-card b{font-size:18px}.google-card small,.google-card em{font-size:8px}.before-after-arrow{font-size:6px;transform:rotate(-90deg)}.before-after-arrow b{font-size:23px}.site-card{min-height:197px;padding:11px;box-shadow:4px 4px 0 var(--ink)}.site-card-nav{padding-bottom:8px;font-size:7px}.site-card-nav i{width:5px;height:5px}.site-card h3{font-size:24px;margin:30px 0 9px}.site-card small{font-size:7px}.site-card button{padding:8px;font-size:8px}.mobile-preview{right:-7px;bottom:-20px;width:67px;height:122px;border-width:3px;border-radius:11px;box-shadow:3px 3px 0 var(--lime);padding:15px 5px 5px;gap:4px}.phone-speaker{top:5px;width:17px;height:3px}.mobile-preview p{font-size:4px}.mobile-preview b{font-size:10px}.mobile-preview small{font-size:4px}.mobile-preview button{padding:4px 1px;font-size:4px}.mobile-preview em{font-size:4px}.hero .preview-start{padding:6px}.hero .preview-start input{padding:15px}.hero .preview-start .button{padding:16px}}
+/* Hero: ewolucja od zaniedbanej wizytówki Google do nowoczesnej strony mobilnej. */
+
+/* --- sekcja hero i formularz (bez zmian) --- */
+.hero{padding-top:28px;padding-bottom:68px}
+.hero-grid{min-height:575px}
+.hero .preview-start{padding:8px;gap:8px}
+.hero .preview-start input{padding:17px 16px}
+.hero .preview-start .button{padding:18px 21px}
+.hero .form-note{margin-top:13px}
+
+/* --- scena --- */
+.hero-art.hero-evo{height:522px;margin-left:26px;position:relative;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.evo-stage{position:relative;width:520px;height:580px;flex:none;transform:scale(.9);transform-origin:center}
+.evo-trail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* --- PRZED: zaniedbana wizytówka --- */
+.evo-old{position:absolute;left:0;top:20px;z-index:1;transform-origin:bottom center;filter:blur(.4px);opacity:.94;animation:evoFloatOld 6.4s ease-in-out infinite}
+.evo-old-shell{width:164px;height:348px;border-radius:28px;background:#3A3D3F;border:6px solid #3A3D3F;box-shadow:0 18px 32px -18px rgba(18,20,22,.4)}
+.evo-old-screen{width:100%;height:100%;border-radius:22px;background:#E9E7E2;display:flex;flex-direction:column;align-items:center;padding:14px 11px 12px}
+.evo-old-notch{width:32px;height:5px;border-radius:3px;background:#B9B7B1;margin-bottom:9px}
+.evo-old-avatar{width:32px;height:32px;border-radius:50%;background:#C7C5C0;margin-bottom:6px}
+.evo-old-line{height:7px;border-radius:2px;background:#B9B7B1}
+.evo-stars{display:flex;gap:2px;margin:7px 0 8px}
+.evo-star{width:9px;height:9px;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.evo-star.is-gold{background:#F5B301}
+.evo-star.is-gray{background:#B9B7B1}
+.evo-old-icons{display:flex;gap:9px;margin-bottom:9px}
+.evo-alert{display:flex;align-items:center;gap:5px;width:100%;background:#FEE2E2;border:1px solid #FCA5A5;border-radius:7px;padding:5px 6px;margin-bottom:7px;animation:evoAlert 2.6s ease-in-out infinite}
+.evo-alert svg{flex:none}
+.evo-alert span{font:700 7.5px/1.2 var(--sans);color:#DC2626}
+.evo-missing{width:100%;border:2px dashed #A8A6A1;border-radius:10px;padding:8px;text-align:center;margin-bottom:12px}
+.evo-missing span{font:600 9px var(--sans);color:#8A8880}
+.evo-old-filler{margin-top:auto;width:100%;display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.evo-old-filler i{display:block;height:6px;border-radius:2px;background:#D8D6D0}
+
+/* --- PO: nowoczesna strona mobilna --- */
+.evo-new{position:absolute;right:0;bottom:6px;z-index:2;animation:evoFloatNew 6.4s ease-in-out infinite .35s}
+.evo-new-shell{position:relative;width:216px;height:448px;border-radius:40px;background:var(--ink);border:8px solid var(--ink);box-shadow:0 34px 56px -24px rgba(18,20,22,.5)}
+.evo-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:78px;height:17px;border-radius:0 0 13px 13px;background:var(--ink);z-index:5}
+.evo-screen{position:relative;width:100%;height:100%;border-radius:32px;background:linear-gradient(to bottom,#fff 0%,#fff 45%,#F8FAFC 100%);overflow:hidden;display:flex;flex-direction:column;padding-top:24px}
+.evo-nav{display:flex;align-items:center;justify-content:space-between;padding:6px 14px 0}
+.evo-nav-logo{display:flex;align-items:center;gap:4px}
+.evo-nav-mark{width:13px;height:13px;border-radius:4px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.evo-nav-name{font:700 10px var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.evo-photo{margin:11px 12px 0;height:130px;border-radius:22px;overflow:hidden;background:#E9E7E2;box-shadow:0 14px 26px -12px rgba(18,20,22,.35)}
+.evo-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.evo-body{padding:11px 14px 0}
+.evo-pills{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.evo-pill{font:600 7px var(--sans);padding:3px 7px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid #EEF1F4;box-shadow:0 1px 2px rgba(18,20,22,.05);color:#3E4448}
+.evo-pill.is-accent{color:#0E6F67;border-color:rgba(23,178,166,.3);background:rgba(23,178,166,.08)}
+.evo-headline{font:700 19px/1.1 var(--serif);letter-spacing:-.025em;margin:0 0 6px;color:var(--ink)}
+.evo-sub{font:400 7.5px/1.55 var(--sans);color:#6B7280;margin:0 0 8px}
+.evo-trust{display:flex;align-items:center;gap:4px}
+.evo-trust-stars{display:flex;gap:1.5px}
+.evo-trust span{font:600 7px var(--sans);color:#6B7280}
+.evo-bar{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:10px 14px 14px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid #EEF1F4;display:flex;flex-direction:column;gap:6px}
+.evo-cta{background:var(--lime);color:var(--ink);font:700 11px var(--sans);border-radius:999px;padding:9px 0;text-align:center;transform-origin:center;animation:evoHeartbeat 2s ease-in-out infinite}
+.evo-call{display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(18,20,22,.12);color:var(--ink);font:600 9px var(--sans);border-radius:999px;padding:7px 0;background:rgba(255,255,255,.6)}
+
+/* --- pływający dowód rezerwacji --- */
+.evo-badge{position:absolute;left:-107px;bottom:118px;z-index:6;display:flex;align-items:center;gap:6px;background:#fff;border-radius:14px;padding:7px 10px;box-shadow:0 12px 24px -8px rgba(18,20,22,.28),0 2px 6px rgba(18,20,22,.08);animation:evoFloatBadge 4.2s ease-in-out infinite}
+.evo-badge-icon{width:20px;height:20px;border-radius:7px;flex:none;background:#DCFCE7;display:flex;align-items:center;justify-content:center}
+.evo-badge b{display:block;font:700 8.5px/1.15 var(--sans);color:var(--ink);white-space:nowrap}
+.evo-badge i{display:block;font:500 7px/1.15 var(--sans);font-style:normal;color:#16A34A;white-space:nowrap}
+
+/* --- animacje --- */
+@keyframes evoFloatOld{0%,100%{transform:translateY(0) scale(.85)}50%{transform:translateY(-10px) scale(.85)}}
+@keyframes evoFloatNew{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+@keyframes evoFloatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes evoAlert{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}50%{box-shadow:0 0 0 4px rgba(220,38,38,.12)}}
+@keyframes evoTrail{to{stroke-dashoffset:-160}}
+.evo-trail path{animation:evoTrail 5s linear infinite}
+@keyframes evoHeartbeat{
+  0%{transform:scale(1);box-shadow:0 0 0 0 rgba(185,242,74,.55),0 4px 10px -4px rgba(18,20,22,.2)}
+  12%{transform:scale(1.13);box-shadow:0 0 0 6px rgba(185,242,74,.28),0 8px 18px -6px rgba(18,20,22,.25)}
+  24%{transform:scale(1);box-shadow:0 0 0 10px rgba(185,242,74,0),0 4px 10px -4px rgba(18,20,22,.2)}
+  36%{transform:scale(1.1);box-shadow:0 0 0 5px rgba(185,242,74,.22),0 8px 18px -6px rgba(18,20,22,.25)}
+  48%{transform:scale(1);box-shadow:0 0 0 10px rgba(185,242,74,0),0 4px 10px -4px rgba(18,20,22,.2)}
+  100%{transform:scale(1);box-shadow:0 0 0 0 rgba(185,242,74,.55),0 4px 10px -4px rgba(18,20,22,.2)}
+}
+@media(prefers-reduced-motion:reduce){
+  .evo-old,.evo-new,.evo-badge,.evo-cta,.evo-alert,.evo-trail path{animation:none}
+  .evo-old{transform:scale(.85)}
+}
+
+/* --- mobile --- */
+@media(max-width:760px){
+  .hero{padding-top:22px;padding-bottom:52px}
+  .hero-grid{min-height:0}
+  .hero .preview-start{padding:6px}
+  .hero .preview-start input{padding:15px}
+  .hero .preview-start .button{padding:16px}
+  .hero-art.hero-evo{height:360px;margin:34px 0 0}
+  .evo-stage{transform:scale(.62)}
+}
+@media(max-width:430px){
+  .hero-art.hero-evo{height:318px}
+  .evo-stage{transform:scale(.55)}
+}

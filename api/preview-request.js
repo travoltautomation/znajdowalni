@@ -14,10 +14,10 @@ module.exports = async function handler(request, response) {
 
   try {
     if (webhook) {
-      const upstream = await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "preview-request", submittedAt: new Date().toISOString(), ...payload }) });
+      const upstream = await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: payload.type || "preview-request", submittedAt: new Date().toISOString(), ...payload }) });
       if (!upstream.ok) throw new Error("Webhook failed");
     } else {
-      const subject = `Nowa prośba o preview: ${payload.company || payload.source || payload.email}`;
+      const subject = `${payload.type === "contact-request" ? "Nowa wiadomość kontaktowa" : "Nowa prośba o preview"}: ${payload.company || payload.name || payload.source || payload.email}`;
       const text = Object.entries(payload).map(([key, value]) => `${key}: ${value}`).join("\n");
       const upstream = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || "Znajdowalni <onboarding@resend.dev>", to: [recipient], reply_to: payload.email, subject, text }) });
       if (!upstream.ok) throw new Error("Resend failed");

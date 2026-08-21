@@ -70,7 +70,7 @@ Na tej podstawie:
 - usunięto słabsze koncepcje portfolio i pozostawiono jeden mocny przykład Pani Terapia,
 - cennik pokazuje osobno wdrożenie, opiekę i pełną pierwszą płatność,
 - główny formularz ograniczono do czterech pól,
-- szczegółowy zakres, dodatki, ograniczenia i pełne FAQ przeniesiono na `oferta.html`.
+- szczegółowy zakres, dodatki, ograniczenia i pełne FAQ pozostawiono na stronie głównej.
 
 ## Warunki przed publikacją sprzedażową
 

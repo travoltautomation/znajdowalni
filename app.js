@@ -1,121 +1,80 @@
-const $ = (selector) => document.querySelector(selector);
-const link = (text, href, cls = "") => `<a class="${cls}" href="${href}">${text}</a>`;
-const CONTACT_EMAIL = "travoltautomation@gmail.com";
+const q = (selector, scope = document) => scope.querySelector(selector);
+const previewForm = (id, final = false) => `<form class="preview-form" id="${id}" novalidate>
+  <div class="preview-start"><label class="sr-only" for="${id}-source">Adres obecnej strony</label><input id="${id}-source" name="source" type="url" inputmode="url" placeholder="Wklej adres obecnej strony" required><button type="button" class="button ink" data-next>Pokażcie mi moją nową stronę <span>→</span></button></div>
+  <button class="text-action" type="button" data-no-site>Nie masz jeszcze strony? Wklej wizytówkę Google, profil Booksy lub informacje o firmie.</button>
+  <p class="form-note">${final ? "Pierwszy podgląd jest bezpłatny. Niczego nie publikujemy bez Twojej decyzji." : "Jeden prywatny kierunek: hero, pierwsza sekcja i widok mobilny. Bez opłat."}</p><div class="form-details" hidden></div></form>`;
 
-function browserBar(domain, dark = false) {
-  return `<div class="browser-bar${dark ? " browser-bar--dark" : ""}"><div class="dots"><i></i><i></i><i></i></div><span>${domain}</span><i class="browser-lock" aria-hidden="true"></i></div>`;
+const fields = (noSite) => noSite ? `<div class="detail-grid"><label>Nazwa firmy<input name="company" required></label><label>Branża / czym się zajmujesz<input name="business" required></label><label>Miasto<input name="city" required></label><label>Link <small>(opcjonalnie)</small><input name="source" placeholder="Google, Facebook, Instagram..."></label></div>` : "";
+
+function openForm(form, noSite = false) {
+  const details = q('.form-details', form); const start = q('.preview-start', form);
+  const source = q('[name="source"]', form)?.value || "";
+  start.hidden = true; q('[name="source"]', start).disabled = true; details.hidden = false;
+  details.innerHTML = `${fields(noSite)}<div class="detail-grid"><label>E-mail<input name="email" type="email" required placeholder="twoj@email.pl"></label><label>Telefon <small>(opcjonalnie)</small><input name="phone" type="tel"></label></div><label class="consent"><input name="consent" type="checkbox" required><span>Zgadzam się na kontakt w sprawie prywatnego podglądu. <a href="polityka-prywatnosci.html">Polityka prywatności</a>.</span></label><button class="button coral" type="submit">Wyślij prośbę o podgląd <span>→</span></button><button class="back" type="button" data-back>← Wróć</button>`;
+  if (!noSite && source) q('[name="source"]', details).value = source;
+  q('input', details)?.focus();
 }
 
-function gabinetDemo(branch, compact) {
-  const desktop = `<div class="browser business-site demo-gabinet">${browserBar("gabinet-harmonia.pl")}<div class="gabinet-nav"><b><i></i>${branch.brand}</b><span>O terapii&nbsp;&nbsp;&nbsp; Oferta&nbsp;&nbsp;&nbsp; Kontakt</span><em>Umów wizytę</em></div><div class="gabinet-layout"><div class="gabinet-copy"><small>${branch.label}</small><div class="mock-headline">${branch.headline}</div><p>Indywidualna fizjoterapia, która pomaga odzyskać swobodę i pewność ruchu.</p><span class="mock-button">${branch.cta}<i>↗</i></span><div class="mock-proof"><b>★★★★★</b><span>${branch.proof}</span></div></div><div class="gabinet-photo"><span class="availability"><i></i><b>Wolny termin</b><small>jutro · 10:30</small></span></div></div></div>`;
-  if (compact) return desktop;
-  const phone = `<div class="phone phone--gabinet"><div class="phone-notch"></div><div class="phone-screen"><div class="m-gabinet-head"><b>H.</b><span>MENU</span></div><div class="m-gabinet-photo"></div><small>${branch.label}</small><div class="mobile-headline">${branch.mobileHeadline}</div><div class="m-slot"><i></i><span><b>Najbliższy termin</b>jutro · 10:30</span></div><div class="mobile-button">Umów konsultację</div></div></div>`;
-  return desktop + phone;
+function showStatus(form, type, title, text) {
+  form.innerHTML = `<div class="form-status ${type}"><span>${type === 'success' ? '✓' : '!'}</span><h3>${title}</h3><p>${text}</p></div>`;
 }
 
-function beautyDemo(branch, compact) {
-  const desktop = `<div class="browser business-site demo-beauty">${browserBar("maja-atelier.pl")}<div class="beauty-canvas"><div class="beauty-nav"><b>${branch.brand}</b><span>USŁUGI&nbsp;&nbsp;&nbsp; GALERIA&nbsp;&nbsp;&nbsp; KONTAKT</span></div><div class="beauty-photo"><span class="beauty-stamp">WROCŁAW<br>EST. 2019</span></div><div class="beauty-copy"><small>HAIR · COLOR · CARE</small><div class="mock-headline">${branch.headline}</div><p>Koloryzacja i pielęgnacja zaprojektowane wokół Ciebie.</p><span class="mock-button">Zobacz usługi <i>→</i></span><div class="beauty-booking"><span>${branch.note}</span><b>BOOKSY ↗</b></div></div><div class="beauty-index">01&nbsp;&nbsp; / &nbsp;&nbsp;03</div></div></div>`;
-  if (compact) return desktop;
-  const phone = `<div class="phone phone--beauty"><div class="phone-notch"></div><div class="phone-screen"><div class="m-beauty-head"><b>MAJA</b><span>ATELIER</span></div><div class="m-beauty-photo"><i>NEW<br>COLOR</i></div><small>HAIR & BEAUTY · WROCŁAW</small><div class="mobile-headline">${branch.mobileHeadline}</div><div class="m-beauty-services"><span>Koloryzacja <b>od 240</b></span><span>Care <b>od 120</b></span></div><div class="mobile-button">Rezerwuj w Booksy</div></div></div>`;
-  return desktop + phone;
+async function sendPreview(data) {
+  const response = await fetch(SITE.contact.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(result.error || 'Nie udało się wysłać formularza.');
+  return result;
 }
 
-function workshopDemo(branch, compact) {
-  const desktop = `<div class="browser business-site demo-workshop">${browserBar("autoserwis21.pl", true)}<div class="workshop-nav"><b><i>21</i>AUTO SERWIS</b><span>USŁUGI&nbsp;&nbsp;&nbsp; CENNIK&nbsp;&nbsp;&nbsp; DOJAZD</span><em><i></i>OTWARTE DO 17:00</em></div><div class="workshop-layout"><div class="workshop-photo"><div class="diagnostic"><span>STATUS ZLECENIA</span><b>Diagnostyka zakończona</b><i><u></u></i></div></div><div class="workshop-copy"><small>${branch.label}</small><div class="mock-headline">${branch.headline}</div><p>Najpierw diagnoza i wycena. Dopiero potem naprawa.</p><div class="workshop-actions"><span class="mock-button">Zadzwoń teraz</span><b>58 721 21 21</b></div><div class="workshop-services">${branch.services.map((item, index) => `<span><i>0${index + 1}</i>${item}</span>`).join("")}</div></div></div></div>`;
-  if (compact) return desktop;
-  const phone = `<div class="phone phone--workshop"><div class="phone-notch"></div><div class="phone-screen"><div class="m-workshop-head"><b>AS<span>21</span></b><i></i><small>OTWARTE</small></div><div class="m-workshop-photo"></div><small>${branch.label}</small><div class="mobile-headline">${branch.mobileHeadline}</div><div class="m-workshop-status"><span>DIAGNOZA</span><b>Wycena przed naprawą</b></div><div class="mobile-button">Zadzwoń · 58 721 21 21</div></div></div>`;
-  return desktop + phone;
-}
-
-function demo(branch, compact = false) {
-  if (branch.key === "beauty") return beautyDemo(branch, compact);
-  if (branch.key === "warsztat") return workshopDemo(branch, compact);
-  return gabinetDemo(branch, compact);
-}
-
-function header() {
-  return `<nav class="nav" aria-label="Główna nawigacja"><a class="wordmark brand-lockup" href="#top" aria-label="Znajdowalni — strona główna"><img src="assets/brand/znajdowalni-kadr-final.svg" alt="Znajdowalni"></a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Otwórz menu">☰</button><div class="nav-links" id="main-nav">${SITE.nav.filter(([, href]) => href !== "#kontakt").map(([text, href]) => link(text, href)).join("")}${link("Porozmawiajmy", "#kontakt", "nav-cta")}</div></nav>`;
-}
-
-function hero() {
-  const tabs = Object.entries(SITE.branches).map(([key, branch], index) => `<button data-branch="${key}" class="${index === 0 ? "active" : ""}" aria-pressed="${index === 0}">${branch.tab}</button>`).join("");
-  return `<section class="hero hero--showcase" aria-labelledby="hero-title"><div class="hero-copy"><div class="eyebrow">STRONY WWW DLA LOKALNYCH FIRM</div><h1 id="hero-title">Klient powinien od razu wiedzieć, że trafił dobrze.</h1><p>Porządkujemy ofertę, projektujemy stronę i łączymy ją z Google, kontaktem oraz rezerwacjami. Żeby dobra firma nie znikała wśród przypadkowych wyborów.</p><p class="price-line">Wdrożenie 1 990 zł netto · opieka 349 zł netto / mies.</p><div class="hero-actions">${link("Porozmawiajmy o Twojej stronie", "#kontakt", "button")}</div></div><div class="hero-visual" aria-label="Trzy różne projekty stron dla lokalnych firm"><div class="showcase-label"><span>3 branże</span><b>3 różne kierunki</b></div><div class="switcher" role="group" aria-label="Wybierz branżę">${tabs}</div><div class="site-stage" id="stage" data-branch="gabinet" role="img" aria-label="Podgląd strony: Gabinet Harmonia">${demo(SITE.branches.gabinet, true)}</div></div></section><div class="trust" aria-label="Najważniejsze informacje"><span>Projekt i uporządkowanie treści</span><span>Google, kontakt i rezerwacje</span><span>Publikacja zwykle w 10–15 dni</span><span>Opieka bez umowy na rok</span></div>`;
-}
-
-function decisionSection() {
-  return `<section class="decision-section" aria-labelledby="decision-title"><div class="decision-head"><div><div class="kicker">Nie chodzi tylko o stronę</div><h2 id="decision-title">Polecenie daje Ci uwagę. Strona ma zamienić ją w zaufanie.</h2></div><p class="section-copy">Klient może trafić do Ciebie z Instagrama, polecenia albo mapy Google. Zanim zadzwoni, chce potwierdzić, że jesteś właściwą osobą: sprawdza ofertę, opinie, lokalizację, ceny i sposób kontaktu. Dajemy mu jedno uporządkowane miejsce do podjęcia decyzji.</p></div><div class="evidence-strip" aria-label="Wnioski z badania klientów lokalnych"><div><strong>75%</strong><span>korzystało z więcej niż jednego kanału podczas lokalnego wyszukiwania</span></div><div><strong>73%</strong><span>zaczynało takie wyszukiwanie na telefonie</span></div><div><strong>6%</strong><span>po prostu wybrało pierwszy wynik bez dalszego porównania</span></div><p>Badanie BrightLocal 2026 na panelu 1 227 aktywnych konsumentów w USA — kierunek projektowy, nie obietnica wyniku. Źródła: <a href="https://www.brightlocal.com/research/consumer-search-behavior-channels/" target="_blank" rel="noopener noreferrer">kanały wyszukiwania</a> i <a href="https://www.brightlocal.com/research/consumer-search-behavior-decisions/" target="_blank" rel="noopener noreferrer">kryteria decyzji</a>.</p></div><div class="decision-path"><article><span>01</span><h3>Polecenie</h3><p>Ktoś wysyła nazwę lub numer. Klient sprawdza, czy firma wygląda profesjonalnie i czy robi dokładnie to, czego potrzebuje.</p></article><article><span>02</span><h3>Social media</h3><p>Post lub rolka przyciąga uwagę. Strona pozwala przejść od „ciekawe” do konkretnej usługi, ceny i kontaktu.</p></article><article><span>03</span><h3>Google i mapa</h3><p>Klient porównuje kilka firm. Wygrywa nie sam wynik, lecz komplet informacji, opinie i łatwy następny krok.</p></article></div><div class="decision-check"><div><span class="kicker">W 15 sekund</span><h3>Twoja strona powinna odpowiedzieć na pięć pytań.</h3></div><ol><li>Co dokładnie robisz?</li><li>Dla kogo i gdzie działasz?</li><li>Dlaczego warto Ci zaufać?</li><li>Ile to kosztuje lub jak wygląda współpraca?</li><li>Jak mogę skontaktować się teraz?</li></ol></div><p class="decision-note">Bez tych odpowiedzi klient zwykle nie wysyła informacji zwrotnej. Po prostu wraca do porównania i wybiera firmę, która ułatwiła mu decyzję.</p></section>`;
-}
-
-function fitSection() {
-  return `<section class="fit-section" aria-labelledby="fit-title"><div class="fit-intro"><div><div class="kicker">Czy to dla Ciebie?</div><h2 id="fit-title">Dla firm, które są dobre w tym, co robią — i nie chcą zajmować się stroną.</h2></div><p class="section-copy">To oferta dla lokalnych biznesów usługowych: gabinetów, salonów, warsztatów, ekip i małych zespołów. Masz już klientów z poleceń, social mediów albo Google, lecz Twoja obecność online jest niepełna, przestarzała lub rozrzucona po kilku profilach.</p></div><div class="fit-grid"><article><h3>DOBRY WYBÓR, JEŚLI</h3><ul><li>klienci wciąż pytają o usługi, ceny, adres lub wolne terminy</li><li>nie masz strony albo obecna nie buduje zaufania na telefonie</li><li>chcesz połączyć Google, opinie, mapę i rezerwacje</li><li>potrzebujesz jednej osoby odpowiedzialnej za stronę po publikacji</li></ul></article><article class="fit-no"><h3>TO NIE JEST OFERTA, JEŚLI</h3><ul><li>szukasz sklepu internetowego, rozbudowanego portalu lub aplikacji</li><li>oczekujesz skopiowania gotowego szablonu za najniższą cenę</li><li>ktoś ma zagwarantować pierwszą pozycję w Google</li><li>nie chcesz pokazać rzetelnej oferty ani umożliwić klientom kontaktu</li></ul></article></div></section>`;
-}
-
-function offer() {
-  return `<section class="offer offer-v2" id="oferta"><div class="offer-v2-head"><div><div class="kicker">Jedna rekomendowana oferta</div><h2>Najpierw uruchamiamy stronę. Potem dbamy, żeby nie została sama.</h2></div><p>Bez trzech pakietów, pozornych rabatów i ukrytych kosztów. Płacisz za wdrożenie oraz za opiekę, której zakres znasz przed startem.</p></div><div class="pricing-flow"><article class="price-panel"><span class="price-label">01 · Wdrożenie</span><div class="price-main">1 990 zł <small>netto · jednorazowo</small></div><h3>Gotowa strona firmy</h3><ul><li>cel, struktura i uporządkowanie treści</li><li>indywidualny kierunek wizualny</li><li>responsywna strona do 6 standardowych sekcji</li><li>formularz, mapa, rezerwacje, SEO, konfiguracja domeny i SSL</li></ul></article><div class="price-plus" aria-hidden="true">+</div><article class="price-panel care-panel"><span class="price-label">02 · Opieka</span><div class="price-main">349 zł <small>netto / mies.</small></div><h3>Spokój po publikacji</h3><ul><li>hosting, SSL, kopie i monitoring</li><li>kontrola formularza oraz rezerwacji</li><li>60 minut drobnych zmian miesięcznie</li><li>wsparcie i kwartalna kontrola danych</li></ul><p>Rozliczenie kwartalne: 1 047 zł netto</p></article></div><div class="launch-details"><ul><li>10–15 dni roboczych</li><li>2 rundy korekt</li><li>bez umowy na rok</li><li>zachowujesz pliki strony</li></ul>${link("Chcę omówić swoją stronę", "#kontakt", "button")}</div><div class="extras-line"><span>Opcjonalnie:</span><b>Wizytówka Google od 490 zł</b><b>Kalendarz Google od 390 zł</b><b>Identyfikacja od 1 490 zł</b><b>QR do opinii od 190 zł</b></div><a class="offer-details-link" href="oferta.html">Zobacz pełny zakres, dodatki i zasady współpracy →</a></section>`;
-}
-
-function main() {
-  const faqIndexes = [0, 1, 2, 3, 6, 9, 13];
-  const faq = faqIndexes.map((index) => SITE.faq[index]).map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("");
-  return `<div class="page">${hero()}<section class="compact-value" id="dla-kogo"><div class="compact-value-head"><div><div class="kicker">Co klient musi zobaczyć</div><h2>Nie wystarczy być polecanym. Trzeba jeszcze wyglądać jak bezpieczny wybór.</h2></div><p>Strona zbiera w jednym miejscu to, czego klient szuka przed kontaktem: konkretną ofertę, dowody zaufania, lokalizację i prosty następny krok.</p></div><div class="outcome-grid"><article><span>01</span><h3>Zaufanie</h3><p>Kwalifikacje, opinie, zdjęcia i profesjonalna prezentacja.</p></article><article><span>02</span><h3>Konkret</h3><p>Usługi, obszar działania oraz cena lub jasny sposób wyceny.</p></article><article><span>03</span><h3>Działanie</h3><p>Telefon, formularz, mapa albo rezerwacja bez szukania linku.</p></article></div><p class="research-note">75% badanych korzystało z więcej niż jednego kanału podczas lokalnego wyszukiwania. <a href="https://www.brightlocal.com/research/consumer-search-behavior-channels/" target="_blank" rel="noopener noreferrer">BrightLocal 2026, badanie USA</a>.</p></section><section class="case-v2" id="realizacje"><div class="case-copy"><span class="case-label">Psychoterapia · realizacja</span><div class="kicker">Pani Terapia</div><h2>Spokojny design. Konkretna droga do konsultacji.</h2><p>Strona porządkuje zakres pomocy, doświadczenie i sposób umówienia konsultacji. Każda sekcja prowadzi do jednego celu: bezpiecznego pierwszego kontaktu.</p><ul><li>gabinet i konsultacje online</li><li>zakres pomocy i doświadczenie</li><li>czytelna droga do rozmowy</li></ul><a class="button secondary" href="assets/pani-terapia-current.png" target="_blank" rel="noopener noreferrer">Zobacz podgląd realizacji</a></div><div class="case-visual"><img src="assets/pani-terapia-current.png" alt="Aktualny widok strony Pani Terapia" loading="lazy"></div></section>${offer()}<section class="process-v2" id="jak-pracujemy"><div class="process-v2-head"><div><div class="kicker">Prosty proces</div><h2>Nie musisz przygotowywać profesjonalnego briefu.</h2></div><p>Potrzebujemy wiedzieć, czym zajmuje się firma, kogo obsługuje i jak klient ma się z Tobą skontaktować. Resztę porządkujemy razem.</p></div><div class="process-v2-grid"><article><span>01</span><h3>Rozmowa i materiały</h3><p>Oferta, zdjęcia, logo i linki do obecnych profili.</p></article><article><span>02</span><h3>Treść i projekt</h3><p>Przygotowujemy strukturę, wygląd i dwie rundy korekt.</p></article><article><span>03</span><h3>Publikacja i opieka</h3><p>Uruchamiamy stronę, a potem pilnujemy jej działania.</p></article></div></section><section class="audience-v2"><div><div class="kicker">Najlepsze dopasowanie</div><h2>Małe i średnie firmy usługowe.</h2></div><div class="audience-chips"><span>gabinet i klinika</span><span>psycholog i terapeuta</span><span>beauty i wellness</span><span>fryzjer i barber</span><span>dentysta i ortodonta</span><span>fizjoterapia</span><span>warsztat i serwis</span><span>usługi domowe</span><span>remonty i wykończenia</span><span>architekt wnętrz</span><span>prawo i księgowość</span><span>biuro nieruchomości</span><span>fotograf i filmowiec</span><span>szkoła językowa</span><span>trener i studio ruchu</span><span>weterynarz</span><span>catering i eventy</span><span>zespoły specjalistów</span></div><p>Pakiet standardowy obejmuje jeden serwis do 6 sekcji. Wiele lokalizacji, podstrony i szersze integracje wyceniamy indywidualnie.</p></section><section class="faq-v2" id="faq"><div><div class="kicker">Najważniejsze pytania</div><h2>Bez drobnego druku.</h2><a href="oferta.html#faq">Pełne FAQ i zasady →</a></div><div class="faq-list">${faq}</div></section><section class="contact-v2" id="kontakt"><div class="contact-v2-copy"><div class="kicker">Pierwszy krok</div><h2>Pokaż nam, jak dziś wygląda Twoja firma online.</h2><p>Wystarczy nazwa firmy, branża i e-mail. Jeśli masz stronę, profil Google albo Instagram — wklej link. Nie potrzebujesz gotowego briefu.</p><div class="contact-promise"><b>Co dostaniesz w odpowiedzi?</b><span>Krótką ocenę, rekomendowany zakres i informację, czy możemy sensownie pomóc.</span></div></div><form class="form compact-form" id="contact-form"><p class="form-intro"><b>Cztery krótkie pola.</b> Bez rejestracji i bez rozmowy sprzedażowej na siłę.</p><a class="direct-email" href="mailto:${CONTACT_EMAIL}">Wolisz e-mail? ${CONTACT_EMAIL}</a><div class="form-grid"><label class="field">Imię i nazwisko<input required autocomplete="name" spellcheck="false" name="name"></label><label class="field">E-mail<input required autocomplete="email" spellcheck="false" type="email" name="email"></label><label class="field full">Firma i branża<input required autocomplete="organization" name="company"></label><label class="field full">Link lub krótko: czego potrzebujesz? <span>(opcjonalnie)</span><textarea name="message"></textarea></label></div><div class="form-actions"><button class="button" type="submit">Przejdź do e-maila</button></div><p class="form-note">Kliknięcie otworzy Twój program pocztowy z gotową wiadomością. Strona nie zapisuje wpisanych danych.</p><div class="success" role="status" aria-live="polite"></div></form></section></div>`;
-}
-
-function footer() {
-  return `<div class="footer-brand"><a class="wordmark brand-lockup footer-lockup" href="#top" aria-label="Znajdowalni — strona główna"><img src="assets/brand/znajdowalni-kadr-final-reverse.svg" alt="Znajdowalni"></a><p>Strony WWW i stała opieka dla lokalnych firm.</p><a class="footer-email" href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></div><nav class="footer-column" aria-label="Znajdowalni"><span>Znajdowalni</span>${SITE.nav.filter(([text]) => ["Jak pracujemy", "Oferta", "FAQ", "Kontakt"].includes(text)).map(([text, href]) => link(text, href)).join("")}</nav><nav class="footer-column" aria-label="Informacje"><span>Informacje</span>${link("Dla kogo", "#dla-kogo")}${link("Realizacje", "#realizacje")}${link("Polityka prywatności", "polityka-prywatnosci.html")}${link("Pliki cookie", "pliki-cookie.html")}<button class="cookie-settings" type="button">Ustawienia cookies</button></nav>`;
-}
-
-$(".header").innerHTML = header();
-$("main").innerHTML = main();
-$("footer").className = "footer";
-$("footer").innerHTML = footer();
-
-if (window.location.hash) {
-  const syncHashPosition = () => document.querySelector(window.location.hash)?.scrollIntoView({ block: "start", behavior: "instant" });
-  requestAnimationFrame(syncHashPosition);
-  window.addEventListener("load", syncHashPosition, { once: true });
-  document.fonts?.ready.then(syncHashPosition);
-}
-
-$(".menu-toggle").addEventListener("click", (event) => {
-  const nav = $(".nav-links");
-  const open = nav.classList.toggle("open");
-  event.currentTarget.setAttribute("aria-expanded", open);
-  event.currentTarget.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
-  event.currentTarget.textContent = open ? "×" : "☰";
-});
-document.querySelectorAll(".nav-links a").forEach((anchor) => anchor.addEventListener("click", () => {
-  $(".nav-links").classList.remove("open");
-  $(".menu-toggle").setAttribute("aria-expanded", "false");
-  $(".menu-toggle").setAttribute("aria-label", "Otwórz menu");
-  $(".menu-toggle").textContent = "☰";
-}));
-document.querySelectorAll("button[data-branch]").forEach((button) => button.addEventListener("click", () => {
-  const key = button.dataset.branch;
-  const stage = $("#stage");
-  if (stage.dataset.branch === key) return;
-  stage.classList.add("stage-enter");
-  stage.dataset.branch = key;
-  stage.innerHTML = demo(SITE.branches[key], true);
-  stage.setAttribute("aria-label", `Podgląd strony: ${SITE.branches[key].name}`);
-  requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.remove("stage-enter")));
-  document.querySelectorAll("button[data-branch]").forEach((candidate) => {
-    const active = candidate === button;
-    candidate.classList.toggle("active", active);
-    candidate.setAttribute("aria-pressed", active);
+function initForm(form) {
+  form.addEventListener('click', (event) => {
+    if (event.target.closest('[data-next]')) { const input = q('[name="source"]', form); if (!input.value.trim()) return input.focus(); openForm(form); }
+    if (event.target.closest('[data-no-site]')) openForm(form, true);
+    if (event.target.closest('[data-back]')) { q('.preview-start', form).hidden = false; q('[name="source"]', q('.preview-start', form)).disabled = false; q('.form-details', form).hidden = true; }
   });
-}));
-$("#contact-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget);
-  const subject = encodeURIComponent(`Zapytanie ze strony Znajdowalni — ${formData.get("company") || "lokalna firma"}`);
-  const message = [
-    `Imię i nazwisko: ${formData.get("name") || ""}`,
-    `Firma: ${formData.get("company") || ""}`,
-    `E-mail: ${formData.get("email") || ""}`,
-    "",
-    `${formData.get("message") || ""}`
-  ].join("\n");
-  $(".success").textContent = "Otwieramy Twoją pocztę z przygotowaną wiadomością. Sprawdź treść i kliknij Wyślij.";
-  $(".success").classList.add("show");
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(message)}`;
-});
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); if (!form.reportValidity()) return;
+    const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
+    try { const result = await sendPreview(Object.fromEntries(new FormData(form))); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
+    catch (error) { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
+  });
+}
+
+function init() {
+  q('#top').innerHTML = `<div class="nav wrap"><a class="brand-lockup" href="#top" aria-label="Znajdowalni — strona główna"><img src="assets/brand/znajdowalni-kadr-final.svg" alt="Znajdowalni"></a><nav>${SITE.nav.map(([name, href]) => `<a href="${href}">${name}</a>`).join('')}</nav><button class="nav-cta" data-scroll-preview>Zobacz preview <span>↘</span></button></div>`;
+  q('#main').innerHTML = `<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="eyebrow">STRONY DLA LOKALNYCH FIRM</p><h1>Daj się znaleźć<br><em>klientom.</em></h1><p class="lede">Wklej swoją wizytówkę Google, Booksy albo obecną stronę. Pokażemy Ci bezpłatnie, jak mogłaby wyglądać nowa strona Twojej firmy.</p>${previewForm('hero-preview')}</div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="signal-card card-one"><b>Twoja firma</b><small>jest dokładnie tam, gdzie trzeba</small></div><div class="signal-card card-two"><span>Nowy klient</span><strong>„O, jest!”</strong></div><div class="spark s1">✦</div><div class="spark s2">✳</div></div></div></section>
+  <section class="benefits"><div class="wrap benefit-grid">${SITE.benefits.map((item, i) => `<article><span>0${i + 1}</span><h2>${item[0]}</h2><p>${item[1]}</p></article>`).join('')}</div></section>
+  <section class="section scenarios" id="dla-kogo"><div class="wrap"><p class="eyebrow">DLA KOGO</p><h2>Nie potrzebujesz kolejnego<br><em>projektu do pilnowania.</em></h2><div class="scenario-grid"><article><p class="kicker">START OD ZERA</p><h3>Nie masz jeszcze strony</h3><p>Masz Google, Booksy, social media albo klientów z polecenia. Zbudujemy stronę na podstawie informacji, które już istnieją.</p></article><article><p class="kicker">NOWY ROZDZIAŁ</p><h3>Masz stronę, ale wolałbyś jej nie pokazywać</h3><p>Odświeżymy wygląd, strukturę, mobile, kontakt i sposób prezentowania usług.</p></article></div></div></section>
+  <section class="section process" id="jak-to-dziala"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">JAK TO DZIAŁA</p><h2>Bez wielogodzinnych warsztatów.<br><em>Bez technicznego chaosu.</em></h2></div><p>Trzy kroki. Najpierw widzisz efekt, potem decydujesz.</p></div><div class="steps">${[["Daj nam namiar", "Wklejasz stronę, Google, Booksy, social media albo kilka informacji o firmie."], ["Oglądasz projekt", "Dostajesz prywatny link z propozycją nowej strony."], ["Decydujesz", "Podoba Ci się? Dopracowujemy i publikujemy. Nie? Za pierwszy preview nie płacisz."]].map((step, i) => `<article><span>0${i+1}</span><h3>${step[0]}</h3><p>${step[1]}</p></article>`).join('')}</div></div></section>
+  <section class="section case-study" id="realizacje"><div class="wrap case-grid"><div class="case-copy"><p class="eyebrow">PRZYKŁADOWA REALIZACJA</p><h2>Pani Terapia.<br><em>Spokojna strona, jasny pierwszy krok.</em></h2><p>Gabinet, oferta, kontakt i rezerwacja zebrane w jednym miejscu. Bez wyszukiwania informacji po kilku profilach.</p><p class="case-note">Przykład pokazuje kierunek dla gabinetu terapeutycznego.</p></div><div class="case-visual"><img src="assets/pani-terapia-case.png" alt="Widok przykładowej strony Pani Terapia"></div></div></section>
+  <section class="section directions"><div class="wrap"><p class="eyebrow">PRZYKŁADOWE KIERUNKI</p><h2>Zobacz, co możemy stworzyć<br><em>dla Twojej branży.</em></h2><p class="intro">Trzy przykładowe kierunki, które pokazują, jak różnie może działać prosta strona lokalnej firmy.</p><div class="direction-grid">${SITE.industries.map(item => `<article class="site-preview ${item.tone}"><div class="browser"><i></i><i></i><i></i></div><div class="mini-nav">${item.name}<span>Menu</span></div><h3>${item.title}</h3><div class="mini-lines"><b></b><b></b><b></b></div><button>Umów termin →</button><p>${item.tag}</p></article>`).join('')}</div></div></section>
+  <section class="section pricing" id="cennik"><div class="wrap"><p class="eyebrow">PROSTY CENNIK</p><h2>Strona, którą masz z głowy.<br><em>Od 299 zł miesięcznie.</em></h2><p class="intro">Najpierw zobacz prywatny podgląd. Potem wybierasz pakiet, który pasuje do Twojego tempa pracy.</p><div class="plans">${SITE.plans.map(plan => `<article class="plan"><h3>${plan.name}</h3><p>${plan.lead}</p><div class="price"><strong>${plan.price}</strong><span>zł netto<br>/ miesiąc</span></div><a class="button light" href="#preview">Najpierw zobacz swoją stronę <span>→</span></a><ul>${plan.features.map(feature => `<li>${feature}</li>`).join('')}</ul></article>`).join('')}</div><div class="onboarding"><div><p class="eyebrow">PRZEJRZYŚCIE</p><h3>Przygotowanie i uruchomienie strony</h3></div><div class="old-price">3000 zł <small>netto</small></div><div class="arrow">→</div><div class="new-price">0 zł <small>przy umowie na minimum 12 miesięcy</small></div><p>Bez zobowiązania na 12 miesięcy: 3000 zł netto za wdrożenie + wybrany abonament.</p></div></div></section>
+  <section class="section included"><div class="wrap"><p class="eyebrow">W KAŻDYM ABONAMENCIE</p><div class="included-grid">${["Projekt i publikacja", "Hosting, SSL i bezpieczeństwo", "Strona wygodna na telefonie", "Formularz, telefon i mapa", "Podpięcie istniejących rezerwacji", "Techniczne podstawy SEO", "Google Search Console", "Zmiany zamiast rozliczania minut"].map(item => `<div><span>✦</span>${item}</div>`).join('')}</div></div></section>
+  <section class="section compare"><div class="wrap"><p class="eyebrow">UCZCIWIE</p><h2>Nie każda firma<br><em>potrzebuje agencji.</em></h2><div class="compare-grid"><article class="ours"><h3>Znajdowalni</h3><b>Dobre, gdy</b><p>Chcesz szybko dostać profesjonalną stronę lokalnej firmy bez zajmowania się technologią.</p><b>Ograniczenia</b><p>Nie budujemy sklepów, aplikacji ani wielkich customowych platform.</p></article><article><h3>Agencja</h3><b>Dobra, gdy</b><p>Potrzebujesz dużego serwisu, custom UX, warsztatów, wielu integracji i masz większy budżet.</p></article><article><h3>DIY / builder / WordPress</h3><b>Dobry, gdy</b><p>Chcesz wszystko robić sam i masz na to czas.</p></article></div></div></section>
+  <section class="section faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Masz pytanie?<br><em>To normalne.</em></h2><p>Jeśli nie ma go tutaj, napisz przy prośbie o preview.</p></div><div class="accordions">${SITE.faq.map(item => `<details><summary>${item[0]}<span>+</span></summary><p>${item[1]}</p></details>`).join('')}</div></div></section>
+  <section class="final-cta" id="preview"><div class="wrap"><p class="eyebrow">PIERWSZY KROK JEST PROSTY</p><h2>Zobaczmy, jak może wyglądać<br><em>Twoja firma online.</em></h2>${previewForm('final-preview', true)}</div></section>`;
+  q('#footer').innerHTML = `<div class="wrap footer-inner"><a class="brand-lockup" href="#top"><img src="assets/brand/znajdowalni-kadr-final.svg" alt="Znajdowalni"></a><p>Daj się znaleźć klientom.</p><div><a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="pliki-cookie.html">Pliki cookie</a></div><small>© ${new Date().getFullYear()} Znajdowalni</small></div>`;
+  q('.scenarios').insertAdjacentHTML('afterend', `<section class="industry-fit"><div class="wrap fit-layout"><div><p class="eyebrow">DLA KOGO</p><h2>Małe i średnie<br><em>firmy usługowe.</em></h2></div><div><div class="industry-tags">${['gabinet i klinika','psycholog i terapeuta','beauty i wellness','fryzjer i barber','dentysta i ortodonta','fizjoterapia','warsztat i serwis','usługi domowe','remonty i wykończenia','architekt wnętrz','prawo i księgowość','biuro nieruchomości','fotograf i filmowiec','szkoła językowa','trener i studio ruchu','weterynarz','catering i eventy'].map(name => `<span>${name}</span>`).join('')}</div><p class="industry-note">Standard sprawdza się najlepiej dla jednej lokalnej firmy usługowej. Większą liczbę lokalizacji, podstron lub integracji ustalamy indywidualnie.</p></div></div></section>`);
+  q('.hero .lede').textContent = 'Masz obecną stronę? Wklej jej adres, a pokażemy Ci bezpłatnie, jak mogłaby wyglądać nowa strona Twojej firmy.';
+  q('.hero .lede').textContent = 'Klient trafia na Ciebie w Google, Booksy albo z polecenia. Daj mu jedno miejsce, w którym szybko zrozumie ofertę, zaufa i zrobi następny krok.';
+  q('.benefits').insertAdjacentHTML('afterend', `<section class="positioning"><div class="wrap positioning-grid"><p class="eyebrow">NIE STRONA DLA STRONY</p><h2>Twoja firma działa dobrze.<br><em>Niech dobrze wygląda online.</em></h2><p>Nie budujemy kolejnej strony do odhaczenia. Porządkujemy miejsce, do którego trafia klient: ofertę, kontakt, lokalizację i rezerwację. Tak, żeby łatwiej było wybrać właśnie Ciebie.</p></div></section>`);
+  q('.scenarios h2').innerHTML = 'Nie chodzi o nową stronę.<br><em>Chodzi o dobre pierwsze wrażenie.</em>';
+  q('.process h2').innerHTML = 'Ty prowadzisz firmę.<br><em>My zajmujemy się stroną.</em>';
+  q('.process .section-heading > p').textContent = 'Bez technicznego języka, bez gonienia wykonawcy i bez zastanawiania się, co jest do zrobienia.';
+  q('.pricing h2').innerHTML = 'Strona? Masz ją z głowy.<br><em>Ty po prostu prowadzisz firmę.</em>';
+  q('.pricing .intro').textContent = 'My ją tworzymy, publikujemy i później ogarniamy. Dobra obecność online pomaga klientom znaleźć ofertę, zaufać Twojej firmie i łatwo zrobić następny krok.';
+  q('.old-price').innerHTML = '2499 zł <small>netto</small>';
+  q('.new-price').innerHTML = '0 zł <small>przy umowie na minimum 12 miesięcy</small>';
+  q('.onboarding > p').textContent = 'Wolisz bez rocznego zobowiązania? Płacisz 2499 zł netto za przygotowanie strony i korzystasz z abonamentu z miesięcznym okresem wypowiedzenia.';
+  q('.pricing').insertAdjacentHTML('afterend', `<section class="choose-plan"><div class="wrap"><p class="eyebrow">CO WYBRAĆ?</p><div class="choose-grid"><article><h2>Standard będzie dla Ciebie, jeśli</h2><p>Chcesz mieć stronę z głowy. Gdy coś trzeba zmienić, po prostu piszesz do nas.</p></article><article><h2>Pro będzie dla Ciebie, jeśli</h2><p>Chcesz samodzielnie publikować treści, prowadzić blog albo częściej aktualizujesz ofertę.</p></article></div><div class="integration-note"><h3>Masz już system rezerwacji? Super.</h3><p>Booksy, ZnanyLekarz, Calendly lub inny system podpinamy do strony w ramach abonamentu. Konfiguracja nowego systemu od zera jest usługą dodatkową. Abonamenty zewnętrznych usług rozliczasz bezpośrednio z ich dostawcą.</p></div></div></section>`);
+  q('.included .eyebrow').textContent = 'CO POMAGA KLIENTOWI WYBRAĆ CIEBIE';
+  q('.accordions').insertAdjacentHTML('afterbegin', `<details><summary>Czy strona będzie zoptymalizowana pod Google i wyszukiwanie AI?<span>+</span></summary><p>Każdą stronę budujemy zgodnie z dobrymi praktykami SEO. Porządkujemy ją tak, żeby Google i asystenci AI mogli ją odczytać i zrozumieć. Przed publikacją sprawdzamy najważniejsze elementy techniczne.</p><p>Nie obiecujemy konkretnej pozycji w Google ani cytowania przez AI. Widoczność nowej strony zależy także od reputacji budowanej w czasie, opinii, wizytówki Google i linków z innych stron. Dostajesz stronę zbudowaną poprawnie, a nie obietnicę wyniku.</p></details>`);
+  [...document.querySelectorAll('.accordions details')].find(item => item.querySelector('summary')?.textContent.includes('Czy zapewniacie pozycjonowanie'))?.remove();
+  q('.accordions').insertAdjacentHTML('afterbegin', `<details><summary>Czy naprawdę mogę zacząć za 0 zł?<span>+</span></summary><p>Tak. Przy umowie na minimum 12 miesięcy otrzymujesz 100% rabatu na przygotowanie i uruchomienie strony, standardowo wycenione na 2499 zł netto.</p></details><details><summary>Czy muszę podpisywać umowę na rok?<span>+</span></summary><p>Nie. Możesz zapłacić 2499 zł netto za uruchomienie i korzystać z abonamentu z miesięcznym okresem wypowiedzenia.</p></details><details><summary>Co dzieje się po 12 miesiącach?<span>+</span></summary><p>Abonament działa dalej na czas nieokreślony z miesięcznym okresem wypowiedzenia.</p></details><details><summary>Czy Booksy lub ZnanyLekarz kosztują dodatkowo?<span>+</span></summary><p>Podpięcie istniejącego systemu jest w cenie. Opłaty pobierane przez Booksy, ZnanyLekarz, Calendly lub inne zewnętrzne usługi rozliczasz bezpośrednio z ich dostawcą.</p></details>`);
+  [...document.querySelectorAll('.accordions details')].filter(item => ['Co dzieje się po 12 miesiącach?', 'Czy podłączacie Booksy, Calendly, ZnanyLekarz i płatności?'].includes(item.querySelector('summary')?.textContent.replace('+', '').trim())).slice(1).forEach(item => item.remove());
+  [...document.querySelectorAll('.accordions details')].find(item => item.querySelector('summary')?.textContent.includes('Czy podłączacie Booksy, Calendly'))?.remove();
+  q('.steps article:nth-child(3) p').textContent = 'Podoba Ci się kierunek? Działamy dalej. Chcesz coś zmienić? Mówisz, co nie gra, a my dopasowujemy projekt do Twoich potrzeb. Za preview strony nie płacisz.';
+  document.querySelectorAll('.preview-form').forEach(initForm);
+  document.querySelectorAll('[data-scroll-preview]').forEach(button => button.addEventListener('click', () => q('#hero-preview').scrollIntoView({ behavior: 'smooth', block: 'center' })));
+}
+document.addEventListener('DOMContentLoaded', init);

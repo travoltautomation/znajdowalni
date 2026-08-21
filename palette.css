@@ -1,0 +1,2 @@
+/* Finalna paleta: teal jest marką, limonka jest sygnałem działania. */
+:root{--ink:#121416;--paper:#F7F3EA;--teal:#17B2A6;--aqua:#E3F5F1;--coral:#FF705E;--lime:#B9F24A}.preview-start .button.ink,.button.light,.mobile-cta{background:var(--lime);color:var(--ink)}.preview-start .button.ink:hover,.button.light:hover,.mobile-cta:hover{background:#c9ff63}.preview-start{box-shadow:6px 6px 0 var(--ink)}.card-two{box-shadow:8px 8px 0 var(--ink)}.new-price{color:var(--lime)}.pricing{background:var(--teal)}.integration-note{background:var(--ink)}

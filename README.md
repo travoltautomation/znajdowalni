@@ -1,50 +1,38 @@
 # Znajdowalni — strona sprzedażowa
 
-Statyczny prototyp strony sprzedażowej marki Znajdowalni. Projekt działa bez procesu budowania: podgląd otwiera się bezpośrednio z pliku `index.html`.
+Lekki, statyczny frontend marki Znajdowalni dla lokalnych firm usługowych w Polsce.
 
 ## Najważniejsze pliki
 
-- `index.html` — metadane, favicon i dane strukturalne,
-- `app.js` — struktura strony, trzy odrębne demonstracje branżowe, formularz mailto i interakcje,
-- `content.js` — treści demonstracji, branże, proces i FAQ,
-- `styles.css`, `overrides.css`, `brand.css`, `logo-fix.css` — układ i system wizualny,
-- `assets/brand/` — finalne warianty logo,
-- `BENCHMARK.md` — research rynku, uzasadnienie oferty i źródła,
-- `oferta.html` — szczegółowy zakres, ceny, dodatki i zasady współpracy,
-- `sales-v2.css`, `offer-page.css` — skrócona ścieżka sprzedażowa oraz podstrona oferty,
-- `experience-v3.css`, `experience.js` — mockupy gabinetu, beauty i warsztatu, hover, reveal, aktywna nawigacja i reduced motion.
+- `index.html` — metadane, canonical, schema.org oraz wejście strony głównej.
+- `app.js` — komponenty strony, formularz preview i interakcje.
+- `content.js` — centralne dane: pakiety, FAQ, branże, dodatki i kontakt.
+- `redesign.css` — aktualny system wizualny oraz responsywność.
+- `oferta.html` — szczegóły dwóch pakietów i zakresu zmian.
+- `api/preview-request.js` — adapter endpointu Vercel dla webhooka lub Resend.
+- `.env.example` — wymagane zmienne środowiskowe dla wysyłki formularza.
+- `assets/brand/` — zatwierdzony brandbook i logo; źródło prawdy dla identyfikacji.
 
-## Aktualna oferta w prototypie
+## Oferta
 
-- wdrożenie standardowej strony: 1 990 zł netto,
-- opieka: 349 zł netto miesięcznie, rozliczana kwartalnie,
-- wdrożenie + pierwszy kwartał: 3 037 zł netto,
-- do 60 minut drobnych zmian miesięcznie,
-- bez rocznej umowy.
+- Standard: **349 zł netto / miesiąc**.
+- Pro: **599 zł netto / miesiąc**.
+- Przygotowanie i uruchomienie: **2499 zł netto**, albo **0 zł przy umowie na minimum 12 miesięcy**.
 
-Tymczasowy adres kontaktowy: `travoltautomation@gmail.com`.
+Pierwszy bezpłatny preview to jeden prywatny kierunek: hero, pierwsza sekcja i widok mobilny. Nie jest to gotowa, kompletna strona.
 
-## Sprawdzone
+## Formularz
 
-- składnia JavaScript,
-- poprawność JSON-LD jako JSON,
-- bilans nawiasów w CSS,
-- unikalność identyfikatorów sekcji,
-- kompletność lokalnych assetów i linków kotwicowych,
-- spójność cen i adresu e-mail,
-- brak starych zapisów „30 minut” i „Znany Lekarz”,
-- lżejsze fotografie demonstracyjne (około 0,5 MB łącznie zamiast ponad 6 MB),
-- semantyka nagłówków, etykiety formularza, focus i reduced motion na poziomie kodu,
-- trzy różne makiety desktopowe i trzy różne makiety telefonu,
-- responsywność laboratoryjna na 320, 375, 390, 430, 768, 1024 i 1440 px.
+W produkcji ustaw na Vercel jedną z metod:
+
+- `PREVIEW_WEBHOOK_URL`, lub
+- `RESEND_API_KEY` i `PREVIEW_RECIPIENT_EMAIL` (opcjonalnie `RESEND_FROM_EMAIL`).
+
+Bez tych zmiennych endpoint nie zapisuje ani nie przekazuje danych, a interfejs wyświetla stan demonstracyjny. Nie dodawaj kluczy do repozytorium.
 
 ## Przed publikacją
 
-1. Potwierdzić domenę i dodać canonical, bezwzględne adresy Open Graph oraz poprawną sitemapę.
-2. Podać pełne dane administratora i przygotować politykę prywatności zgodną z faktycznym formularzem, pocztą, hostingiem i ewentualną analityką.
-3. Podłączyć produkcyjny formularz lub prawdziwy link do Kalendarza Google.
-4. Dodać obraz Open Graph 1200 × 630 i apple-touch-icon.
-5. Uzupełnić co najmniej 2–3 prawdziwe realizacje oraz opinie za zgodą klientów.
-6. Sprawdzić stronę w przeglądarce na desktopie i mobile, a po wdrożeniu także PageSpeed, konsolę, HTTPS i przekierowania domeny.
-
-Nie należy publikować wymyślonych wyników, opinii, danych firmy ani logotypów klientów.
+1. Uzupełnij produkcyjny adres e-mail i konfigurację formularza.
+2. Dodaj prawdziwe zdjęcie oraz imię osoby stojącej za marką.
+3. Zatwierdź regulamin, szczególnie zasady po 12 miesiącach i wcześniejszego rozwiązania umowy; oznaczone miejsca `TODO` nie są poradą prawną.
+4. Dodaj obraz OpenGraph i sprawdź domenę w Google Search Console.

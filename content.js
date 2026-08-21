@@ -1,59 +1,19 @@
-/* Wszystkie łatwo edytowalne treści strony. */
+/* Centralne dane marketingowe — gotowe do wykorzystania przez przyszłe landing pages branżowe. */
 const SITE = {
-  nav: [
-    ["Dla kogo", "#dla-kogo"], ["Realizacje", "#realizacje"], ["Oferta", "#oferta"],
-    ["Jak pracujemy", "#jak-pracujemy"], ["FAQ", "#faq"], ["Kontakt", "#kontakt"]
-  ],
-  branches: {
-    gabinet: {
-      key: "gabinet", tab: "Gabinet", name: "Gabinet Harmonia", brand: "HARMONIA", label: "Fizjoterapia · Poznań",
-      headline: "Wracaj do ruchu bez bólu.", mobileHeadline: "Twój ruch. Nasza opieka.",
-      cta: "Umów konsultację", color: "sage", services: ["Pierwsza konsultacja", "Terapia manualna", "Rehabilitacja"],
-      price: "od 180 zł", note: "Dziś: 09:00–18:00", proof: "4,9 · 86 opinii"
-    },
-    beauty: {
-      key: "beauty", tab: "Beauty", name: "Maja Atelier", brand: "MAJA / ATELIER", label: "Hair & beauty · Wrocław",
-      headline: "Kolor, który wygląda jak Ty.", mobileHeadline: "Nowy kolor. Nadal Ty.",
-      cta: "Zarezerwuj w Booksy", color: "rose", services: ["Koloryzacja premium", "Manicure", "Pielęgnacja twarzy"],
-      price: "od 120 zł", note: "Najbliższy termin: jutro", proof: "4,8 · 124 opinie"
-    },
-    warsztat: {
-      key: "warsztat", tab: "Warsztat", name: "Auto Serwis 21", brand: "AS21", label: "Serwis samochodowy · Gdynia",
-      headline: "Serwis bez zgadywania.", mobileHeadline: "Auto gotowe. Bez niespodzianek.",
-      cta: "Zadzwoń i umów termin", color: "blue", services: ["Diagnostyka komputerowa", "Serwis klimatyzacji", "Opony i geometria"],
-      price: "Wycena przed naprawą", note: "Otwarte dziś do 17:00", proof: "4,9 · 211 opinii"
-    }
-  },
-  sectors: [
-    ["01", "Psycholog i gabinet terapeutyczny", "Kwalifikacje, zakres pomocy, konsultacje gabinetowe lub online i spokojna droga do umówienia spotkania.", "Kwalifikacje · FAQ · Rezerwacje"],
-    ["02", "Salon beauty", "Usługi, galeria, cennik i Booksy bez zmuszania klienta do szukania linku.", "Booksy · Cennik · Galeria"],
-    ["03", "Warsztat samochodowy", "Telefon, lokalizacja, konkretne usługi i szybkie zapytanie o termin.", "Telefon · Mapa · Terminy"],
-    ["04", "Usługi domowe", "Obszar działania, opinie, zakres usług i prosty formularz wyceny.", "Wycena · Obszar · Kontakt"]
-  ],
-  process: [
-    ["01", "Krótka diagnoza", "Poznajemy firmę, najważniejsze usługi, klientów i moment, w którym decydują się na kontakt."],
-    ["02", "Materiały bez chaosu", "Dostajesz prostą listę. Przekazujesz ofertę, zdjęcia, dane i dostępne opinie — nie musisz pisać profesjonalnego briefu."],
-    ["03", "Treść i projekt", "Porządkujemy przekaz, proponujemy hierarchię treści i tworzymy kierunek wizualny dopasowany do marki oraz branży."],
-    ["04", "Korekty i publikacja", "Przechodzimy przez dwie rundy drobnych korekt, konfigurujemy domenę, SSL i publikujemy zaakceptowaną stronę."],
-    ["05", "Opieka i rozwój", "Monitorujemy działanie, aktualizujemy drobne treści i przed każdą większą zmianą podajemy osobną wycenę."]
-  ],
-  faq: [
-    ["Ile kosztuje strona i opieka?", "Wdrożenie standardowej strony kosztuje 1 990 zł netto. Opieka to 349 zł netto miesięcznie, rozliczana kwartalnie po 1 047 zł netto. Dodatki i prace spoza standardowego zakresu wyceniamy przed startem."],
-    ["Ile trwa stworzenie strony?", "Standardową stronę zwykle uruchamiamy w 10–15 dni roboczych od otrzymania kompletu materiałów i informacji. Termin potwierdzamy przed startem."],
-    ["Mam Instagram i klientów z polecenia — po co mi strona?", "To świetne źródła zainteresowania. Strona daje klientowi jedno wiarygodne miejsce, w którym może sprawdzić ofertę, opinie, lokalizację i od razu przejść do kontaktu lub rezerwacji."],
-    ["Czy strona gwarantuje więcej klientów?", "Nie obiecujemy wyniku, którego nie da się uczciwie zagwarantować. Dobra strona ułatwia znalezienie firmy, buduje zaufanie i skraca drogę do kontaktu — a to wzmacnia działanie poleceń, Google oraz social mediów."],
-    ["Czy zajmujecie się pozycjonowaniem?", "Wdrożenie obejmuje podstawy technicznego SEO, logiczną strukturę treści i podpięcie Google Search Console. Opcjonalnie pomagamy uporządkować Wizytówkę Google. Nie sprzedajemy gwarancji pierwszej pozycji ani stałego prowadzenia rozbudowanych kampanii SEO w cenie strony."],
-    ["Nie mam jeszcze logo ani spójnego stylu. Czy możecie pomóc?", "Tak. Opcjonalny pakiet Start identyfikacji marki kosztuje od 1 490 zł netto i obejmuje logo, favicon, kolory, fonty, projekt wizytówki oraz mini-brandbook. Zakres zatwierdzamy przed rozpoczęciem."],
-    ["Czy mogę dodać Booksy, Kalendarz Google lub Calendly?", "Tak. Istniejący system rezerwacji podpinamy w ramach standardowego wdrożenia. Konfigurację nowej strony rezerwacji w Kalendarzu Google oferujemy od 390 zł netto."],
-    ["Czy mogę przyjmować płatności przy rezerwacji?", "Możemy podłączyć istniejący system, który to obsługuje. Jego abonament oraz opłaty operatora płatności pozostają po stronie klienta."],
-    ["Czy stronę można później rozbudować?", "Tak. Nową podstronę, funkcjonalność, integrację, przebudowę lub wersję językową wyceniamy osobno przed rozpoczęciem pracy."],
-    ["Czy opieka wiąże mnie umową na rok?", "Nie. Pierwszy kwartał opieki rozpoczyna się wraz z publikacją i jest rozliczany z góry. Później przedłużasz ją na kolejne kwartały. Rezygnujesz przed kolejnym okresem, bez rocznej umowy."],
-    ["Co obejmuje stała opieka?", "Hosting, SSL, kopie zapasowe, monitoring działania, kontrolę formularza i linków, wsparcie mailowe w dni robocze, kwartalną kontrolę aktualności danych oraz do 60 minut drobnych zmian treści miesięcznie."],
-    ["Co oznacza drobna zmiana?", "Na przykład aktualizację tekstu, ceny, zdjęcia, godzin otwarcia lub danych kontaktowych. Takie bieżące sprawy zwykle bez problemu mieszczą się w miesięcznym zakresie."],
-    ["Czy niewykorzystane 60 minut przechodzi na kolejny miesiąc?", "Nie. Czas na drobne zmiany jest dostępny w danym miesiącu i nie przechodzi dalej."],
-    ["Co się dzieje, gdy rezygnuję z opieki?", "Nie tracisz strony. Otrzymujesz jej aktualne pliki i możesz przenieść je na własny hosting. Samo przeniesienie lub dalsze zmiany po zakończeniu opieki możemy wycenić osobno."],
-    ["Czy domena i strona należą do mnie?", "Domena jest rejestrowana na dane klienta. Po opłaceniu wdrożenia otrzymujesz aktualne pliki zaakceptowanej strony i zachowujesz dostęp do własnych kont Google oraz systemów rezerwacji."],
-    ["Czy mogę skorzystać z usługi z dowolnego miasta?", "Tak. Pracujemy z firmami usługowymi w całej Polsce."],
-    ["Czy muszę zmieniać Booksy lub inne systemy, których już używam?", "Nie. Strona ma uporządkować działające kanały i prowadzić do nich klientów, a nie je zastępować."]
-  ]
+  contact: { email: "travoltautomation@gmail.com", endpoint: "/api/preview-request" },
+  nav: [["Dla kogo", "#dla-kogo"], ["Jak to działa", "#jak-to-dziala"], ["Cennik", "#cennik"], ["FAQ", "#faq"]],
+  benefits: [["Zrobione za Ciebie", "Nie uczysz się WordPressa ani buildera. Przygotowujemy, publikujemy i utrzymujemy stronę."], ["Na telefonie ma działać najlepiej", "Oferta, telefon, lokalizacja i rezerwacja muszą być oczywiste również na małym ekranie."], ["Najpierw zobacz", "Najpierw dostajesz prywatny podgląd. Dopiero później decydujesz."]],
+  industries: [{ name:"Beauty", tone:"beauty", title:"Studio, do którego chce się umówić.", tag:"Booksy · cennik · rezerwacja" }, { name:"Fizjoterapia", tone:"physio", title:"Spokojnie. Konkretnie. Blisko.", tag:"usługi · zaufanie · kontakt" }, { name:"Warsztat", tone:"garage", title:"Serwis bez szukania numeru.", tag:"telefon · mapa · termin" }],
+  plans: [{ name:"Znajdowalni Standard", price:"349", lead:"Dla firmy, która chce mieć stronę i nie chce się nią zajmować.", features:["kompletna strona firmy", "hosting, SSL i wersja mobile", "formularz kontaktowy, mapa i kontakt telefoniczny", "techniczne podstawy SEO i Google Search Console", "podpięcie istniejącego systemu rezerwacji", "utrzymanie techniczne i monitoring", "5 zgłoszeń zmian miesięcznie"] }, { name:"Znajdowalni Pro", price:"599", lead:"Dla firmy, która częściej aktualizuje stronę albo chce część treści prowadzić samodzielnie.", features:["wszystko ze Standard", "CMS do własnej edycji treści", "blog lub aktualności", "samodzielna edycja usług, cen, FAQ i wybranych sekcji", "10 zgłoszeń zmian miesięcznie", "priorytetowa obsługa"] }],
+  addOns: ["Konfiguracja Calendly", "Konfiguracja systemu rezerwacji", "Konfiguracja płatności online", "Dodatkowa podstrona", "Dodatkowy landing page", "Dodatkowy język", "CMS jako dodatek do Standard", "Konfiguracja CMS", "Szkolenie z CMS", "Rozbudowany formularz", "Dodatkowe integracje", "Dodatkowa sekcja", "Stand NFC / QR do opinii Google"],
+  faq: [["Czy podgląd naprawdę jest bezpłatny?", "Tak. Bez opłat przygotowujemy jeden prywatny kierunek: hero, pierwszą sekcję i widok mobilny. Nic nie jest publikowane, zanim nie podejmiesz decyzji."], ["Co mam wysłać, jeśli nie mam strony?", "Wizytówkę Google, profil Booksy, Facebook, Instagram albo po prostu nazwę firmy, branżę i miasto. To wystarczy na start."], ["Czy muszę przenosić domenę?", "Nie. Najpierw oglądasz podgląd. Do domeny wracamy dopiero po decyzji o publikacji."], ["Do kogo należy domena?", "Domena i Twoje konta Google, Booksy, Calendly oraz inne zewnętrzne systemy pozostają Twoje."], ["Co dzieje się po 12 miesiącach?", "TODO: uzupełnij zasady kontynuacji współpracy, rozliczeń i ewentualnego wydania strony zgodnie z zatwierdzonym regulaminem."], ["Co jeśli chcę zrezygnować wcześniej?", "TODO: uzupełnij zasady wcześniejszego zakończenia umowy po potwierdzeniu ich w regulaminie."], ["Co dokładnie oznacza „drobna zmiana”?", "To na przykład zmiana ceny, tekstu, zdjęcia, godzin otwarcia, telefonu, adresu, linku lub CTA. Nowa podstrona, duża sekcja, redesign, funkcja, sklep czy nowa integracja wykraczają poza ten zakres."], ["Ile trwa wykonanie zmian?", "Drobne zmiany realizujemy standardowo w 2 do 5 dni roboczych. W Pro są obsługiwane priorytetowo."], ["Czy mogę sam edytować stronę? Co daje CMS?", "Tak, w pakiecie Pro możesz samodzielnie edytować wybrane treści, na przykład usługi, ceny lub ustalone sekcje."], ["Czy podłączacie Booksy, Calendly, ZnanyLekarz i płatności?", "Podpinamy istniejące systemy rezerwacji. Możemy też podłączyć istniejący system płatności; nie budujemy własnych systemów rezerwacji ani płatności."], ["Czy zapewniacie pozycjonowanie?", "Wdrażamy techniczne podstawy SEO i stronę przygotowaną tak, aby Google mogło ją poprawnie zrozumieć. Nie obiecujemy konkretnej pozycji w wynikach."], ["Czy robicie sklepy internetowe?", "Nie. Znajdowalni są dla prostych, profesjonalnych stron lokalnych firm usługowych. Sklepy, aplikacje i duże platformy to obszar dla innego modelu współpracy."], ["Czy można później dodać podstrony?", "Tak. Rozbudowę ustalamy i wyceniamy osobno, zanim zaczniemy pracę."]]
 };
+
+/* Podstrona oferty używa tego samego źródła prawdy co strona główna. */
+setTimeout(() => {
+  if (!document.querySelector('link[href="palette.css"]')) document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="palette.css">');
+  const oldPrice = document.querySelector('.old-price');
+  const onboardingNote = document.querySelector('.onboarding > p');
+  if (oldPrice) oldPrice.innerHTML = '2499 zł <small>netto</small>';
+  if (onboardingNote) onboardingNote.textContent = 'Wolisz bez rocznego zobowiązania? Płacisz 2499 zł netto za przygotowanie strony i korzystasz z abonamentu z miesięcznym okresem wypowiedzenia.';
+}, 0);

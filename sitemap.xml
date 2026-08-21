@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Adres URL zostanie dodany po potwierdzeniu domeny produkcyjnej. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://znajdowalni-site.vercel.app/</loc></url>
+  <url><loc>https://znajdowalni-site.vercel.app/oferta</loc></url>
+</urlset>

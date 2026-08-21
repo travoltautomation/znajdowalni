@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 136" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI</title>
+  <desc id="desc">Prosty znak kierunku i logotyp Znajdowalni</desc>
+  <rect width="820" height="136" fill="#f7f6f2"/>
+  <g fill="none" stroke="#1d211d" stroke-linecap="square" stroke-width="11">
+    <path d="M18 22H62M18 22V66"/>
+    <path d="M112 70V114H68"/>
+    <path d="M50 90 91 49"/>
+  </g>
+  <circle cx="91" cy="49" r="7" fill="#617159"/>
+  <text x="151" y="76" fill="#1d211d" font-family="Montserrat, Arial, sans-serif" font-size="51" font-weight="700" letter-spacing="-2">ZNAJDOWALNI</text>
+  <text x="154" y="104" fill="#617159" font-family="Montserrat, Arial, sans-serif" font-size="14" font-weight="500" letter-spacing="1.1">DAJ SIĘ ZNALEŹĆ KLIENTOM</text>
+</svg>

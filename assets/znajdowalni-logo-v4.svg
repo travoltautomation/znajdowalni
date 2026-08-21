@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 120" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI</title>
+  <desc id="desc">Wordmark Znajdowalni z literą O jako precyzyjnym punktem odnalezienia</desc>
+  <text x="0" y="76" fill="#171917" font-family="Montserrat, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-3.8">ZNAJD</text>
+  <g transform="translate(249 48)">
+    <circle r="23" fill="#171917"/>
+    <circle r="13" fill="#f7f6f2"/>
+    <circle r="6.5" fill="#f0522d"/>
+    <path d="M0-32v8M32 0h-8M0 32v-8M-32 0h8" fill="none" stroke="#171917" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="286" y="76" fill="#171917" font-family="Montserrat, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-3.8">WALNI</text>
+  <path d="M0 103h664" stroke="#e3e2dc"/>
+  <text x="0" y="117" fill="#6a6d65" font-family="Montserrat, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="1.45">DAJ SIĘ ZNALEŹĆ KLIENTOM</text>
+</svg>

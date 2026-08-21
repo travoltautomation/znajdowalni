@@ -1,0 +1,50 @@
+.offer-page{background:radial-gradient(800px 500px at 90% 0,#d7f7f4,transparent 66%),var(--paper)}
+.sub-header{height:80px;position:sticky;top:0;z-index:20;background:#fafaf8ea;backdrop-filter:blur(16px);border-bottom:1px solid #e2e6e8}
+.sub-nav{max-width:1400px;height:100%;margin:auto;padding:0 42px;display:flex;align-items:center;justify-content:space-between}
+.sub-nav .brand-lockup img{width:220px}
+.sub-nav>div{display:flex;align-items:center;gap:20px;font-size:12px}
+.offer-page-hero{max-width:1400px;margin:auto;padding:110px 42px 100px}
+.offer-page-hero h1{max-width:980px;font-size:clamp(54px,6.2vw,96px)!important}
+.offer-page-hero>p{max-width:670px;color:#59677d;font-size:17px;line-height:1.75}
+.offer-page-jump{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.offer-page-pricing{max-width:none;padding:115px max(42px,calc((100% - 1316px)/2));background:linear-gradient(123deg,#080a0d,#0b2225 58%,#0f1115);color:#fff}
+.offer-page-pricing .price-panel h2{margin:0 0 17px;font-size:24px!important}
+.scope-section,.add-ons-page,.terms-section,.offer-page-faq,.offer-final-cta{max-width:1400px;margin:auto;padding:120px 42px}
+.scope-head{max-width:900px}
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.scope-grid article{padding:29px;background:#0f1115;color:#fff}
+.scope-grid .scope-extra{background:#eef6f6;color:#0f1115;border:1px solid #d6e3e4}
+.scope-grid h3{margin:0 0 24px;font-size:22px}
+.scope-grid ul,.terms-section ul{margin:0;padding:0;list-style:none}
+.scope-grid li,.terms-section li{position:relative;padding:12px 0 12px 26px;border-top:1px solid #ffffff20;font-size:13px;line-height:1.55}
+.scope-grid .scope-extra li{border-top-color:#d5e1e2}
+.scope-grid li:before{content:"✓";position:absolute;left:0;color:#6bd9d4}
+.scope-grid .scope-extra li:before{content:"—";color:#758094}
+.add-ons-page{max-width:none;padding-inline:max(42px,calc((100% - 1316px)/2));background:linear-gradient(135deg,#e8eef9,#e9faf8)}
+.add-ons-page>h2{max-width:850px}
+.add-ons-page-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:48px;background:#cad8dc;border:1px solid #cad8dc}
+.add-ons-page-grid article{padding:24px;background:#fff}
+.add-ons-page-grid span{color:var(--accent-text);font:10px var(--mono)}
+.add-ons-page-grid h3{min-height:54px;margin:37px 0 12px;font-size:17px;letter-spacing:-.035em}
+.add-ons-page-grid p{min-height:78px;color:#667287;font-size:12px;line-height:1.6}
+.add-ons-page-grid b{color:var(--accent-text);font-size:12px}
+.terms-section{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:start}
+.terms-section li{border-top-color:#d7dce5;color:#5d697d}
+.terms-section li:before{content:"✓";position:absolute;left:0;color:var(--accent-text)}
+.offer-page-faq{max-width:1040px}
+.offer-page-faq>h2{margin-bottom:50px}
+.offer-final-cta{max-width:none;padding-inline:max(42px,calc((100% - 1316px)/2));display:grid;grid-template-columns:1fr 1fr;gap:90px;background:#0f1115;color:#fff}
+.offer-final-cta>div:last-child{align-self:end}
+.offer-final-cta p{max-width:520px;color:#b8c4c3;line-height:1.7}
+.offer-final-cta .button{margin:17px 14px 0 0;background:#bfeFec!important;color:#0f1115!important;border-color:#bfeFec!important}
+.offer-final-cta a:not(.button){display:inline-flex;min-height:44px;align-items:center;color:#9de4e0;font-size:12px}
+.sub-footer{background:#fafaf8}
+@media(max-width:900px){
+  .sub-header{height:68px}.sub-nav{padding:0 20px}.sub-nav .brand-lockup img{width:165px}.sub-nav>div>a:first-child{display:none}.sub-nav .nav-cta{display:inline-flex;min-height:44px;align-items:center;background:#0f1115;border:1px solid #0f1115;color:#fff;padding:10px 13px}
+  .offer-page-hero{padding:75px 20px}.offer-page-hero h1{font-size:clamp(46px,12vw,66px)!important}
+  .offer-page-pricing{padding:85px 20px}
+  .scope-section,.add-ons-page,.terms-section,.offer-page-faq,.offer-final-cta{padding:86px 20px}
+  .scope-grid,.add-ons-page-grid,.terms-section,.offer-final-cta{grid-template-columns:1fr}
+  .scope-grid,.add-ons-page-grid{margin-top:34px}.add-ons-page-grid h3,.add-ons-page-grid p{min-height:0}
+  .terms-section,.offer-final-cta{gap:36px}
+}

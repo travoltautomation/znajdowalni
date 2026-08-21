@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 100" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI</title>
+  <desc id="desc">Finalny logotyp Znajdowalni</desc>
+  <text x="0" y="66" fill="#171917" font-family="Montserrat, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-3.2">ZNAJD</text>
+  <g transform="translate(242 46)">
+    <path d="M-17-17A24 24 0 1 1-17 17" fill="none" stroke="#171917" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-9-15 12 0-9 15z" fill="#617159"/>
+    <path d="M-5-7.5 5.5 0-5 7.5" fill="#f7f6f2"/>
+  </g>
+  <text x="279" y="66" fill="#171917" font-family="Montserrat, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-3.2">WALNI</text>
+</svg>

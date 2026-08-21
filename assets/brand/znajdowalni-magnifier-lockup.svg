@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 142" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI — Daj się znaleźć klientom</title>
+  <desc id="desc">Podstawowy logotyp z turkusową lupą</desc>
+  <text x="0" y="69" fill="#0F1115" font-family="Montserrat,Arial,sans-serif" font-size="58" font-weight="700" letter-spacing="-3.8">ZNAJD</text>
+  <g transform="translate(208 47)" fill="none" stroke="#00B8B0" stroke-width="7" stroke-linecap="round">
+    <circle r="21.5"/>
+    <path d="M15.2 -15.2 33 -33"/>
+  </g>
+  <text x="249" y="69" fill="#0F1115" font-family="Montserrat,Arial,sans-serif" font-size="58" font-weight="700" letter-spacing="-3.8">WALNI</text>
+  <text x="2" y="122" fill="#0F1115" font-family="Montserrat,Arial,sans-serif" font-size="14" font-weight="600" letter-spacing="3.1">DAJ SIĘ <tspan fill="#00B8B0">ZNALEŹĆ</tspan> KLIENTOM.</text>
+</svg>

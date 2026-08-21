@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 100" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI</title>
+  <desc id="desc">Wordmark Znajdowalni z charakterystyczną literą O</desc>
+  <text x="0" y="66" fill="#1d211d" font-family="Montserrat, Arial, sans-serif" font-size="53" font-weight="700" letter-spacing="-3">ZNAJD</text>
+  <circle cx="230" cy="47" r="25" fill="#617159"/>
+  <circle cx="230" cy="47" r="7" fill="#f7f6f2"/>
+  <path d="M227 33.5h6M227 60.5h6" stroke="#f7f6f2" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="261" y="66" fill="#1d211d" font-family="Montserrat, Arial, sans-serif" font-size="53" font-weight="700" letter-spacing="-3">WALNI</text>
+</svg>

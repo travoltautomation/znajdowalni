@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 100" role="img" aria-labelledby="title desc">
+  <title id="title">ZNAJDOWALNI</title>
+  <desc id="desc">Typograficzny znak Znajdowalni z detalem punktu odnalezienia</desc>
+  <g fill="#1d211d" font-family="Montserrat, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-2.8">
+    <text x="0" y="65">ZNAJD</text>
+    <text x="272" y="65">WALNI</text>
+  </g>
+  <g fill="none" stroke="#1d211d" stroke-width="5" stroke-linecap="round">
+    <path d="M222 25h12M222 25v12M257 25h-12M257 25v12M222 72h12M222 72V60M257 72h-12M257 72V60"/>
+  </g>
+  <circle cx="239.5" cy="48.5" r="5.5" fill="#617159"/>
+</svg>

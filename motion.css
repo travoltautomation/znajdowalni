@@ -1,0 +1,62 @@
+/* Reakcja na interakcję: przejścia hover/focus, animowane FAQ, wejścia sekcji.
+   Ruch tylko na opacity/transform/height — nigdy na właściwościach układu,
+   żeby nic nie przeskakiwało przy ładowaniu. */
+
+/* --- 1. Przyciski i linki --- */
+.button,
+.nav-cta,
+.mobile-cta,
+.preview-start .button{
+  transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease,transform .16s ease
+}
+.button:active,
+.nav-cta:active,
+.mobile-cta:active,
+.preview-start .button:active{transform:translateY(1px)}
+
+#top nav a{position:relative;transition:color .16s ease}
+#top nav a:after{
+  content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform .2s ease
+}
+#top nav a:hover:after,
+#top nav a:focus-visible:after{transform:scaleX(1);transform-origin:left}
+
+/* --- 2. Widoczny focus dla klawiatury --- */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:3px;
+  border-radius:2px
+}
+
+/* --- 3. FAQ --- */
+summary{transition:color .16s ease}
+.faq-grid summary:hover{color:var(--teal)}
+.faq-grid summary span{
+  display:inline-block;line-height:1;
+  transition:transform .24s cubic-bezier(.22,.61,.36,1),color .16s ease
+}
+.faq-grid details[open] summary span{color:var(--teal)}
+.faq-body{overflow:hidden}
+
+/* --- 4. Wejścia sekcji przy scrollu --- */
+.mo-reveal{opacity:0;transform:translateY(10px);will-change:opacity,transform}
+.mo-in{
+  opacity:1;transform:none;
+  transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)
+}
+.mo-in.mo-done{will-change:auto}
+
+/* --- Bez ruchu, jeśli użytkownik tego nie chce --- */
+@media(prefers-reduced-motion:reduce){
+  .button,.nav-cta,.mobile-cta,.preview-start .button,
+  #top nav a,#top nav a:after,summary,.faq-grid summary span{transition:none}
+  .mo-reveal{opacity:1;transform:none}
+  .mo-in{transition:none}
+}

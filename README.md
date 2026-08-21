@@ -8,12 +8,11 @@ Lekki, statyczny frontend marki Znajdowalni dla lokalnych firm usługowych w Pol
 - `app.js` — komponenty strony, formularz preview i interakcje.
 - `content.js` — centralne dane: pakiety, FAQ, branże, dodatki i kontakt.
 - `redesign.css` — aktualny system wizualny oraz responsywność.
-- `oferta.html` — szczegóły dwóch pakietów i zakresu zmian.
 - `api/preview-request.js` — adapter endpointu Vercel dla webhooka lub Resend.
 - `.env.example` — wymagane zmienne środowiskowe dla wysyłki formularza.
 - `assets/brand/` — zatwierdzony brandbook i logo; źródło prawdy dla identyfikacji.
 
-## Oferta
+## Oferta na stronie głównej
 
 - Standard: **349 zł netto / miesiąc**.
 - Pro: **599 zł netto / miesiąc**.

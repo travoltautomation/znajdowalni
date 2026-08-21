@@ -1,0 +1,91 @@
+/* Przyklejony nagłówek i nawigacja mobilna.
+   Do 760px oryginalne menu i CTA są ukryte (.nav nav,.nav-cta{display:none}),
+   więc telefon nie miał żadnej nawigacji — stąd hamburger i pełnoekranowy panel. */
+
+/* --- przyklejony nagłówek --- */
+#top{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  transition:box-shadow .2s ease
+}
+#top.is-stuck{box-shadow:0 1px 0 rgba(18,20,22,.14)}
+/* Wysokość nagłówka zostaje stała (82px desktop / 69px mobile). Kurczenie przy
+   scrollu odpuszczone: istniejący CSS wymusza wysokość przez !important, a na
+   mobile stała wysokość jest i tak konieczna — panel menu zaczyna się dokładnie
+   pod nagłówkiem i każda zmiana zostawiałaby szczelinę albo zakładkę. */
+
+/* kotwice nie mogą chować się pod nagłówkiem */
+section[id]{scroll-margin-top:96px}
+
+/* --- hamburger --- */
+.nav-toggle{
+  display:none;
+  width:44px;height:44px;padding:0;
+  flex:0 0 auto;align-items:center;justify-content:center;
+  gap:5px;flex-direction:column;
+  background:transparent;border:1px solid var(--ink);border-radius:0;
+  cursor:pointer
+}
+.nav-toggle span{
+  display:block;width:19px;height:2px;background:var(--ink);
+  transition:transform .22s ease,opacity .18s ease
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* --- panel mobilny --- */
+.mobile-nav{
+  position:fixed;left:0;right:0;top:69px;bottom:0;z-index:55;
+  background:var(--paper);
+  border-top:1px solid var(--ink);
+  padding:26px 20px calc(20px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:4px;
+  overflow-y:auto;
+  animation:navIn .18s ease both
+}
+.mobile-nav[hidden]{display:none}
+.mobile-nav nav{display:flex;flex-direction:column}
+.mobile-nav nav a{
+  display:flex;align-items:center;min-height:56px;
+  padding:0 2px;
+  font:600 19px var(--sans);letter-spacing:-.02em;color:var(--ink);
+  border-bottom:1px solid var(--line);
+  text-decoration:none
+}
+.mobile-nav-cta{
+  margin-top:22px;
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:54px;padding:0 18px;
+  background:var(--lime);color:var(--ink);
+  border:1px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  font:700 15px var(--sans);cursor:pointer
+}
+
+/* Tylko przezroczystość. Gdyby animacja się nie wykonała (np. karta w tle,
+   gdzie przeglądarka je wstrzymuje), panel i tak leży dokładnie pod nagłówkiem
+   — przesunięcie w transformacji zostawiłoby go w złym miejscu. */
+@keyframes navIn{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){
+  .mobile-nav{animation:none}
+  .nav-toggle span,#top,#top .nav{transition:none}
+}
+
+/* --- przełącznik widoków --- */
+@media(max-width:760px){
+  .nav-toggle{display:flex}
+  #top .nav{height:69px}
+  .mobile-nav{top:69px}
+  section[id]{scroll-margin-top:82px}
+  /* panel otwarty: blokada przewijania tła i schowanie dolnego CTA,
+     żeby dwa przyklejone elementy nie zjadały ekranu */
+  body.nav-open{overflow:hidden}
+  body.nav-open .mobile-cta{display:none}
+}
+@media(min-width:761px){
+  .mobile-nav{display:none}
+}
+
+/* --- pozostałe drobne poprawki --- */
+/* <picture> jest liniowe, więc bez tego kadrowanie zdjęcia by się rozjechało */
+.about-photo picture{display:block;width:100%;height:100%}

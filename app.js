@@ -83,7 +83,7 @@ function init() {
   [...document.querySelectorAll('.accordions details')].filter(item => ['Co dzieje się po 12 miesiącach?', 'Czy podłączacie Booksy, Calendly, ZnanyLekarz i płatności?'].includes(item.querySelector('summary')?.textContent.replace('+', '').trim())).slice(1).forEach(item => item.remove());
   [...document.querySelectorAll('.accordions details')].find(item => item.querySelector('summary')?.textContent.includes('Czy podłączacie Booksy, Calendly'))?.remove();
   q('.steps article:nth-child(3) p').textContent = 'Podoba Ci się kierunek? Działamy dalej. Chcesz coś zmienić? Mówisz, co nie gra, a my dopasowujemy projekt do Twoich potrzeb. Za preview strony nie płacisz.';
-  q('.case-study').after(q('.contact-section'));
+  q('#footer').before(q('.contact-section'));
   document.querySelectorAll('.preview-form').forEach(initForm);
   initContactForm(q('#contact-form'));
   document.querySelectorAll('[data-scroll-preview],[data-scroll-contact]').forEach(button => button.addEventListener('click', () => { q('#kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => q('#contact-name')?.focus(), 450); }));

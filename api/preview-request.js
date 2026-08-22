@@ -34,6 +34,9 @@ module.exports = async function handler(request, response) {
         port: Number(process.env.SMTP_PORT || 465),
         secure: String(process.env.SMTP_SECURE || "true") !== "false",
         auth: { user: smtpUser, pass: smtpPass },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
       });
       await transporter.sendMail({
         from: process.env.SMTP_FROM_EMAIL || smtpUser,

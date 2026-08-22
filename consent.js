@@ -16,7 +16,7 @@
     const banner = document.createElement("aside");
     banner.className = "cookie-banner";
     banner.setAttribute("aria-label", "Ustawienia plików cookie");
-    banner.innerHTML = `<div><b>Twoja prywatność</b><p>Używamy niezbędnych plików cookie. Za zgodą możemy też uruchomić analitykę Google oraz narzędzia marketingowe Meta.</p><a href="pliki-cookie.html">Dowiedz się więcej</a></div><div class="cookie-banner-actions"><button class="button secondary" type="button" data-consent="necessary">Tylko niezbędne</button><button class="button" type="button" data-consent="all">Akceptuję</button></div>`;
+    banner.innerHTML = `<div><b>Twoja prywatność</b><p>Używamy niezbędnych plików cookie. Za Twoją zgodą uruchamiamy też Google Analytics, żeby wiedzieć, które treści są przydatne.</p><a href="pliki-cookie.html">Dowiedz się więcej</a></div><div class="cookie-banner-actions"><button class="button secondary" type="button" data-consent="necessary">Tylko niezbędne</button><button class="button" type="button" data-consent="all">Zgadzam się na analitykę</button></div>`;
     document.body.append(banner);
     banner.querySelectorAll("[data-consent]").forEach((button) => button.addEventListener("click", () => {
       setConsent(button.dataset.consent === "all");

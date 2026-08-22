@@ -1,5 +1,19 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.znajdowalni.pl" }],
+      "destination": "https://znajdowalni.pl/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "znajdowalni-site.vercel.app" }],
+      "destination": "https://znajdowalni.pl/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

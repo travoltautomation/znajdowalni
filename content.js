@@ -1,6 +1,6 @@
 /* Centralne dane marketingowe — gotowe do wykorzystania przez przyszłe landing pages branżowe. */
 const SITE = {
-  contact: { email: "travoltautomation@gmail.com", endpoint: "/api/preview-request" },
+  contact: { email: "kontakt@znajdowalni.pl", endpoint: "/api/preview-request" },
   nav: [["Dla kogo", "#dla-kogo"], ["Jak to działa", "#jak-to-dziala"], ["Cennik", "#cennik"], ["FAQ", "#faq"]],
   benefits: [["Klient nie czeka", "Szybka, przejrzysta strona pomaga klientowi zostać, zadzwonić i wybrać właśnie Ciebie."], ["Działa tam, gdzie szuka klient", "Świetny wygląd i wygodna obsługa na telefonie, z którego korzysta większość Twoich klientów."], ["Kontakt jest prosty", "Telefon, mapa, formularz i rezerwacja są pod ręką, także na małym ekranie."]],
   industries: [{ name:"Beauty", tone:"beauty", title:"Studio, do którego chce się umówić.", tag:"Booksy · cennik · rezerwacja" }, { name:"Fizjoterapia", tone:"physio", title:"Spokojnie. Konkretnie. Blisko.", tag:"usługi · zaufanie · kontakt" }, { name:"Warsztat", tone:"garage", title:"Serwis bez szukania numeru.", tag:"telefon · mapa · termin" }],

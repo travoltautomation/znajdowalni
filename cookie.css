@@ -1,0 +1,117 @@
+/* Baner zgody na cookies.
+   Strona główna w ogóle nie ładowała stylów banera — były wyłącznie w legal.css,
+   którego index.html nie wczytuje. Efekt: surowy HTML doklejony do dołu strony.
+   Te reguły są w osobnym pliku, ładowanym wszędzie tam, gdzie działa consent.js. */
+
+.cookie-banner {
+  position: fixed;
+  z-index: 70;
+  left: 20px;
+  bottom: 20px;
+  width: min(420px, calc(100vw - 40px));
+  padding: 22px 22px 20px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  animation: cookieIn .28s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+/* akcent marki na górnej krawędzi */
+.cookie-banner::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  height: 5px;
+  background: var(--lime);
+}
+
+.cookie-banner b {
+  display: block;
+  font: 700 16px var(--sans);
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+
+.cookie-banner p {
+  margin: 0 0 10px;
+  font: 400 13px/1.6 var(--sans);
+  color: rgba(18, 20, 22, .72);
+}
+
+.cookie-banner a {
+  display: inline-block;
+  font: 600 12px var(--sans);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(18, 20, 22, .3);
+  padding-bottom: 1px;
+  transition: border-color .16s ease, color .16s ease;
+}
+.cookie-banner a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+/* Przyciski banera opisane wprost, bez polegania na .button —
+   ten styl jest rozrzucony po kilku arkuszach i różni się między nimi. */
+.cookie-banner .button {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font: 700 12.5px var(--sans);
+  letter-spacing: -.01em;
+  cursor: pointer;
+  background: var(--lime);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .14s ease, box-shadow .14s ease, background-color .16s ease;
+}
+.cookie-banner .button:hover { background: #c9ff63; }
+.cookie-banner .button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+
+.cookie-banner .button.secondary {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: none;
+  font-weight: 600;
+}
+.cookie-banner .button.secondary:hover { background: rgba(18, 20, 22, .06); }
+
+@keyframes cookieIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- mobile --- */
+@media (max-width: 760px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    padding: 18px 18px 16px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .cookie-banner-actions { flex-direction: column-reverse; gap: 8px; }
+  .cookie-banner .button { width: 100%; }
+  /* dolne CTA i baner nie mogą walczyć o to samo miejsce */
+  body.cookie-open .mobile-cta { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner { animation: none; }
+  .cookie-banner .button,
+  .cookie-banner a { transition: none; }
+}

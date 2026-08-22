@@ -2,7 +2,7 @@
    Dopóki MEASUREMENT_ID jest pusty, plik nic nie robi — żaden skrypt Google
    nie jest pobierany i żadne ciasteczko nie powstaje. */
 (function () {
-  var MEASUREMENT_ID = ""; // np. "G-XXXXXXXXXX"
+  var MEASUREMENT_ID = "G-R88CM79RJV"; // np. "G-XXXXXXXXXX"
   var storageKey = "znajdowalni-cookie-consent";
   var zaladowany = false;
 

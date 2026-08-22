@@ -1,17 +1,17 @@
 const q = (selector, scope = document) => scope.querySelector(selector);
-const previewForm = (id, final = false) => `<div class="preview-form" id="${id}" data-compact-preview>
+const previewForm = (id, final = false) => `<form class="preview-form" id="${id}" data-compact-preview novalidate>
   <div class="preview-start"><label class="sr-only" for="${id}-source">Link do obecnej strony</label><input id="${id}-source" name="source" type="url" inputmode="url" placeholder="Wklej link do obecnej strony" required><button type="button" class="button ink" data-next>Zobacz bezpłatny podgląd <span>→</span></button></div>
+  <div class="form-details" hidden></div>
   <button class="text-action" type="button" data-no-site>Nie masz jeszcze strony? Wklej wizytówkę Google, profil Booksy lub informacje o firmie.</button>
-  <p class="form-note">Prywatny podgląd. Bez opłat. Niczego nie publikujemy bez Twojej zgody.</p></div>`;
+  <p class="form-note">Prywatny podgląd. Bez opłat. Niczego nie publikujemy bez Twojej zgody.</p></form>`;
 
-const fields = (noSite) => noSite ? `<div class="detail-grid"><label>Nazwa firmy<input name="company" required></label><label>Branża / czym się zajmujesz<input name="business" required></label><label>Miasto<input name="city" required></label><label>Link <small>(opcjonalnie)</small><input name="source" placeholder="Google, Facebook, Instagram..."></label></div>` : "";
+const fields = (noSite) => `<div class="detail-grid"><label>Nazwa firmy<input name="company" required placeholder="np. Klinika Ruchu"></label><label>Branża<input name="business" required placeholder="np. fizjoterapia"></label><label>Miasto<input name="city" required placeholder="np. Kraków"></label>${noSite ? '<label>Wizytówka Google, Booksy lub profil <small>(opcjonalnie)</small><input name="source" placeholder="wklej link, jeśli masz"></label>' : ''}</div>`;
 
 function openForm(form, noSite = false) {
   const details = q('.form-details', form); const start = q('.preview-start', form);
-  const source = q('[name="source"]', form)?.value || "";
+  const source = (q('[name="source"]', start)?.value || "").trim();
   start.hidden = true; q('[name="source"]', start).disabled = true; details.hidden = false;
-  details.innerHTML = `${fields(noSite)}<div class="detail-grid"><label>E-mail<input name="email" type="email" required placeholder="twoj@email.pl"></label><label>Telefon <small>(opcjonalnie)</small><input name="phone" type="tel"></label></div><label class="consent"><input name="consent" type="checkbox" required><span>Zgadzam się na kontakt w sprawie prywatnego podglądu. <a href="polityka-prywatnosci.html">Polityka prywatności</a>.</span></label><button class="button coral" type="submit">Wyślij prośbę o podgląd <span>→</span></button><button class="back" type="button" data-back>← Wróć</button>`;
-  if (!noSite && source) q('[name="source"]', details).value = source;
+  details.innerHTML = `${!noSite && source ? `<input type="hidden" name="source" value="${source.replace(/"/g, '&quot;')}">` : ''}${fields(noSite)}<div class="detail-grid"><label>E-mail<input name="email" type="email" required placeholder="twoj@email.pl"></label><label>Telefon <small>(opcjonalnie)</small><input name="phone" type="tel"></label></div><label>Co chcemy poprawić w pierwszej kolejności? <small>(opcjonalnie)</small><textarea name="message" rows="3" placeholder="np. klienci nie mogą znaleźć cennika, nikt nie dzwoni z telefonu"></textarea></label><label class="consent"><input name="consent" type="checkbox" required><span>Zgadzam się na kontakt w sprawie prywatnego podglądu. <a href="polityka-prywatnosci.html">Polityka prywatności</a>.</span></label><button class="button coral" type="submit">Wyślij prośbę o podgląd <span>→</span></button><button class="back" type="button" data-back>← Wróć</button>`;
   q('input', details)?.focus();
 }
 
@@ -29,7 +29,8 @@ async function sendPreview(data) {
 
 function initForm(form) {
   form.addEventListener('click', (event) => {
-    if (event.target.closest('[data-next]') || event.target.closest('[data-no-site]')) { const input = q('[name="source"]', form); const contactSource = q('#contact-source'); if (contactSource && input?.value.trim()) contactSource.value = input.value.trim(); q('#kontakt')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => q('#contact-name')?.focus(), 450); }
+        if (event.target.closest('[data-next]')) { const input = q('[name="source"]', form); if (input && !input.checkValidity()) { input.reportValidity(); return; } openForm(form, false); return; }
+    if (event.target.closest('[data-no-site]')) { openForm(form, true); return; }
     if (event.target.closest('[data-back]')) { q('.preview-start', form).hidden = false; q('[name="source"]', q('.preview-start', form)).disabled = false; q('.form-details', form).hidden = true; }
   });
   form.addEventListener('submit', async (event) => {

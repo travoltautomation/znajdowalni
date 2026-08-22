@@ -42,6 +42,7 @@ module.exports = async function handler(request, response) {
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const smtpRecipient = process.env.SMTP_RECIPIENT_EMAIL || recipient;
+  const smtpRecipients = smtpRecipient.split(",").map((address) => address.trim()).filter(Boolean);
 
   // Bez zmiennych środowiskowych endpoint nie zapisuje ani nie przekazuje danych.
   if (!webhook && !(resendKey && recipient) && !(smtpHost && smtpUser && smtpPass && smtpRecipient)) return response.status(503).json({ demo: true, error: "Preview delivery is not configured." });
@@ -67,7 +68,7 @@ module.exports = async function handler(request, response) {
       });
       await transporter.sendMail({
         from: process.env.SMTP_FROM_EMAIL || smtpUser,
-        to: smtpRecipient,
+        to: smtpRecipients,
         replyTo: payload.email,
         subject: message.title,
         text: message.text,

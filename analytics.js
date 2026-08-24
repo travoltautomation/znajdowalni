@@ -41,6 +41,24 @@
     gtag("config", MEASUREMENT_ID, { anonymize_ip: true });
   }
 
+  function track(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+  }
+
+  document.addEventListener("click", function (event) {
+    var el = event.target.closest && event.target.closest("a,button");
+    if (!el) return;
+    if (el.matches("[data-next]")) track("preview_start", { source: "existing_site" });
+    if (el.matches("[data-no-site]")) track("preview_start", { source: "no_site" });
+    if (el.matches("[data-scroll-contact], .nav-cta, .mobile-cta")) track("contact_cta_click", { location: el.className || "cta" });
+    if (el.matches(".case-link, .case-visual")) track("case_study_click", { case_name: "Pani Terapia" });
+    if (el.closest(".plan") || el.closest(".plans")) track("pricing_cta_click", { page: location.pathname });
+  });
+
+  document.addEventListener("submit", function (event) {
+    if (event.target.matches("form")) track("form_submit_attempt", { form_id: event.target.id || "form" });
+  });
+
   if (zgodaNaAnalityke()) uruchomGA();
 
   // consent.js rozgłasza to zdarzenie po kliknięciu w banerze

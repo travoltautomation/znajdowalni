@@ -1,0 +1,12 @@
+.plan-compare { background: var(--cream, #f7f3ea); }
+.plan-compare h2 { max-width: 760px; margin: .25rem 0 2rem; }
+.plan-table-wrap { overflow-x: auto; border: 1px solid var(--ink, #121416); box-shadow: 7px 7px 0 var(--ink, #121416); background: #fffdf8; }
+.plan-table { width: 100%; min-width: 620px; border-collapse: collapse; text-align: left; }
+.plan-table th, .plan-table td { padding: 1rem 1.1rem; border-bottom: 1px solid #cfd7d2; vertical-align: top; }
+.plan-table thead th { background: var(--ink, #121416); color: var(--cream, #f7f3ea); font-weight: 700; }
+.plan-table thead th:nth-child(3) { background: var(--teal, #17b2a6); color: var(--ink, #121416); }
+.plan-table tbody th { width: 28%; font-weight: 700; }
+.plan-table tbody td:nth-child(3) { background: #e3f5f1; }
+.plan-table tr:last-child th, .plan-table tr:last-child td { border-bottom: 0; }
+.plan-table-note { margin: 1.4rem 0 0; max-width: 760px; color: #59615f; font-size: .92rem; }
+@media (max-width: 700px) { .plan-table-wrap { box-shadow: 4px 4px 0 var(--ink, #121416); } .plan-table th, .plan-table td { padding: .8rem .75rem; font-size: .9rem; } }

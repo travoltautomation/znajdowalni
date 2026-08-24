@@ -1,0 +1,21 @@
+.industry-page { background: var(--cream, #f7f3ea); color: var(--ink, #121416); }
+.industry-page .site-header { border-bottom: 1px solid var(--ink, #121416); }
+.industry-page .industry-hero { padding: clamp(4.5rem, 12vw, 9rem) 0 4rem; }
+.industry-page h1 { max-width: 900px; font-size: clamp(3.2rem, 8vw, 7rem); line-height: .94; margin: .35rem 0 1.5rem; }
+.industry-page .lead { max-width: 700px; font-size: 1.2rem; line-height: 1.55; }
+.industry-page .industry-cta { display: inline-flex; margin-top: 1.5rem; }
+.industry-page .industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.industry-page .industry-card { border: 1px solid var(--ink, #121416); padding: 1.4rem; background: #fffdf8; box-shadow: 6px 6px 0 var(--ink, #121416); }
+.industry-page .industry-card h2 { margin: .2rem 0 .7rem; font-size: 1.6rem; }
+.industry-page .industry-proof { background: var(--soft-teal, #e3f5f1); }
+.industry-page .industry-proof h2 { max-width: 780px; }
+.industry-page .industry-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 2rem; max-width: 800px; margin-top: 1.5rem; }
+.industry-page .industry-list div::before { content: "✓"; color: var(--teal, #17b2a6); font-weight: 700; margin-right: .55rem; }
+.industry-page .industry-note { max-width: 720px; color: #59615f; }
+@media (max-width: 760px) {
+  .industry-page .nav { gap: 12px; overflow:hidden; }
+  .industry-page .nav nav { display:flex; gap:14px; min-width:0; overflow-x:auto; white-space:nowrap; padding:8px 0; }
+  .industry-page .nav nav a { font-size:11px; }
+  .industry-page .nav-cta { display:none; }
+  .industry-page .industry-grid, .industry-page .industry-list { grid-template-columns: 1fr; }
+}

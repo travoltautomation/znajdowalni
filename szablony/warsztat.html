@@ -396,6 +396,11 @@ const SITE = {
 
 document.getElementById("rok").textContent = new Date().getFullYear();
 
+/* Demo nie może sugerować, że numer lub mapa należą do prawdziwej firmy. */
+if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.com/maps"]').forEach(function (link) {
+  link.addEventListener("click", function (e) { e.preventDefault(); alert("To wersja demonstracyjna. Numer telefonu i adres uzupełnimy na podstawie danych Twojej firmy."); });
+});
+
 /* menu mobilne */
 (function () {
   var przycisk = document.querySelector(".burger");

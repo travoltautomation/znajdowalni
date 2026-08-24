@@ -351,6 +351,11 @@ const SITE = {
 
 document.getElementById("rok").textContent = new Date().getFullYear();
 
+/* Demo nie może sugerować, że numer lub mapa należą do prawdziwej firmy. */
+if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.com/maps"]').forEach(function (link) {
+  link.addEventListener("click", function (e) { e.preventDefault(); alert("To wersja demonstracyjna. Numer telefonu, adres i rezerwacja uzupełnimy na podstawie danych Twojej firmy."); });
+});
+
 /* przycisk rezerwacji — w demo tlumaczy, co sie stanie na gotowej stronie */
 (function () {
   var b = document.getElementById("przycisk-booksy");

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Serwis Zamkowa | Warsztat samochodowy — Poznań Wilda</title>
+<meta name="description" content="Warsztat samochodowy na Wildzie w Poznaniu. Diagnostyka komputerowa, mechanika, hamulce, zawieszenie, klimatyzacja. Zadzwoń i umów termin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Serwis Zamkowa",
+  "description": "Warsztat samochodowy w Poznaniu — diagnostyka, mechanika, przeglądy.",
+  "telephone": "+48611222333",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ul. Przykładowa 40",
+    "addressLocality": "Poznań",
+    "postalCode": "61-001",
+    "addressCountry": "PL"
+  },
+  "areaServed": "Poznań"
+}
+</script>
+<style>
+  :root{
+    --stal:#22262B;
+    --stal-2:#2C3138;
+    --grafit:#171A1E;
+    --papier:#F2F3F1;
+    --papier-2:#E4E7E3;
+    --tekst:#1B1E22;
+    --tekst-2:#5A6169;
+    --sygnal:#E46A17;
+    --sygnal-jasny:#F5842F;
+    --linia:#D2D6D1;
+    --linia-ciemna:#363B42;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--papier);color:var(--tekst);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .kond{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.005em}
+  .wrap{width:min(1140px,calc(100% - 36px));margin:0 auto}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--sygnal);outline-offset:2px}
+
+  .demo{background:var(--sygnal);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;text-align:center}
+
+  header{position:sticky;top:0;z-index:40;background:var(--stal);color:var(--papier);border-bottom:3px solid var(--sygnal)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+  .marka{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:25px;text-transform:uppercase;letter-spacing:.01em;text-decoration:none;line-height:1}
+  .marka small{display:block;font-family:-apple-system,sans-serif;font-size:10px;font-weight:400;letter-spacing:.16em;color:#9AA3AC;margin-top:3px;text-transform:uppercase}
+  .menu{display:none;gap:26px}
+  .menu a{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:17px;text-transform:uppercase;letter-spacing:.03em;text-decoration:none;color:#C3CAD1}
+  .menu a:hover{color:var(--sygnal)}
+  .tel-top{display:none;align-items:center;background:var(--sygnal);color:#fff;padding:12px 20px;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+  .tel-top:hover{background:var(--sygnal-jasny)}
+  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:1px solid var(--linia-ciemna);cursor:pointer;align-items:center}
+  .burger span{display:block;width:19px;height:2px;background:var(--papier);transition:transform .2s,opacity .2s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  #menu-mobilne{position:fixed;inset:71px 0 auto;background:var(--stal-2);color:var(--papier);padding:8px 18px 22px;z-index:39;border-bottom:3px solid var(--sygnal)}
+  #menu-mobilne[hidden]{display:none}
+  #menu-mobilne a{display:block;padding:15px 0;border-bottom:1px solid var(--linia-ciemna);text-decoration:none;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:20px;text-transform:uppercase}
+  #menu-mobilne .cta-m{margin-top:16px;text-align:center;background:var(--sygnal);color:#fff;border-bottom:0}
+
+  /* hero: telefon i trasa nad wszystkim */
+  .hero{background:var(--stal);color:var(--papier);padding:52px 0 0;position:relative;overflow:hidden}
+  .hero-tlo{position:absolute;inset:0;opacity:.5}
+  .hero-tlo svg{width:100%;height:100%}
+  .hero .wrap{position:relative;z-index:1}
+  .nadtytul{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--sygnal);font-weight:700;margin-bottom:16px}
+  h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:clamp(2.6rem,11vw,5.2rem);line-height:.94;text-transform:uppercase;letter-spacing:-.005em;margin-bottom:18px}
+  h1 span{color:var(--sygnal)}
+  .lead{font-size:1.1rem;color:#B7BFC7;max-width:48ch;margin-bottom:30px}
+  .duze-cta{display:grid;gap:10px;padding-bottom:44px}
+  .cta-glowne{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--sygnal);color:#fff;padding:20px 24px;text-decoration:none;min-height:76px}
+  .cta-glowne:hover{background:var(--sygnal-jasny)}
+  .cta-glowne b{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:29px;text-transform:uppercase;line-height:1;display:block}
+  .cta-glowne small{display:block;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;opacity:.9;margin-top:3px}
+  .cta-glowne .strzalka{font-size:26px;line-height:1}
+  .cta-drugie{display:flex;align-items:center;justify-content:space-between;gap:14px;background:transparent;border:1px solid var(--linia-ciemna);color:var(--papier);padding:20px 24px;text-decoration:none;min-height:76px}
+  .cta-drugie:hover{border-color:var(--papier)}
+  .cta-drugie b{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:23px;text-transform:uppercase;line-height:1;display:block}
+  .cta-drugie small{display:block;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:#9AA3AC;margin-top:3px}
+
+  /* pasek statusu */
+  .status{background:var(--grafit);color:var(--papier);border-top:1px solid var(--linia-ciemna)}
+  .status-in{display:flex;flex-wrap:wrap;gap:10px 28px;padding:16px 0;font-size:14.5px;align-items:center}
+  .kropka{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sygnal);margin-right:8px}
+
+  section{padding:60px 0}
+  h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:clamp(1.9rem,6vw,2.9rem);line-height:1;text-transform:uppercase;margin-bottom:12px}
+  .sek-wstep{color:var(--tekst-2);max-width:54ch;margin-bottom:32px}
+
+  .uslugi{display:grid;gap:1px;background:var(--linia);border:1px solid var(--linia)}
+  .usluga{background:var(--papier);padding:24px 22px;position:relative}
+  .usluga::before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--sygnal);opacity:0;transition:opacity .18s}
+  .usluga:hover::before{opacity:1}
+  .usluga h3{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.32rem;text-transform:uppercase;margin-bottom:6px}
+  .usluga p{font-size:14.5px;color:var(--tekst-2)}
+
+  .dlaczego{background:var(--papier-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)}
+  .powody{display:grid;gap:20px}
+  .powod{display:flex;gap:16px;align-items:flex-start}
+  .powod .znak{flex:0 0 40px;height:40px;background:var(--stal);color:var(--sygnal);display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:20px}
+  .powod h3{font-size:1.05rem;font-weight:600;margin-bottom:3px}
+  .powod p{font-size:15px;color:var(--tekst-2)}
+
+  .kontakt-sekcja{background:var(--stal);color:var(--papier)}
+  .kontakt-grid{display:grid;gap:32px}
+  .kontakt-sekcja .sek-wstep{color:#B7BFC7}
+  .godziny{width:100%;border-collapse:collapse;font-size:15.5px}
+  .godziny th,.godziny td{text-align:left;padding:11px 0;border-bottom:1px solid var(--linia-ciemna)}
+  .godziny th{font-weight:400;color:#9AA3AC}
+  .godziny td{text-align:right;font-variant-numeric:tabular-nums}
+
+  form{display:grid;gap:13px}
+  label{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#9AA3AC;margin-bottom:6px}
+  input,textarea{width:100%;padding:13px 14px;background:rgba(242,243,241,.06);border:1px solid var(--linia-ciemna);color:var(--papier);font:inherit;font-size:16px}
+  input::placeholder,textarea::placeholder{color:#7C848C}
+  .para{display:grid;gap:13px}
+  .zgoda{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:#B7BFC7}
+  .zgoda input{width:auto;margin-top:3px;flex:none}
+  button[type=submit]{min-height:56px;background:var(--sygnal);color:#fff;border:0;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:21px;text-transform:uppercase;cursor:pointer;letter-spacing:.02em}
+  button[type=submit]:hover{background:var(--sygnal-jasny)}
+  #status-formularza{font-size:14.5px;padding:13px 15px;display:none;border:1px solid}
+  #status-formularza.ok{display:block;background:rgba(228,106,23,.14);border-color:var(--sygnal)}
+  #status-formularza.blad{display:block;background:rgba(228,106,23,.08);border-color:#7C848C}
+
+  footer{background:var(--grafit);color:#98A0A8;padding:38px 0 28px;font-size:14.5px}
+  .stopka-grid{display:grid;gap:22px}
+  footer strong{color:var(--papier);font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.25rem;text-transform:uppercase}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--sygnal)}
+  .prawa{border-top:1px solid var(--linia-ciemna);margin-top:26px;padding-top:16px;font-size:12.5px;color:#6C747C}
+
+  .odslon{opacity:0;transform:translateY(14px)}
+  .odslon.widoczny{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
+
+  @media(min-width:640px){
+    .duze-cta{grid-template-columns:1.25fr 1fr}
+    .para{grid-template-columns:1fr 1fr}
+  }
+  @media(min-width:760px){
+    .uslugi{grid-template-columns:repeat(2,1fr)}
+    .powody{grid-template-columns:repeat(2,1fr);gap:26px 34px}
+    .kontakt-grid{grid-template-columns:.85fr 1.15fr;gap:50px}
+    .stopka-grid{grid-template-columns:1.4fr 1fr 1fr}
+  }
+  @media(min-width:1000px){
+    .menu{display:flex}
+    .tel-top{display:inline-flex}
+    .burger{display:none}
+    #menu-mobilne{display:none!important}
+    .uslugi{grid-template-columns:repeat(4,1fr)}
+    section{padding:82px 0}
+    .hero{padding-top:70px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .odslon{opacity:1;transform:none}
+    .odslon.widoczny{transition:none}
+    .burger span{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">WERSJA DEMONSTRACYJNA — dane przykładowe, do potwierdzenia z klientem</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="marka" href="#gora">Serwis Zamkowa<small>Poznań · Wilda</small></a>
+    <nav class="menu" aria-label="Menu główne">
+      <a href="#uslugi">Usługi</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="#dojazd">Dojazd</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="tel-top" href="tel:+48611222333">61 122 23 33</a>
+    <button class="burger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="menu-mobilne">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div id="menu-mobilne" hidden>
+  <a href="#uslugi">Usługi</a>
+  <a href="#dlaczego">Dlaczego my</a>
+  <a href="#dojazd">Dojazd</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="cta-m" href="tel:+48611222333">Zadzwoń: 61 122 23 33</a>
+</div>
+
+<main id="gora">
+
+<section class="hero">
+  <div class="hero-tlo" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <rect width="1200" height="700" fill="#22262B"/>
+      <g stroke="#E46A17" stroke-opacity=".13" stroke-width="1">
+        <path d="M0 620 L1200 400"/><path d="M0 680 L1200 460"/>
+      </g>
+      <g stroke="#3A4048" stroke-width="1">
+        <path d="M900 0 L900 700"/><path d="M1010 0 L1010 700"/><path d="M1120 0 L1120 700"/>
+      </g>
+      <circle cx="1010" cy="190" r="118" fill="none" stroke="#E46A17" stroke-opacity=".22" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <p class="nadtytul">Warsztat samochodowy · Poznań Wilda</p>
+    <h1>Auto stanęło?<br><span>Zadzwoń, powiemy wprost.</span></h1>
+    <p class="lead">Diagnostyka, mechanika i przeglądy. Wycena przed naprawą, bez niespodzianek na fakturze.</p>
+    <div class="duze-cta">
+      <a class="cta-glowne" href="tel:+48611222333">
+        <span><b>61 122 23 33</b><small>Zadzwoń — odbieramy w godzinach pracy</small></span>
+        <span class="strzalka" aria-hidden="true">→</span>
+      </a>
+      <a class="cta-drugie" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pozna%C5%84%20Wilda" target="_blank" rel="noopener">
+        <span><b>Wyznacz trasę</b><small>ul. Przykładowa 40</small></span>
+        <span class="strzalka" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="status">
+  <div class="wrap status-in">
+    <span><span class="kropka" aria-hidden="true"></span>Wycena przed rozpoczęciem naprawy</span>
+    <span><span class="kropka" aria-hidden="true"></span>Auto zastępcze — <b>[DO POTWIERDZENIA]</b></span>
+    <span><span class="kropka" aria-hidden="true"></span>Faktura VAT</span>
+  </div>
+</div>
+
+<section id="uslugi">
+  <div class="wrap">
+    <h2 class="odslon">Co robimy</h2>
+    <p class="sek-wstep odslon">Lista do potwierdzenia z klientem — wpisujemy wyłącznie to, co warsztat faktycznie wykonuje.</p>
+    <div class="uslugi odslon">
+      <article class="usluga"><h3>Diagnostyka komputerowa</h3><p>Odczyt błędów i sprawdzenie, co naprawdę je wywołuje.</p></article>
+      <article class="usluga"><h3>Mechanika ogólna</h3><p>Naprawy bieżące, wymiana części, usuwanie usterek.</p></article>
+      <article class="usluga"><h3>Hamulce i zawieszenie</h3><p>Tarcze, klocki, amortyzatory, elementy układu kierowniczego.</p></article>
+      <article class="usluga"><h3>Przeglądy okresowe</h3><p>Serwis zgodny z planem producenta, z wpisem do książki.</p></article>
+      <article class="usluga"><h3>Wymiana oleju i płynów</h3><p>Olej silnikowy, filtry, płyn hamulcowy i chłodniczy.</p></article>
+      <article class="usluga"><h3>Klimatyzacja</h3><p>Sprawdzenie szczelności, uzupełnienie czynnika, odgrzybianie.</p></article>
+      <article class="usluga"><h3>Elektryka samochodowa</h3><p>Akumulator, alternator, rozrusznik, oświetlenie.</p></article>
+      <article class="usluga"><h3>Naprawy silnika</h3><p>Rozrząd, uszczelki, układ chłodzenia. <b>[DO POTWIERDZENIA]</b></p></article>
+    </div>
+  </div>
+</section>
+
+<section id="dlaczego" class="dlaczego">
+  <div class="wrap">
+    <h2 class="odslon">Dlaczego u nas</h2>
+    <p class="sek-wstep odslon">Bez marketingowych obietnic. To rzeczy, które klient odczuwa przy pierwszej wizycie.</p>
+    <div class="powody odslon">
+      <div class="powod">
+        <span class="znak" aria-hidden="true">1</span>
+        <div><h3>Wycena przed naprawą</h3><p>Dzwonimy z kwotą, zanim cokolwiek rozkręcimy. Nie akceptujesz — nie robimy.</p></div>
+      </div>
+      <div class="powod">
+        <span class="znak" aria-hidden="true">2</span>
+        <div><h3>Mówimy, co można odłożyć</h3><p>Jeśli coś wytrzyma jeszcze pół roku, powiemy to zamiast wpisywać na fakturę.</p></div>
+      </div>
+      <div class="powod">
+        <span class="znak" aria-hidden="true">3</span>
+        <div><h3>Stary element do wglądu</h3><p>Wymienioną część pokazujemy albo oddajemy. Bez pytania.</p></div>
+      </div>
+      <div class="powod">
+        <span class="znak" aria-hidden="true">4</span>
+        <div><h3>Termin, który się trzyma</h3><p>Jeśli auto ma być gotowe na piątek, dzwonimy w czwartek gdy coś się przesuwa.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dojazd">
+  <div class="wrap">
+    <h2 class="odslon">Godziny i dojazd</h2>
+    <p class="sek-wstep odslon">Wjazd od podwórza, parking dla klientów przed warsztatem. <b>[DO POTWIERDZENIA]</b></p>
+    <div class="kontakt-grid odslon">
+      <div>
+        <table class="godziny">
+          <caption class="sek-wstep" style="text-align:left;caption-side:top;margin-bottom:8px">Godziny do uzupełnienia przez klienta.</caption>
+          <tbody>
+            <tr><th scope="row">Poniedziałek — piątek</th><td>[DO POTWIERDZENIA]</td></tr>
+            <tr><th scope="row">Sobota</th><td>[DO POTWIERDZENIA]</td></tr>
+            <tr><th scope="row">Niedziela</th><td>nieczynne</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p style="margin-bottom:14px"><strong>Serwis Zamkowa</strong><br>ul. Przykładowa 40<br>61-001 Poznań, Wilda</p>
+        <a class="cta-drugie" style="color:var(--tekst);border-color:var(--linia)" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pozna%C5%84%20Wilda" target="_blank" rel="noopener">
+          <span><b>Otwórz w mapach</b><small style="color:var(--tekst-2)">Nawigacja pod warsztat</small></span>
+          <span class="strzalka" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="kontakt-sekcja">
+  <div class="wrap kontakt-grid">
+    <div>
+      <h2>Umów termin</h2>
+      <p class="sek-wstep">Najszybciej telefonicznie. Formularz sprawdzi się, gdy dzwonisz po godzinach — oddzwonimy rano.</p>
+      <p><a class="cta-glowne" href="tel:+48611222333"><span><b>61 122 23 33</b><small>Zadzwoń teraz</small></span><span class="strzalka" aria-hidden="true">→</span></a></p>
+    </div>
+    <div>
+      <form id="formularz" novalidate>
+        <div class="para">
+          <div>
+            <label for="pole-imie">Imię</label>
+            <input id="pole-imie" name="imie" type="text" required autocomplete="given-name">
+          </div>
+          <div>
+            <label for="pole-telefon">Telefon</label>
+            <input id="pole-telefon" name="telefon" type="tel" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="para">
+          <div>
+            <label for="pole-marka">Marka i model</label>
+            <input id="pole-marka" name="marka" type="text" placeholder="np. Skoda Octavia 2016">
+          </div>
+          <div>
+            <label for="pole-termin">Kiedy najlepiej</label>
+            <input id="pole-termin" name="termin" type="text" placeholder="np. w przyszłym tygodniu">
+          </div>
+        </div>
+        <div>
+          <label for="pole-usterka">Co się dzieje z autem</label>
+          <textarea id="pole-usterka" name="usterka" rows="4" placeholder="np. stuka przy skręcaniu w prawo, od tygodnia"></textarea>
+        </div>
+        <label class="zgoda" for="pole-zgoda">
+          <input id="pole-zgoda" name="zgoda" type="checkbox" required>
+          <span>Zgadzam się na kontakt telefoniczny w sprawie naprawy.</span>
+        </label>
+        <button type="submit">Wyślij zgłoszenie</button>
+        <p id="status-formularza" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap stopka-grid">
+    <div>
+      <strong>Serwis Zamkowa</strong>
+      <p style="margin-top:8px">ul. Przykładowa 40<br>61-001 Poznań, Wilda</p>
+    </div>
+    <div>
+      <p><a href="tel:+48611222333">61 122 23 33</a></p>
+      <p><a href="mailto:kontakt@przyklad.pl">kontakt@przyklad.pl</a></p>
+    </div>
+    <div>
+      <p><a href="#uslugi">Usługi</a></p>
+      <p><a href="#dojazd">Dojazd</a></p>
+      <p><a href="#kontakt">Kontakt</a></p>
+    </div>
+  </div>
+  <div class="wrap prawa">© <span id="rok"></span> Serwis Zamkowa · Strona demonstracyjna przygotowana przez Znajdowalni</div>
+</footer>
+
+<script>
+const SITE = {
+  demoMode: true,
+  businessName: "Serwis Zamkowa",
+  branza: "warsztat samochodowy",
+  phone: "+48611222333",
+  phoneDisplay: "61 122 23 33",
+  email: "kontakt@przyklad.pl",
+  address: { street: "ul. Przykładowa 40", city: "Poznań", district: "Wilda", zip: "61-001" },
+  hours: "[DO POTWIERDZENIA]",
+  autoZastepcze: "[DO POTWIERDZENIA]",
+  mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Pozna%C5%84%20Wilda",
+  services: [
+    "Diagnostyka komputerowa", "Mechanika ogólna", "Hamulce i zawieszenie",
+    "Przeglądy okresowe", "Wymiana oleju i płynów", "Klimatyzacja",
+    "Elektryka samochodowa", "Naprawy silnika [DO POTWIERDZENIA]"
+  ]
+};
+
+document.getElementById("rok").textContent = new Date().getFullYear();
+
+/* menu mobilne */
+(function () {
+  var przycisk = document.querySelector(".burger");
+  var panel = document.getElementById("menu-mobilne");
+  if (!przycisk || !panel) return;
+  przycisk.addEventListener("click", function () {
+    var otwarte = przycisk.getAttribute("aria-expanded") === "true";
+    przycisk.setAttribute("aria-expanded", String(!otwarte));
+    przycisk.setAttribute("aria-label", otwarte ? "Otwórz menu" : "Zamknij menu");
+    panel.hidden = otwarte;
+  });
+  panel.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+      panel.hidden = true;
+      przycisk.setAttribute("aria-expanded", "false");
+      przycisk.setAttribute("aria-label", "Otwórz menu");
+    }
+  });
+})();
+
+/* odsloniecia */
+(function () {
+  var elementy = [].slice.call(document.querySelectorAll(".odslon"));
+  if (!elementy.length) return;
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    elementy.forEach(function (el) { el.classList.add("widoczny"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (wpisy) {
+    wpisy.forEach(function (w) { if (w.isIntersecting) { w.target.classList.add("widoczny"); io.unobserve(w.target); } });
+  }, { threshold: .12 });
+  elementy.forEach(function (el) { io.observe(el); });
+  window.addEventListener("scroll", function () {
+    elementy.forEach(function (el) {
+      if (!el.classList.contains("widoczny") && el.getBoundingClientRect().top < window.innerHeight) el.classList.add("widoczny");
+    });
+  }, { passive: true });
+})();
+
+/* formularz */
+(function () {
+  var form = document.getElementById("formularz");
+  var status = document.getElementById("status-formularza");
+  if (!form || !status) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.className = "blad";
+      status.textContent = "Uzupełnij imię, telefon i zaznacz zgodę.";
+      form.reportValidity();
+      return;
+    }
+    status.className = "ok";
+    status.textContent = SITE.demoMode
+      ? "To wersja demonstracyjna — zgłoszenie nie zostało wysłane. Na gotowej stronie trafi prosto do warsztatu."
+      : "Dziękujemy. Oddzwonimy w godzinach pracy warsztatu.";
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

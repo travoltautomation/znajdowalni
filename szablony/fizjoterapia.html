@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Gabinet Ruchu | Fizjoterapia i rehabilitacja — Kraków Podgórze</title>
+<meta name="description" content="Fizjoterapia po urazach i operacjach w Krakowie. Terapia manualna, rehabilitacja pooperacyjna, leczenie bólu kręgosłupa. Umów wizytę telefonicznie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Gabinet Ruchu",
+  "description": "Gabinet fizjoterapii i rehabilitacji w Krakowie.",
+  "telephone": "+48123456789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ul. Przykładowa 12",
+    "addressLocality": "Kraków",
+    "postalCode": "30-001",
+    "addressCountry": "PL"
+  },
+  "areaServed": "Kraków"
+}
+</script>
+<style>
+  :root{
+    --las:#1E4038;
+    --las-jasny:#2C5A4E;
+    --kreda:#F5F2EA;
+    --kreda-ciepla:#EDE7DA;
+    --atrament:#16211D;
+    --szalwia:#8FA89A;
+    --miedz:#C4703F;
+    --linia:#DAD3C4;
+    --r:2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--kreda);color:var(--atrament);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:Newsreader,Georgia,"Times New Roman",serif}
+  .wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--miedz);outline-offset:3px}
+
+  /* pasek demo */
+  .demo{background:var(--atrament);color:var(--kreda);font-size:13px;padding:9px 16px;text-align:center;letter-spacing:.01em}
+  .demo b{color:#E8C46A}
+
+  /* naglowek */
+  header{position:sticky;top:0;z-index:40;background:rgba(245,242,234,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linia)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:70px}
+  .marka{font-family:Newsreader,Georgia,serif;font-size:21px;font-weight:600;letter-spacing:-.01em;text-decoration:none;line-height:1.1}
+  .marka span{display:block;font-family:inherit;font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--szalwia);margin-top:2px}
+  .menu{display:none;gap:28px}
+  .menu a{font-size:14.5px;text-decoration:none;color:var(--las);padding:4px 0;border-bottom:1px solid transparent}
+  .menu a:hover{border-bottom-color:var(--miedz)}
+  .tel-top{display:none;align-items:center;gap:8px;background:var(--las);color:var(--kreda);padding:11px 18px;border-radius:100px;font-size:14.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+  .tel-top:hover{background:var(--las-jasny)}
+  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:1px solid var(--linia);cursor:pointer;align-items:center}
+  .burger span{display:block;width:18px;height:1.5px;background:var(--atrament);transition:transform .2s,opacity .2s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  #menu-mobilne{position:fixed;inset:70px 0 auto;background:var(--kreda);border-bottom:1px solid var(--linia);padding:8px 20px 24px;z-index:39}
+  #menu-mobilne[hidden]{display:none}
+  #menu-mobilne a{display:block;padding:15px 0;border-bottom:1px solid var(--linia);text-decoration:none;font-size:17px}
+  #menu-mobilne .cta-m{margin-top:18px;display:block;text-align:center;background:var(--las);color:var(--kreda);padding:15px;border-radius:100px;font-weight:600;border-bottom:0}
+
+  /* hero */
+  .hero{padding:56px 0 64px}
+  .hero-grid{display:grid;gap:38px}
+  .nadtytul{font-size:11.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--las-jasny);font-weight:600;margin-bottom:18px}
+  h1{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:clamp(2.4rem,8vw,4rem);line-height:1.03;letter-spacing:-.025em;margin-bottom:20px}
+  h1 em{font-style:italic;color:var(--las)}
+  .lead{font-size:1.12rem;color:#4A5551;max-width:46ch;margin-bottom:30px}
+  .cta-rzad{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:0 26px;border-radius:100px;font-size:15.5px;font-weight:600;text-decoration:none;border:1px solid var(--las);transition:background-color .18s,color .18s}
+  .btn-pelny{background:var(--las);color:var(--kreda)}
+  .btn-pelny:hover{background:var(--las-jasny)}
+  .btn-pusty{background:transparent;color:var(--las)}
+  .btn-pusty:hover{background:var(--kreda-ciepla)}
+  .drobne{font-size:14px;color:#6B7570}
+  .drobne b{color:var(--las)}
+
+  /* wizualizacja zamiast zdjecia */
+  .foto-miejsce{position:relative;aspect-ratio:4/5;background:var(--kreda-ciepla);border:1px solid var(--linia);overflow:hidden;display:flex;align-items:flex-end;padding:22px}
+  .foto-miejsce svg{position:absolute;inset:0;width:100%;height:100%}
+  .foto-etykieta{position:relative;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--las);background:var(--kreda);padding:7px 12px;border:1px solid var(--linia)}
+
+  /* pasek zaufania */
+  .zaufanie{border-top:1px solid var(--linia);border-bottom:1px solid var(--linia);background:var(--kreda-ciepla)}
+  .zaufanie-in{display:grid;gap:2px;grid-template-columns:1fr}
+  .zaufanie div{padding:22px 4px}
+  .zaufanie b{display:block;font-family:Newsreader,Georgia,serif;font-size:1.5rem;font-weight:600;color:var(--las);line-height:1.1}
+  .zaufanie span{font-size:13.5px;color:#5C6663}
+
+  /* sekcje */
+  section{padding:64px 0}
+  h2{font-family:Newsreader,Georgia,serif;font-weight:500;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
+  .sek-wstep{color:#4A5551;max-width:52ch;margin-bottom:34px}
+
+  .uslugi{display:grid;gap:1px;background:var(--linia);border:1px solid var(--linia)}
+  .usluga{background:var(--kreda);padding:26px 24px}
+  .usluga h3{font-family:Newsreader,Georgia,serif;font-size:1.24rem;font-weight:600;margin-bottom:8px}
+  .usluga p{font-size:15px;color:#5C6663}
+
+  .przebieg{display:grid;gap:26px;counter-reset:krok}
+  .krok{display:flex;gap:18px;align-items:flex-start}
+  .krok::before{counter-increment:krok;content:counter(krok);flex:0 0 44px;height:44px;border-radius:50%;border:1px solid var(--las);color:var(--las);display:flex;align-items:center;justify-content:center;font-family:Newsreader,Georgia,serif;font-size:1.05rem}
+  .krok h3{font-size:1.06rem;font-weight:600;margin-bottom:3px}
+  .krok p{font-size:15px;color:#5C6663}
+
+  .kontakt-sekcja{background:var(--las);color:var(--kreda)}
+  .kontakt-sekcja h2{color:var(--kreda)}
+  .kontakt-grid{display:grid;gap:34px}
+  .kontakt-sekcja .sek-wstep{color:#C9D6CF}
+  .dane dt{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--szalwia);margin-top:18px}
+  .dane dd{font-size:1.06rem;margin-top:3px}
+  .dane dd a{text-decoration:none;border-bottom:1px solid rgba(245,242,234,.35)}
+  .btn-jasny{background:var(--kreda);color:var(--las);border-color:var(--kreda);margin-top:26px}
+  .btn-jasny:hover{background:#fff}
+
+  form{display:grid;gap:14px}
+  label{display:block;font-size:13.5px;letter-spacing:.03em;color:#C9D6CF;margin-bottom:6px}
+  input,textarea,select{width:100%;padding:13px 14px;background:rgba(245,242,234,.07);border:1px solid rgba(245,242,234,.28);color:var(--kreda);font:inherit;font-size:16px;border-radius:var(--r)}
+  input::placeholder,textarea::placeholder{color:rgba(245,242,234,.45)}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--miedz);outline-offset:1px}
+  .zgoda{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:#C9D6CF}
+  .zgoda input{width:auto;margin-top:3px;flex:none}
+  button[type=submit]{min-height:54px;background:var(--miedz);color:#fff;border:0;border-radius:100px;font:inherit;font-size:15.5px;font-weight:600;cursor:pointer}
+  button[type=submit]:hover{background:#AE5F33}
+  #status-formularza{font-size:14.5px;padding:13px 15px;border-radius:var(--r);display:none}
+  #status-formularza.ok{display:block;background:rgba(143,168,154,.22);border:1px solid var(--szalwia)}
+  #status-formularza.blad{display:block;background:rgba(196,112,63,.18);border:1px solid var(--miedz)}
+
+  footer{background:var(--atrament);color:#B9C4BF;padding:40px 0 32px;font-size:14.5px}
+  .stopka-grid{display:grid;gap:24px}
+  footer strong{color:var(--kreda);font-family:Newsreader,Georgia,serif;font-size:1.1rem;font-weight:600}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--kreda)}
+  .prawa{border-top:1px solid #2A3733;margin-top:28px;padding-top:18px;font-size:13px;color:#7E8C87}
+
+  .odslon{opacity:0;transform:translateY(14px)}
+  .odslon.widoczny{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
+
+  @media(min-width:760px){
+    .hero-grid{grid-template-columns:1.15fr .85fr;align-items:center;gap:52px}
+    .zaufanie-in{grid-template-columns:repeat(3,1fr)}
+    .uslugi{grid-template-columns:repeat(2,1fr)}
+    .kontakt-grid{grid-template-columns:.9fr 1.1fr;gap:52px}
+    .stopka-grid{grid-template-columns:1.3fr 1fr 1fr}
+  }
+  @media(min-width:980px){
+    .menu{display:flex}
+    .tel-top{display:inline-flex}
+    .burger{display:none}
+    #menu-mobilne{display:none!important}
+    .uslugi{grid-template-columns:repeat(3,1fr)}
+    section{padding:84px 0}
+    .hero{padding:72px 0 84px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .odslon{opacity:1;transform:none}
+    .odslon.widoczny{transition:none}
+    .burger span{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Wersja demonstracyjna — <b>dane przykładowe</b>, do potwierdzenia z klientem.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="marka serif" href="#gora">Gabinet Ruchu<span>Fizjoterapia · Kraków</span></a>
+    <nav class="menu" aria-label="Menu główne">
+      <a href="#uslugi">Zabiegi</a>
+      <a href="#przebieg">Jak wygląda wizyta</a>
+      <a href="#o-nas">O gabinecie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="tel-top" href="tel:+48123456789" aria-label="Zadzwoń do gabinetu">Zadzwoń · 12 345 67 89</a>
+    <button class="burger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="menu-mobilne">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div id="menu-mobilne" hidden>
+  <a href="#uslugi">Zabiegi</a>
+  <a href="#przebieg">Jak wygląda wizyta</a>
+  <a href="#o-nas">O gabinecie</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="cta-m" href="tel:+48123456789">Zadzwoń · 12 345 67 89</a>
+</div>
+
+<main id="gora">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="nadtytul">Fizjoterapia · Kraków Podgórze</p>
+      <h1 class="serif">Wróć do ruchu, <em>zanim ból wróci do Ciebie.</em></h1>
+      <p class="lead">Rehabilitacja po urazach i operacjach oraz leczenie bólu kręgosłupa. Pracujemy indywidualnie — jedna osoba, jedna godzina, konkretny plan.</p>
+      <div class="cta-rzad">
+        <a class="btn btn-pelny" href="tel:+48123456789">Umów wizytę telefonicznie</a>
+        <a class="btn btn-pusty" href="#kontakt">Napisz do nas</a>
+      </div>
+      <p class="drobne">Pierwsza wizyta obejmuje badanie i plan leczenia. <b>Bez skierowania.</b></p>
+    </div>
+    <div class="foto-miejsce">
+      <svg viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="g-fizjo" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#2C5A4E" stop-opacity=".16"/>
+            <stop offset="100%" stop-color="#8FA89A" stop-opacity=".06"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="500" fill="url(#g-fizjo)"/>
+        <circle cx="300" cy="130" r="96" fill="none" stroke="#2C5A4E" stroke-opacity=".22" stroke-width="1"/>
+        <circle cx="300" cy="130" r="62" fill="none" stroke="#C4703F" stroke-opacity=".3" stroke-width="1"/>
+        <path d="M40 400 C 130 340, 190 430, 300 360" fill="none" stroke="#2C5A4E" stroke-opacity=".3" stroke-width="1.5"/>
+      </svg>
+      <span class="foto-etykieta">Miejsce na zdjęcie gabinetu</span>
+    </div>
+  </div>
+</section>
+
+<div class="zaufanie">
+  <div class="wrap zaufanie-in">
+    <div><b>60 minut</b><span>Tyle trwa wizyta. Bez pośpiechu, bez nakładania terminów.</span></div>
+    <div><b>Jeden terapeuta</b><span>Prowadzi Cię ta sama osoba od diagnozy do końca leczenia.</span></div>
+    <div><b>Plan na piśmie</b><span>Wychodzisz wiedząc, co robić w domu między wizytami.</span></div>
+  </div>
+</div>
+
+<section id="uslugi">
+  <div class="wrap">
+    <h2 class="serif odslon">Z czym najczęściej do nas trafiasz</h2>
+    <p class="sek-wstep odslon">Nie leczymy wszystkiego. Zajmujemy się narządem ruchu — i w tym jesteśmy dobrzy.</p>
+    <div class="uslugi odslon">
+      <article class="usluga">
+        <h3 class="serif">Ból kręgosłupa</h3>
+        <p>Odcinek lędźwiowy i szyjny, rwa kulszowa, dyskopatia. Zaczynamy od znalezienia przyczyny, nie od maskowania bólu.</p>
+      </article>
+      <article class="usluga">
+        <h3 class="serif">Rehabilitacja pooperacyjna</h3>
+        <p>Po zabiegach kolana, barku i biodra. Prowadzimy zgodnie z zaleceniami operatora, w Twoim tempie.</p>
+      </article>
+      <article class="usluga">
+        <h3 class="serif">Urazy sportowe</h3>
+        <p>Skręcenia, naderwania, przeciążenia. Cel to powrót do sportu, nie samo zejście bólu.</p>
+      </article>
+      <article class="usluga">
+        <h3 class="serif">Terapia manualna</h3>
+        <p>Praca na stawach i tkankach miękkich. Techniki dobierane po badaniu, nie z góry ustalony zestaw.</p>
+      </article>
+      <article class="usluga">
+        <h3 class="serif">Bóle głowy pochodzenia szyjnego</h3>
+        <p>Gdy źródłem napięciowego bólu głowy jest kark i obręcz barkowa.</p>
+      </article>
+      <article class="usluga">
+        <h3 class="serif">Terapia w ciąży i po porodzie</h3>
+        <p>Bóle miednicy i kręgosłupa, powrót do sprawności po porodzie.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="przebieg" style="background:var(--kreda-ciepla);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)">
+  <div class="wrap">
+    <h2 class="serif odslon">Jak wygląda pierwsza wizyta</h2>
+    <p class="sek-wstep odslon">Żeby nie było niespodzianek. Cała wizyta trwa godzinę.</p>
+    <div class="przebieg odslon">
+      <div class="krok">
+        <div><h3>Rozmowa i wywiad</h3><p>Pytamy, co się stało, od kiedy boli i co już próbowałeś. To zwykle najważniejsze piętnaście minut.</p></div>
+      </div>
+      <div class="krok">
+        <div><h3>Badanie</h3><p>Sprawdzamy zakres ruchu, siłę i to, jak się poruszasz. Szukamy przyczyny, nie tylko miejsca bólu.</p></div>
+      </div>
+      <div class="krok">
+        <div><h3>Terapia</h3><p>Pierwsze techniki wykonujemy już na tej wizycie — wychodzisz z realną zmianą, nie z samą diagnozą.</p></div>
+      </div>
+      <div class="krok">
+        <div><h3>Plan i ćwiczenia</h3><p>Dostajesz zestaw ćwiczeń do domu i informację, ile wizyt realnie potrzeba.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="o-nas">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="nadtytul">O gabinecie</p>
+      <h2 class="serif odslon">Mały gabinet. Bez taśmy produkcyjnej.</h2>
+      <p class="sek-wstep odslon">Prowadzimy jeden gabinet i sami przyjmujemy pacjentów. Nie ma tu wymiany terapeutów co wizytę ani dwóch osób na tej samej godzinie. Jeśli w trakcie leczenia okaże się, że problem wykracza poza fizjoterapię, powiemy to wprost i pokierujemy dalej.</p>
+      <p class="drobne">Adres i godziny otwarcia — <b>[DO POTWIERDZENIA z klientem]</b></p>
+    </div>
+    <div class="foto-miejsce" style="aspect-ratio:1/1">
+      <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+        <rect width="400" height="400" fill="#EDE7DA"/>
+        <path d="M0 300 C 110 250, 180 330, 400 270 L400 400 L0 400 Z" fill="#2C5A4E" fill-opacity=".1"/>
+        <circle cx="120" cy="140" r="54" fill="none" stroke="#C4703F" stroke-opacity=".35" stroke-width="1"/>
+      </svg>
+      <span class="foto-etykieta">Miejsce na zdjęcie zespołu</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="kontakt-sekcja">
+  <div class="wrap kontakt-grid">
+    <div>
+      <h2 class="serif">Umów wizytę</h2>
+      <p class="sek-wstep">Najszybciej telefonicznie. Jeśli nie odbieramy, jesteśmy przy pacjencie — oddzwonimy tego samego dnia.</p>
+      <dl class="dane">
+        <dt>Telefon</dt>
+        <dd><a href="tel:+48123456789">12 345 67 89</a></dd>
+        <dt>Adres</dt>
+        <dd>ul. Przykładowa 12<br>30-001 Kraków, Podgórze</dd>
+        <dt>Godziny</dt>
+        <dd>[DO POTWIERDZENIA]</dd>
+      </dl>
+      <a class="btn btn-jasny" href="https://www.google.com/maps/dir/?api=1&amp;destination=Krak%C3%B3w%20Podg%C3%B3rze" target="_blank" rel="noopener">Wyznacz trasę</a>
+    </div>
+    <div>
+      <form id="formularz" novalidate>
+        <div>
+          <label for="pole-imie">Imię i nazwisko</label>
+          <input id="pole-imie" name="imie" type="text" required autocomplete="name">
+        </div>
+        <div>
+          <label for="pole-telefon">Telefon</label>
+          <input id="pole-telefon" name="telefon" type="tel" required autocomplete="tel">
+        </div>
+        <div>
+          <label for="pole-problem">Z czym przychodzisz?</label>
+          <textarea id="pole-problem" name="problem" rows="4" placeholder="np. ból kręgosłupa lędźwiowego od trzech tygodni"></textarea>
+        </div>
+        <label class="zgoda" for="pole-zgoda">
+          <input id="pole-zgoda" name="zgoda" type="checkbox" required>
+          <span>Zgadzam się na kontakt telefoniczny w sprawie umówienia wizyty.</span>
+        </label>
+        <button type="submit">Poproś o kontakt</button>
+        <p id="status-formularza" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap stopka-grid">
+    <div>
+      <strong>Gabinet Ruchu</strong>
+      <p style="margin-top:6px">Fizjoterapia i rehabilitacja<br>ul. Przykładowa 12, 30-001 Kraków</p>
+    </div>
+    <div>
+      <p><a href="tel:+48123456789">12 345 67 89</a></p>
+      <p><a href="mailto:kontakt@przyklad.pl">kontakt@przyklad.pl</a></p>
+    </div>
+    <div>
+      <p><a href="#uslugi">Zabiegi</a></p>
+      <p><a href="#przebieg">Jak wygląda wizyta</a></p>
+      <p><a href="#kontakt">Kontakt</a></p>
+    </div>
+  </div>
+  <div class="wrap prawa">© <span id="rok"></span> Gabinet Ruchu · Strona demonstracyjna przygotowana przez Znajdowalni</div>
+</footer>
+
+<script>
+const SITE = {
+  demoMode: true,
+  businessName: "Gabinet Ruchu",
+  branza: "fizjoterapia",
+  phone: "+48123456789",
+  phoneDisplay: "12 345 67 89",
+  email: "kontakt@przyklad.pl",
+  address: { street: "ul. Przykładowa 12", city: "Kraków", district: "Podgórze", zip: "30-001" },
+  hours: "[DO POTWIERDZENIA]",
+  mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Krak%C3%B3w%20Podg%C3%B3rze",
+  services: [
+    "Ból kręgosłupa", "Rehabilitacja pooperacyjna", "Urazy sportowe",
+    "Terapia manualna", "Bóle głowy pochodzenia szyjnego", "Terapia w ciąży i po porodzie"
+  ]
+};
+
+document.getElementById("rok").textContent = new Date().getFullYear();
+
+/* menu mobilne */
+(function () {
+  var przycisk = document.querySelector(".burger");
+  var panel = document.getElementById("menu-mobilne");
+  if (!przycisk || !panel) return;
+  przycisk.addEventListener("click", function () {
+    var otwarte = przycisk.getAttribute("aria-expanded") === "true";
+    przycisk.setAttribute("aria-expanded", String(!otwarte));
+    przycisk.setAttribute("aria-label", otwarte ? "Otwórz menu" : "Zamknij menu");
+    panel.hidden = otwarte;
+  });
+  panel.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+      panel.hidden = true;
+      przycisk.setAttribute("aria-expanded", "false");
+      przycisk.setAttribute("aria-label", "Otwórz menu");
+    }
+  });
+})();
+
+/* odsloniecia przy scrollu */
+(function () {
+  var elementy = [].slice.call(document.querySelectorAll(".odslon"));
+  if (!elementy.length) return;
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    elementy.forEach(function (el) { el.classList.add("widoczny"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (wpisy) {
+    wpisy.forEach(function (w) { if (w.isIntersecting) { w.target.classList.add("widoczny"); io.unobserve(w.target); } });
+  }, { threshold: .12 });
+  elementy.forEach(function (el) { io.observe(el); });
+  window.addEventListener("scroll", function () {
+    elementy.forEach(function (el) {
+      if (!el.classList.contains("widoczny") && el.getBoundingClientRect().top < window.innerHeight) el.classList.add("widoczny");
+    });
+  }, { passive: true });
+})();
+
+/* formularz */
+(function () {
+  var form = document.getElementById("formularz");
+  var status = document.getElementById("status-formularza");
+  if (!form || !status) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.className = "blad";
+      status.textContent = "Uzupełnij imię, telefon i zaznacz zgodę.";
+      form.reportValidity();
+      return;
+    }
+    status.className = "ok";
+    status.textContent = SITE.demoMode
+      ? "To wersja demonstracyjna — wiadomość nie została wysłana. Na gotowej stronie trafi prosto na skrzynkę gabinetu."
+      : "Dziękujemy. Oddzwonimy najpóźniej następnego dnia roboczego.";
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

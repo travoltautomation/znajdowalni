@@ -1,4 +1,10 @@
 .plan-compare { background: var(--cream, #f7f3ea); }
+.pricing-guidance { margin: 2rem 0 0; padding: 1.4rem 1.6rem; border: 1px solid var(--ink, #121416); background: var(--soft-teal, #e3f5f1); }
+.pricing-guidance h3 { margin: .2rem 0 1rem; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.pricing-guidance-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem 2rem; }
+.pricing-guidance-grid p { margin:0; max-width:34rem; }
+.pricing-guidance-grid strong { font-weight:700; }
+.pricing-guidance .integration-note { margin:1.2rem 0 0; padding-top:1rem; border-top:1px solid #a9c8c2; font-size:.92rem; }
 .plan-compare h2 { max-width: 760px; margin: .25rem 0 2rem; }
 .plan-table-wrap { overflow-x: auto; border: 1px solid var(--ink, #121416); box-shadow: 7px 7px 0 var(--ink, #121416); background: #fffdf8; }
 .plan-table { width: 100%; min-width: 620px; border-collapse: collapse; text-align: left; }
@@ -10,3 +16,4 @@
 .plan-table tr:last-child th, .plan-table tr:last-child td { border-bottom: 0; }
 .plan-table-note { margin: 1.4rem 0 0; max-width: 760px; color: #59615f; font-size: .92rem; }
 @media (max-width: 700px) { .plan-table-wrap { box-shadow: 4px 4px 0 var(--ink, #121416); } .plan-table th, .plan-table td { padding: .8rem .75rem; font-size: .9rem; } }
+@media (max-width: 700px) { .pricing-guidance-grid { grid-template-columns:1fr; gap:.7rem; } }

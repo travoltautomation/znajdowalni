@@ -1,5 +1,5 @@
 /* Baner zgody na cookies.
-   Strona główna w ogóle nie ładowała stylów banera — były wyłącznie w legal.css,
+   Strona główna w ogóle nie ładowała stylów banera  -  były wyłącznie w legal.css,
    którego index.html nie wczytuje. Efekt: surowy HTML doklejony do dołu strony.
    Te reguły są w osobnym pliku, ładowanym wszędzie tam, gdzie działa consent.js. */
 
@@ -58,7 +58,7 @@
   margin-top: 16px;
 }
 
-/* Przyciski banera opisane wprost, bez polegania na .button —
+/* Przyciski banera opisane wprost, bez polegania na .button  -
    ten styl jest rozrzucony po kilku arkuszach i różni się między nimi. */
 .cookie-banner .button {
   flex: 1;

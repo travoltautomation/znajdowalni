@@ -1,6 +1,6 @@
 /* Przyklejony nagłówek i nawigacja mobilna.
    Do 760px oryginalne menu i CTA są ukryte (.nav nav,.nav-cta{display:none}),
-   więc telefon nie miał żadnej nawigacji — stąd hamburger i pełnoekranowy panel. */
+   więc telefon nie miał żadnej nawigacji  -  stąd hamburger i pełnoekranowy panel. */
 
 /* --- przyklejony nagłówek --- */
 #top{
@@ -11,7 +11,7 @@
 #top.is-stuck{box-shadow:0 1px 0 rgba(18,20,22,.14)}
 /* Wysokość nagłówka zostaje stała (82px desktop / 69px mobile). Kurczenie przy
    scrollu odpuszczone: istniejący CSS wymusza wysokość przez !important, a na
-   mobile stała wysokość jest i tak konieczna — panel menu zaczyna się dokładnie
+   mobile stała wysokość jest i tak konieczna  -  panel menu zaczyna się dokładnie
    pod nagłówkiem i każda zmiana zostawiałaby szczelinę albo zakładkę. */
 
 /* kotwice nie mogą chować się pod nagłówkiem */
@@ -64,7 +64,7 @@ section[id]{scroll-margin-top:96px}
 
 /* Tylko przezroczystość. Gdyby animacja się nie wykonała (np. karta w tle,
    gdzie przeglądarka je wstrzymuje), panel i tak leży dokładnie pod nagłówkiem
-   — przesunięcie w transformacji zostawiłoby go w złym miejscu. */
+    -  przesunięcie w transformacji zostawiłoby go w złym miejscu. */
 @keyframes navIn{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){
   .mobile-nav{animation:none}

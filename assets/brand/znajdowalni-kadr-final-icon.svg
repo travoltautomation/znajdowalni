@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Znajdowalni — ikona</title><desc id="desc">Znak kadru z turkusowym punktem</desc>
+  <title id="title">Znajdowalni  -  ikona</title><desc id="desc">Znak kadru z turkusowym punktem</desc>
   <rect width="128" height="128" rx="28" fill="#0F1115"/>
   <g fill="none" stroke="#FAFAF8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M30 57V31h26M72 31h26v26M30 71v26h26M98 71v26H72"/></g>
   <circle cx="64" cy="64" r="10" fill="#00B8B0"/>

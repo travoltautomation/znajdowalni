@@ -1,6 +1,6 @@
 /* Animowane FAQ i wejścia sekcji przy scrollu.
    Stan początkowy wejść ustawia JS, więc bez JS strona pokazuje całą treść.
-   Przy prefers-reduced-motion nic się nie dzieje — FAQ wraca do natywnego <details>. */
+   Przy prefers-reduced-motion nic się nie dzieje  -  FAQ wraca do natywnego <details>. */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -17,7 +17,7 @@
     var full = body.getBoundingClientRect().height;
 
     body.style.height = (opening ? 0 : full) + 'px';
-    void body.offsetHeight; // wymuszony reflow — bez tego przejście nie wystartuje
+    void body.offsetHeight; // wymuszony reflow  -  bez tego przejście nie wystartuje
     body.style.transition = 'height .26s cubic-bezier(.22,.61,.36,1)';
     body.style.height = (opening ? full : 0) + 'px';
 
@@ -66,7 +66,7 @@
         var kids = group.children, shown = 0;
         for (var i = 0; i < kids.length; i++) {
           var el = kids[i];
-          // to, co widać już przy załadowaniu, zostaje widoczne — zero mignięcia
+          // to, co widać już przy załadowaniu, zostaje widoczne  -  zero mignięcia
           if (el.getBoundingClientRect().top < window.innerHeight * 0.92) continue;
           el.classList.add('mo-reveal');
           el.style.transitionDelay = Math.min(shown, 4) * 70 + 'ms';
@@ -95,8 +95,8 @@
       }, 900);
     }
 
-    /* Siatka bezpieczeństwa. Przy szybkim przewinięciu — machnięciu palcem na
-       telefonie albo skoku z menu do sekcji — IntersectionObserver potrafi
+    /* Siatka bezpieczeństwa. Przy szybkim przewinięciu  -  machnięciu palcem na
+       telefonie albo skoku z menu do sekcji  -  IntersectionObserver potrafi
        pominąć element, który przeleciał przez kadr między klatkami. Bez tego
        treść zostałaby trwale niewidoczna, więc przy scrollu domiatamy resztę. */
     var ticking = false;

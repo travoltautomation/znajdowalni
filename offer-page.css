@@ -19,7 +19,7 @@
 .scope-grid li,.terms-section li{position:relative;padding:12px 0 12px 26px;border-top:1px solid #ffffff20;font-size:13px;line-height:1.55}
 .scope-grid .scope-extra li{border-top-color:#d5e1e2}
 .scope-grid li:before{content:"✓";position:absolute;left:0;color:#6bd9d4}
-.scope-grid .scope-extra li:before{content:"—";color:#758094}
+.scope-grid .scope-extra li:before{content:" - ";color:#758094}
 .add-ons-page{max-width:none;padding-inline:max(42px,calc((100% - 1316px)/2));background:linear-gradient(135deg,#e8eef9,#e9faf8)}
 .add-ons-page>h2{max-width:850px}
 .add-ons-page-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:48px;background:#cad8dc;border:1px solid #cad8dc}

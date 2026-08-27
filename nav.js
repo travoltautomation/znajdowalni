@@ -21,7 +21,7 @@
       }
       window.addEventListener('scroll', function () {
         // w ukrytej karcie requestAnimationFrame jest wstrzymany, a zatrzaśnięta
-        // flaga zablokowałaby wszystkie kolejne przewinięcia — wtedy liczymy od razu
+        // flaga zablokowałaby wszystkie kolejne przewinięcia  -  wtedy liczymy od razu
         if (document.hidden) { czeka = false; stanNaglowka(); return; }
         if (czeka) return;
         czeka = true;

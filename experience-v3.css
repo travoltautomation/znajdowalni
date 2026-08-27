@@ -38,7 +38,7 @@
 .phone-screen .mobile-headline{font:700 18px/1.02 var(--sans);letter-spacing:-.055em}
 .phone .mobile-button{display:flex;align-items:center;justify-content:center;height:29px;margin:0;font-size:7px;font-weight:700}
 
-/* 01 — editorial physiotherapy */
+/* 01  -  editorial physiotherapy */
 .demo-gabinet{color:#223129}
 .gabinet-nav{height:49px;display:flex;align-items:center;padding:0 19px;background:#f8f5ee;border-bottom:1px solid #e6e0d6;font-size:7px}
 .gabinet-nav b{display:flex;align-items:center;gap:7px;margin-right:auto;font-size:8px;letter-spacing:.14em}
@@ -70,7 +70,7 @@
 .m-slot span,.m-slot b{display:block}.m-slot b{margin-bottom:2px;font-size:6px}
 .phone--gabinet .mobile-button{margin:0 12px;background:#2f4b3d;color:#fff}
 
-/* 02 — image-led beauty */
+/* 02  -  image-led beauty */
 .demo-beauty{color:#271d1b}
 .beauty-canvas{position:relative;height:calc(100% - 31px);background:#ead7cf;overflow:hidden}
 .beauty-nav{position:absolute;z-index:4;top:0;left:0;right:0;height:49px;display:flex;align-items:center;padding:0 19px;color:#241b19;font-size:7px}
@@ -98,7 +98,7 @@
 .m-beauty-services span{padding:6px;background:#fff;color:#684b44;font-size:5px}.m-beauty-services b{display:block;margin-top:3px;color:#2d211e;font-size:6px}
 .phone--beauty .mobile-button{margin:0 11px;background:#2d211e;color:#fff}
 
-/* 03 — technical workshop */
+/* 03  -  technical workshop */
 .demo-workshop{background:#11171d!important;color:#f7f8f9;border-color:#2e3943!important}
 .workshop-nav{height:48px;display:flex;align-items:center;padding:0 18px;background:#151c23;border-bottom:1px solid #2d3740;font-size:7px}
 .workshop-nav>b{display:flex;align-items:center;gap:7px;margin-right:auto;font-size:8px;letter-spacing:.08em}.workshop-nav>b i{display:grid;place-items:center;width:23px;height:23px;background:#ffcb45;color:#11171d;font-style:normal;font-size:9px}
@@ -242,7 +242,7 @@ details[open] p{animation:faq-enter .26s ease both}
 .launch-details ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.launch-details li{padding:7px 9px;border:1px solid #ffffff20;color:#d6e3e2;font-size:10px;font-weight:600}.launch-details .button{white-space:nowrap;background:#bfeFec!important;color:#0f1115!important;border-color:#bfeFec!important;box-shadow:none}
 @media(max-width:900px){.hero-motion-visual .phone{right:8px;bottom:13px;transform:scale(.67);transform-origin:bottom right}.launch-details{display:grid;grid-template-columns:1fr;gap:19px;padding:22px 20px}.launch-details .button{width:100%}.case-visual img{object-fit:contain}}
 
-/* Hero v2 — one animated idea: the places a client discovers a business converge into contact. */
+/* Hero v2  -  one animated idea: the places a client discovers a business converge into contact. */
 .hero--signal{position:relative;min-height:calc(100vh - 80px);grid-template-columns:minmax(0,.92fr) minmax(530px,1.08fr);gap:42px;align-items:center;padding-top:64px;padding-bottom:64px;overflow:visible}
 .hero-signal-copy{position:relative;z-index:2}.hero-signal-copy h1{max-width:710px;margin-block:20px 27px;font-size:clamp(58px,5.8vw,94px)!important;line-height:.94!important;letter-spacing:-.072em!important}.hero-signal-copy>p{max-width:530px}.hero-signal-copy .price-line{margin-top:24px!important;margin-bottom:30px!important}.hero-signal-copy .badge{display:none}
 .signal-stage{position:relative;isolation:isolate;min-height:620px;overflow:hidden;background:#0f1115;color:#fafaf8;box-shadow:0 28px 70px #0f111522}
@@ -258,7 +258,7 @@ details[open] p{animation:faq-enter .26s ease both}
 @media(max-width:430px){.signal-stage{min-height:415px}.signal-core{width:130px;height:130px;padding:18px}.signal-core img{width:100px}.signal-word{font-size:16px}.signal-arrival{font-size:30px}.signal-note{display:none}}
 @media(prefers-reduced-motion:reduce){.signal-path,.signal-word,.signal-arrival,.signal-core:before,.signal-core:after{animation:none!important}.signal-word--referral{transform:translate(105px,80px)}.signal-word--google{transform:translate(110px,-70px)}.signal-word--social{transform:translate(-80px,95px)}.signal-arrival{opacity:1}}
 
-/* Hero v3 — the work itself moves: a real, approved site scrolls on desktop and mobile together. */
+/* Hero v3  -  the work itself moves: a real, approved site scrolls on desktop and mobile together. */
 .hero--project{position:relative;min-height:calc(100vh - 80px);grid-template-columns:minmax(0,.85fr) minmax(610px,1.15fr);gap:48px;align-items:center;padding-top:58px;padding-bottom:62px;overflow:visible}
 .hero--project .hero-copy h1{max-width:705px;margin-block:20px 27px;font-size:clamp(57px,5.45vw,88px)!important;line-height:.95!important;letter-spacing:-.07em!important}.hero--project .hero-copy>p{max-width:550px}.hero--project .price-line{margin:23px 0 30px!important}
 .project-motion{position:relative;min-height:620px;isolation:isolate;padding:66px 48px 54px;background:linear-gradient(145deg,#e7f5f4 0%,#f7fbfa 52%,#e6eef8 100%);box-shadow:0 30px 70px #0f11151b;overflow:hidden}.project-motion:before{position:absolute;z-index:-1;content:"";width:580px;height:580px;right:-270px;top:-240px;border:1px solid #00b8b080;border-radius:50%}.project-motion:after{position:absolute;z-index:-1;content:"";width:300px;height:300px;left:-180px;bottom:-150px;border:1px solid #00b8b04d;border-radius:50%}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Barber Kuźnia | Strzyżenie i broda — Wrocław Nadodrze</title>
+<title>Barber Kuźnia | Strzyżenie i broda  -  Wrocław Nadodrze</title>
 <meta name="description" content="Barbershop na Nadodrzu we Wrocławiu. Strzyżenie męskie, broda, klasyczne golenie brzytwą. Rezerwacja online przez Booksy lub telefonicznie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
   "@context": "https://schema.org",
   "@type": "HairSalon",
   "name": "Barber Kuźnia",
-  "description": "Barbershop we Wrocławiu — strzyżenie męskie, pielęgnacja brody, golenie brzytwą.",
+  "description": "Barbershop we Wrocławiu  -  strzyżenie męskie, pielęgnacja brody, golenie brzytwą.",
   "telephone": "+48987654321",
   "address": {
     "@type": "PostalAddress",
@@ -155,7 +155,7 @@
 </head>
 <body>
 
-<div class="demo">WERSJA DEMONSTRACYJNA — dane przykładowe, do potwierdzenia z klientem</div>
+<div class="demo">WERSJA DEMONSTRACYJNA  -  dane przykładowe, do potwierdzenia z klientem</div>
 
 <header>
   <div class="wrap nav">
@@ -241,7 +241,7 @@
         <span class="poz-opis">Dwie wizyty pod rząd, jeden termin.</span>
       </div>
     </div>
-    <p class="cennik-nota">Ceny do uzupełnienia przez klienta — w wersji demonstracyjnej celowo nie wpisujemy zmyślonych kwot.</p>
+    <p class="cennik-nota">Ceny do uzupełnienia przez klienta  -  w wersji demonstracyjnej celowo nie wpisujemy zmyślonych kwot.</p>
   </div>
 </section>
 
@@ -259,7 +259,7 @@
 <section id="wnetrze">
   <div class="wrap">
     <h2 class="odslon">Wnętrze i realizacje</h2>
-    <p class="sek-wstep odslon">Miejsce na zdjęcia salonu i efektów pracy. To one sprzedają najmocniej — tu wstawimy zdjęcia klienta.</p>
+    <p class="sek-wstep odslon">Miejsce na zdjęcia salonu i efektów pracy. To one sprzedają najmocniej  -  tu wstawimy zdjęcia klienta.</p>
     <div class="galeria odslon">
       <div class="kadr">
         <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false"><rect width="300" height="300" fill="#1F211F"/><path d="M0 210 L300 130 L300 300 L0 300 Z" fill="#C9973F" fill-opacity=".08"/><circle cx="90" cy="100" r="42" fill="none" stroke="#C9973F" stroke-opacity=".3"/></svg>
@@ -281,7 +281,7 @@
   <div class="wrap rez-grid">
     <div>
       <h2>Rezerwacja</h2>
-      <p class="sek-wstep">Najwygodniej online — widzisz wolne terminy i wybierasz barbera. Telefonicznie też chętnie, ale w trakcie strzyżenia nie odbieramy.</p>
+      <p class="sek-wstep">Najwygodniej online  -  widzisz wolne terminy i wybierasz barbera. Telefonicznie też chętnie, ale w trakcie strzyżenia nie odbieramy.</p>
       <a class="btn btn-pelny" href="#rezerwacja" id="przycisk-booksy">Rezerwuj online</a>
       <dl>
         <dt>Telefon</dt>
@@ -296,7 +296,7 @@
       <table class="godziny">
         <caption class="sek-wstep" style="text-align:left;caption-side:top;margin-bottom:10px">Do potwierdzenia z klientem przed publikacją.</caption>
         <tbody>
-          <tr><th scope="row">Poniedziałek — piątek</th><td>[DO POTWIERDZENIA]</td></tr>
+          <tr><th scope="row">Poniedziałek  -  piątek</th><td>[DO POTWIERDZENIA]</td></tr>
           <tr><th scope="row">Sobota</th><td>[DO POTWIERDZENIA]</td></tr>
           <tr><th scope="row">Niedziela</th><td>[DO POTWIERDZENIA]</td></tr>
         </tbody>
@@ -337,7 +337,7 @@ const SITE = {
   email: "kontakt@przyklad.pl",
   address: { street: "ul. Przykładowa 8", city: "Wrocław", district: "Nadodrze", zip: "50-001" },
   hours: "[DO POTWIERDZENIA]",
-  bookingUrl: "[DO POTWIERDZENIA — link do Booksy lub innego systemu]",
+  bookingUrl: "[DO POTWIERDZENIA  -  link do Booksy lub innego systemu]",
   mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Wroc%C5%82aw%20Nadodrze",
   services: [
     { name: "Strzyżenie", price: "[DO POTWIERDZENIA]" },
@@ -356,14 +356,14 @@ if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.c
   link.addEventListener("click", function (e) { e.preventDefault(); alert("To wersja demonstracyjna. Numer telefonu, adres i rezerwacja uzupełnimy na podstawie danych Twojej firmy."); });
 });
 
-/* przycisk rezerwacji — w demo tlumaczy, co sie stanie na gotowej stronie */
+/* przycisk rezerwacji  -  w demo tlumaczy, co sie stanie na gotowej stronie */
 (function () {
   var b = document.getElementById("przycisk-booksy");
   if (!b) return;
   b.addEventListener("click", function (e) {
     if (SITE.demoMode) {
       e.preventDefault();
-      alert("W wersji demonstracyjnej rezerwacja nie jest podpięta.\n\nNa gotowej stronie ten przycisk prowadzi prosto do systemu rezerwacji salonu — Booksy, Calendly albo innego.");
+      alert("W wersji demonstracyjnej rezerwacja nie jest podpięta.\n\nNa gotowej stronie ten przycisk prowadzi prosto do systemu rezerwacji salonu  -  Booksy, Calendly albo innego.");
     }
   });
 })();

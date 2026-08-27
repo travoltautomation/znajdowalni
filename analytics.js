@@ -1,5 +1,5 @@
 /* Google Analytics 4 uruchamiany wyłącznie po zgodzie na analitykę.
-   Dopóki MEASUREMENT_ID jest pusty, plik nic nie robi — żaden skrypt Google
+   Dopóki MEASUREMENT_ID jest pusty, plik nic nie robi  -  żaden skrypt Google
    nie jest pobierany i żadne ciasteczko nie powstaje. */
 (function () {
   var MEASUREMENT_ID = "G-R88CM79RJV"; // np. "G-XXXXXXXXXX"
@@ -23,7 +23,7 @@
     function gtag() { window.dataLayer.push(arguments); }
     window.gtag = gtag;
 
-    // Domyślnie odmowa — ustawiana zanim GA cokolwiek wyśle.
+    // Domyślnie odmowa  -  ustawiana zanim GA cokolwiek wyśle.
     gtag("consent", "default", {
       ad_storage: "denied",
       ad_user_data: "denied",

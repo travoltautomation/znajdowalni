@@ -1,5 +1,5 @@
 /* Reakcja na interakcję: przejścia hover/focus, animowane FAQ, wejścia sekcji.
-   Ruch tylko na opacity/transform/height — nigdy na właściwościach układu,
+   Ruch tylko na opacity/transform/height  -  nigdy na właściwościach układu,
    żeby nic nie przeskakiwało przy ładowaniu. */
 
 /* --- 1. Przyciski i linki --- */

@@ -53,7 +53,7 @@
 
   /* ---------- Wejścia sekcji ---------- */
   var GROUPS = [
-    '.benefit-grid', '.scenario-grid', '.steps', '.plans',
+    '.benefit-grid', '.scenario-grid', '.steps',
     '.included-grid', '.compare-grid', '.choose-grid', '.detail-grid'
   ];
 

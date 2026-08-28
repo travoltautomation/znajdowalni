@@ -1,0 +1,12 @@
+/* Wspólna oś dla obu kart, niezależnie od długości tekstu. */
+.pricing .plan{display:flex;flex-direction:column}
+.pricing .plan h3{height:51px;display:flex;align-items:flex-end;margin:0 0 15px}
+.pricing .plan>p:not(.price-note){min-height:48px;margin:0}
+.pricing .plan .price{height:92px;margin:27px 0}
+.pricing .plan .price-note{min-height:48px;margin:0}
+.pricing .plan .button{min-height:46px}
+
+@media(max-width:760px){
+  .pricing .plan h3{height:auto}
+  .pricing .plan .price{height:auto}
+}

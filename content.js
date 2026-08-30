@@ -11,7 +11,7 @@ const SITE = {
 
 /* Podstrona oferty używa tego samego źródła prawdy co strona główna. */
 setTimeout(() => {
-  if (!document.querySelector('link[href="palette.css"]')) document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="palette.css">');
+  if (!document.querySelector('link[href="bundle.css"], link[href="palette.css"]')) document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="palette.css">');
   const oldPrice = document.querySelector('.old-price');
   const onboardingNote = document.querySelector('.onboarding > p');
   if (oldPrice) oldPrice.innerHTML = '2499 zł <small>netto</small>';

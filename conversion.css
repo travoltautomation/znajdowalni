@@ -1,0 +1,12 @@
+/* Konwersja: ułatwia start bez strony, pokazuje prawdziwe podglądy i utrzymuje duże pola dotykowe. */
+.preview-intro{margin:0 0 10px;font-size:.9rem;line-height:1.45;color:var(--muted,#52615e)}
+.szablon--screen .szablon-podglad{background:#eef0ec}
+.szablon--screen .szablon-podglad::after{content:"PEŁNE DEMO"}
+.szablon--screen .szablon-plotno{display:block;overflow:hidden}
+.szablon--screen .szablon-plotno img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .25s ease}
+.szablon--screen:hover .szablon-plotno img,.szablon--screen:focus-visible .szablon-plotno img{transform:scale(1.025)}
+.szablon--screen:focus-visible{outline:3px solid #17b2a6;outline-offset:5px}
+.industry-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.industry-nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 13px;border:1px solid currentColor;text-decoration:none}
+@media (max-width:699px){.industry-links a,.contact-email a,.footer-inner a,.footer-inner button{min-height:44px;display:inline-flex;align-items:center}.preview-start{gap:10px}}
+@media (max-width:699px){body{overflow-x:hidden}.hero{overflow:hidden}.hero h1{font-size:2.85rem;line-height:1.02;overflow-wrap:anywhere}.hero h1 br{display:none}.hero .lede,.preview-intro{max-width:100%}.hero-copy{min-width:0}}

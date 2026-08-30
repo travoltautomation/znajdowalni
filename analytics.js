@@ -60,6 +60,11 @@
     if (event.target.matches("form")) track("form_submit_attempt", { form_id: event.target.id || "form" });
   });
 
+  document.addEventListener("znajdowalni:lead", function (event) {
+    var detail = event.detail || {};
+    track("generate_lead", { form_id: detail.formId || "form", lead_type: detail.type || "contact", industry: detail.industry || "not_set" });
+  });
+
   if (zgodaNaAnalityke()) uruchomGA();
 
   // consent.js rozgłasza to zdarzenie po kliknięciu w banerze

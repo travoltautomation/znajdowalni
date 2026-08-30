@@ -1,6 +1,6 @@
 const q = (selector, scope = document) => scope.querySelector(selector);
 const previewForm = (id, final = false) => `<form class="preview-form" id="${id}" data-compact-preview novalidate>
-  <div class="preview-start"><label class="sr-only" for="${id}-source">Link do obecnej strony</label><input id="${id}-source" name="source" type="url" inputmode="url" placeholder="Wklej link do obecnej strony" required><button type="button" class="button ink" data-next>Zobacz bezpłatny podgląd <span>→</span></button></div>
+  <p class="preview-intro">Masz stronę, Google, Booksy albo tylko nazwę firmy? Każda z tych opcji wystarczy.</p><div class="preview-start"><label class="sr-only" for="${id}-source">Link do strony, Google lub Booksy</label><input id="${id}-source" name="source" type="url" inputmode="url" placeholder="Wklej link, jeśli masz"><button type="button" class="button ink" data-next>Zobacz bezpłatny podgląd <span>→</span></button></div>
   <div class="form-details" hidden></div>
   <button class="text-action" type="button" data-no-site>Nie masz jeszcze strony? Wklej wizytówkę Google, profil Booksy lub informacje o firmie.</button>
   <p class="form-note">Prywatny podgląd. Bez opłat. Niczego nie publikujemy bez Twojej zgody.</p></form>`;
@@ -11,7 +11,7 @@ function openForm(form, noSite = false) {
   const details = q('.form-details', form); const start = q('.preview-start', form);
   const source = (q('[name="source"]', start)?.value || "").trim();
   start.hidden = true; q('[name="source"]', start).disabled = true; details.hidden = false;
-  details.innerHTML = `${!noSite && source ? `<input type="hidden" name="source" value="${source.replace(/"/g, '&quot;')}">` : ''}${fields(noSite)}<div class="detail-grid"><label>E-mail<input name="email" type="email" required placeholder="twoj@email.pl"></label><label>Telefon <small>(opcjonalnie)</small><input name="phone" type="tel"></label></div><label>Co chcemy poprawić w pierwszej kolejności? <small>(opcjonalnie)</small><textarea name="message" rows="3" placeholder="np. klienci nie mogą znaleźć cennika, nikt nie dzwoni z telefonu"></textarea></label><div class="consent"><label><input name="consent" type="checkbox" required><span>Zgadzam się na kontakt w sprawie prywatnego podglądu.</span></label><a href="polityka-prywatnosci.html">Polityka prywatności</a></div><button class="button coral" type="submit">Wyślij prośbę o podgląd <span>→</span></button><button class="back" type="button" data-back>← Wróć</button>`;
+  details.innerHTML = `${!noSite && source ? `<input type="hidden" name="source" value="${source.replace(/"/g, '&quot;')}">` : ''}${fields(noSite)}<div class="detail-grid"><label>E-mail<input name="email" type="email" required placeholder="twoj@email.pl"></label></div><label>Co chcesz poprawić w pierwszej kolejności? <small>(opcjonalnie)</small><textarea name="message" rows="3" placeholder="np. klienci nie mogą znaleźć cennika albo trudno umówić wizytę"></textarea></label><div class="consent"><label><input name="consent" type="checkbox" required><span>Zgadzam się na kontakt w sprawie prywatnego podglądu.</span></label><a href="polityka-prywatnosci.html">Polityka prywatności</a></div><button class="button coral" type="submit">Wyślij prośbę o podgląd <span>→</span></button><button class="back" type="button" data-back>← Wróć</button>`;
   q('input', details)?.focus();
 }
 
@@ -29,14 +29,14 @@ async function sendPreview(data) {
 
 function initForm(form) {
   form.addEventListener('click', (event) => {
-        if (event.target.closest('[data-next]')) { const input = q('[name="source"]', form); if (input && !input.checkValidity()) { input.reportValidity(); return; } openForm(form, false); return; }
+    if (event.target.closest('[data-next]')) { const input = q('[name="source"]', form); openForm(form, !input?.value.trim()); return; }
     if (event.target.closest('[data-no-site]')) { openForm(form, true); return; }
     if (event.target.closest('[data-back]')) { q('.preview-start', form).hidden = false; q('[name="source"]', q('.preview-start', form)).disabled = false; q('.form-details', form).hidden = true; }
   });
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); if (!form.reportValidity()) return;
     const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview(Object.fromEntries(new FormData(form))); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
+    try { const result = await sendPreview(Object.fromEntries(new FormData(form))); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'preview', industry: new URLSearchParams(location.search).get('branza') || 'not_set' } })); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
     catch (error) { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
   });
 }
@@ -45,7 +45,7 @@ function initContactForm(form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); if (!form.reportValidity()) return;
     const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview({ type: 'contact-request', ...Object.fromEntries(new FormData(form)) }); showStatus(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail.'); }
+    try { const result = await sendPreview({ type: 'contact-request', ...Object.fromEntries(new FormData(form)) }); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'contact', industry: new URLSearchParams(location.search).get('branza') || 'not_set' } })); showStatus(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail.'); }
     catch { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
   });
 }
@@ -82,6 +82,13 @@ function init() {
   <section class="section compare"><div class="wrap"><p class="eyebrow">UCZCIWIE</p><h2>Nie każda firma<br><em>potrzebuje agencji.</em></h2><div class="compare-grid"><article class="ours"><h3>Znajdowalni</h3><b>Dobre, gdy</b><p>Chcesz szybko dostać profesjonalną stronę lokalnej firmy bez zajmowania się technologią.</p><b>Ograniczenia</b><p>Nie budujemy sklepów, aplikacji ani wielkich customowych platform.</p></article><article><h3>Agencja</h3><b>Dobra, gdy</b><p>Potrzebujesz dużego serwisu, custom UX, warsztatów, wielu integracji i masz większy budżet.</p></article><article><h3>DIY / builder / WordPress</h3><b>Dobry, gdy</b><p>Chcesz wszystko robić sam i masz na to czas.</p></article></div></div></section>
   <section class="section faq" id="faq"><div class="wrap faq-grid"><div><p class="eyebrow">FAQ</p><h2>Masz pytanie?<br><em>To normalne.</em></h2><p>Jeśli nie ma go tutaj, napisz do nas.</p></div><div class="accordions">${SITE.faq.map(item => `<details><summary>${item[0]}<span>+</span></summary><div class="faq-body"><p>${item[1]}</p></div></details>`).join('')}</div></div></section>
   <section class="contact-section" id="kontakt"><div class="wrap contact-grid"><div><p class="eyebrow">KONTAKT</p><h2>Wolisz najpierw<br><em>zapytać?</em></h2><p>Napisz, czym zajmuje się Twoja firma i czego potrzebujesz. Odpiszemy, czy możemy pomóc.</p><p class="contact-email">Możesz też napisać bezpośrednio: <a href="mailto:${SITE.contact.email}">${SITE.contact.email}</a></p></div><form class="contact-form" id="contact-form" novalidate><div class="detail-grid"><label for="contact-name">Imię *<input id="contact-name" name="name" autocomplete="given-name" required placeholder="Jak masz na imię?"></label><label for="contact-email">Adres e-mail *<input id="contact-email" name="email" type="email" autocomplete="email" required placeholder="twoj@email.pl"></label><label for="contact-phone">Telefon <small>(opcjonalnie)</small><input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="Np. 500 600 700"></label><label for="contact-source">Strona, Google lub Booksy <small>(opcjonalnie)</small><input id="contact-source" name="source" type="url" inputmode="url" placeholder="Wklej link, jeśli masz"></label></div><label for="contact-message">Wiadomość *<textarea id="contact-message" name="message" required rows="3" placeholder="Czym zajmuje się Twoja firma i czego potrzebujesz?"></textarea></label><div class="consent-row"><input id="contact-consent" name="consent" type="checkbox" required><label for="contact-consent">Zgadzam się na kontakt w sprawie tego zapytania.</label><a href="polityka-prywatnosci.html">Szczegóły w polityce prywatności.</a></div><button class="button ink" type="submit">Wyślij wiadomość <span>→</span></button></form></div></section>`;
+  const previewCards = [
+    ['fizjoterapia', 'PRZYKŁAD DLA FIZJOTERAPEUTY', 'Gabinet Ruchu', 'Pacjent od razu widzi zakres terapii i pierwszy krok do umówienia wizyty.', 'Podgląd hero strony Gabinet Ruchu z przyciskiem umówienia wizyty'],
+    ['barber', 'PRZYKŁAD DLA BARBERA', 'Barber Kuźnia', 'Cennik i rezerwacja są widoczne od pierwszego ekranu.', 'Podgląd hero strony Barber Kuźnia z cennikiem i rezerwacją'],
+    ['warsztat', 'PRZYKŁAD DLA WARSZTATU', 'Serwis Zamkowa', 'Telefon, zakres usług i umówienie terminu są na pierwszym planie.', 'Podgląd hero strony Serwis Zamkowa z przyciskiem umówienia terminu']
+  ];
+  const templateGrid = q('.szablony-grid');
+  if (templateGrid) templateGrid.innerHTML = previewCards.map(([slug, label, name, description, alt]) => `<a class="szablon szablon--screen" href="szablony/${slug}.html" target="_blank" rel="noopener" aria-label="Otwórz pełne demo ${name} w nowej karcie"><span class="szablon-podglad"><span class="szablon-pasek" aria-hidden="true"><i></i><i></i><i></i></span><span class="szablon-plotno"><img src="assets/previews/${slug}-hero.png" width="1280" height="800" loading="lazy" decoding="async" alt="${alt}"></span></span><span class="szablon-tresc"><span class="szablon-branza">${label}</span><h3>${name}</h3><p>${description}</p><span class="szablon-link">Otwórz pełne demo w nowej karcie <span aria-hidden="true">↗</span></span></span></a>`).join('');
   const evoHeadline = q('.evo-headline');
   if (evoHeadline && evoHeadline.tagName === 'H3') { const replacement = document.createElement('p'); replacement.className = evoHeadline.className; replacement.innerHTML = evoHeadline.innerHTML; evoHeadline.replaceWith(replacement); }
   q('#footer').innerHTML = `<div class="wrap footer-inner"><a class="brand-lockup" href="#top"><img src="assets/brand/znajdowalni-kadr-final.svg" alt="Znajdowalni"></a><p>Daj się znaleźć klientom.</p><div><a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="pliki-cookie.html">Pliki cookie</a> · <button class="cookie-settings link-like" type="button">Ustawienia cookies</button></div><small>© ${new Date().getFullYear()} Znajdowalni</small></div>`;
@@ -110,6 +117,7 @@ function init() {
     if (contactSource && !contactSource.value) contactSource.value = `Landing branżowy: ${industry}`;
   }
   q('#footer').before(q('.contact-section'));
+  q('#contact-phone')?.closest('label')?.remove();
   document.querySelectorAll('.preview-form').forEach(initForm);
   initContactForm(q('#contact-form'));
   document.querySelectorAll('[data-scroll-preview],[data-scroll-contact]').forEach(button => button.addEventListener('click', () => { q('#kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => q('#contact-name')?.focus(), 450); }));

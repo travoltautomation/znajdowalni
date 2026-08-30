@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Gabinet Ruchu | Fizjoterapia i rehabilitacja  -  Kraków Podgórze</title>
-<meta name="description" content="Fizjoterapia po urazach i operacjach w Krakowie. Terapia manualna, rehabilitacja pooperacyjna, leczenie bólu kręgosłupa. Umów wizytę telefonicznie.">
+<meta name="description" content="Fizjoterapia po urazach i operacjach w Krakowie. Terapia manualna, rehabilitacja pooperacyjna i jasny pierwszy krok do kontaktu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -15,14 +15,6 @@
   "@type": "MedicalBusiness",
   "name": "Gabinet Ruchu",
   "description": "Gabinet fizjoterapii i rehabilitacji w Krakowie.",
-  "telephone": "+48123456789",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "ul. Przykładowa 12",
-    "addressLocality": "Kraków",
-    "postalCode": "30-001",
-    "addressCountry": "PL"
-  },
   "areaServed": "Kraków"
 }
 </script>
@@ -62,8 +54,8 @@
   .menu{display:none;gap:28px}
   .menu a{font-size:14.5px;text-decoration:none;color:var(--las);padding:4px 0;border-bottom:1px solid transparent}
   .menu a:hover{border-bottom-color:var(--miedz)}
-  .tel-top{display:none;align-items:center;gap:8px;background:var(--las);color:var(--kreda);padding:11px 18px;border-radius:100px;font-size:14.5px;font-weight:600;text-decoration:none;white-space:nowrap}
-  .tel-top:hover{background:var(--las-jasny)}
+  .nav-cta{display:none;align-items:center;gap:8px;background:var(--las);color:var(--kreda);padding:11px 18px;border-radius:100px;font-size:14.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+  .nav-cta:hover{background:var(--las-jasny)}
   .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:1px solid var(--linia);cursor:pointer;align-items:center}
   .burger span{display:block;width:18px;height:1.5px;background:var(--atrament);transition:transform .2s,opacity .2s}
   .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -90,10 +82,11 @@
   .drobne{font-size:14px;color:#6B7570}
   .drobne b{color:var(--las)}
 
-  /* wizualizacja zamiast zdjecia */
+  /* fotografia */
   .foto-miejsce{position:relative;aspect-ratio:4/5;background:var(--kreda-ciepla);border:1px solid var(--linia);overflow:hidden;display:flex;align-items:flex-end;padding:22px}
-  .foto-miejsce svg{position:absolute;inset:0;width:100%;height:100%}
-  .foto-etykieta{position:relative;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--las);background:var(--kreda);padding:7px 12px;border:1px solid var(--linia)}
+  .foto-miejsce img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+  .foto-miejsce:hover img{transform:scale(1.035)}
+  .foto-etykieta{position:relative;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--las);background:rgba(245,242,234,.93);padding:7px 12px;border:1px solid var(--linia)}
 
   /* pasek zaufania */
   .zaufanie{border-top:1px solid var(--linia);border-bottom:1px solid var(--linia);background:var(--kreda-ciepla)}
@@ -160,7 +153,7 @@
   }
   @media(min-width:980px){
     .menu{display:flex}
-    .tel-top{display:inline-flex}
+    .nav-cta{display:inline-flex}
     .burger{display:none}
     #menu-mobilne{display:none!important}
     .uslugi{grid-template-columns:repeat(3,1fr)}
@@ -188,7 +181,7 @@
       <a href="#o-nas">O gabinecie</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <a class="tel-top" href="tel:+48123456789" aria-label="Zadzwoń do gabinetu">Zadzwoń · 12 345 67 89</a>
+    <a class="nav-cta" href="#kontakt">Umów konsultację <span aria-hidden="true">→</span></a>
     <button class="burger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="menu-mobilne">
       <span></span><span></span><span></span>
     </button>
@@ -200,7 +193,7 @@
   <a href="#przebieg">Jak wygląda wizyta</a>
   <a href="#o-nas">O gabinecie</a>
   <a href="#kontakt">Kontakt</a>
-  <a class="cta-m" href="tel:+48123456789">Zadzwoń · 12 345 67 89</a>
+  <a class="cta-m" href="#kontakt">Umów konsultację →</a>
 </div>
 
 <main id="gora">
@@ -212,25 +205,14 @@
       <h1 class="serif">Wróć do ruchu, <em>zanim ból wróci do Ciebie.</em></h1>
       <p class="lead">Rehabilitacja po urazach i operacjach oraz leczenie bólu kręgosłupa. Pracujemy indywidualnie  -  jedna osoba, jedna godzina, konkretny plan.</p>
       <div class="cta-rzad">
-        <a class="btn btn-pelny" href="tel:+48123456789">Umów wizytę telefonicznie</a>
+        <a class="btn btn-pelny" href="#kontakt">Umów konsultację</a>
         <a class="btn btn-pusty" href="#kontakt">Napisz do nas</a>
       </div>
       <p class="drobne">Pierwsza wizyta obejmuje badanie i plan leczenia. <b>Bez skierowania.</b></p>
     </div>
     <div class="foto-miejsce">
-      <svg viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id="g-fizjo" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#2C5A4E" stop-opacity=".16"/>
-            <stop offset="100%" stop-color="#8FA89A" stop-opacity=".06"/>
-          </linearGradient>
-        </defs>
-        <rect width="400" height="500" fill="url(#g-fizjo)"/>
-        <circle cx="300" cy="130" r="96" fill="none" stroke="#2C5A4E" stroke-opacity=".22" stroke-width="1"/>
-        <circle cx="300" cy="130" r="62" fill="none" stroke="#C4703F" stroke-opacity=".3" stroke-width="1"/>
-        <path d="M40 400 C 130 340, 190 430, 300 360" fill="none" stroke="#2C5A4E" stroke-opacity=".3" stroke-width="1.5"/>
-      </svg>
-      <span class="foto-etykieta">Miejsce na zdjęcie gabinetu</span>
+      <img src="../assets/templates/fizjoterapia-terapia.webp" alt="Fizjoterapeuta podczas spokojnej terapii manualnej" width="1536" height="1024" fetchpriority="high" decoding="async">
+      <span class="foto-etykieta">Terapia dopasowana do Ciebie</span>
     </div>
   </div>
 </section>
@@ -306,12 +288,8 @@
       <p class="drobne">Adres i godziny otwarcia  -  <b>[DO POTWIERDZENIA z klientem]</b></p>
     </div>
     <div class="foto-miejsce" style="aspect-ratio:1/1">
-      <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
-        <rect width="400" height="400" fill="#EDE7DA"/>
-        <path d="M0 300 C 110 250, 180 330, 400 270 L400 400 L0 400 Z" fill="#2C5A4E" fill-opacity=".1"/>
-        <circle cx="120" cy="140" r="54" fill="none" stroke="#C4703F" stroke-opacity=".35" stroke-width="1"/>
-      </svg>
-      <span class="foto-etykieta">Miejsce na zdjęcie zespołu</span>
+      <img src="../assets/templates/fizjoterapia-gabinet.webp" alt="Rozmowa w kameralnym gabinecie fizjoterapii" width="1280" height="1280" loading="lazy" decoding="async">
+      <span class="foto-etykieta">Kameralny gabinet</span>
     </div>
   </div>
 </section>
@@ -320,16 +298,14 @@
   <div class="wrap kontakt-grid">
     <div>
       <h2 class="serif">Umów wizytę</h2>
-      <p class="sek-wstep">Najszybciej telefonicznie. Jeśli nie odbieramy, jesteśmy przy pacjencie  -  oddzwonimy tego samego dnia.</p>
+      <p class="sek-wstep">Wyślij krótką wiadomość. To wystarczy, żeby ustalić dogodny pierwszy krok.</p>
       <dl class="dane">
-        <dt>Telefon</dt>
-        <dd><a href="tel:+48123456789">12 345 67 89</a></dd>
-        <dt>Adres</dt>
-        <dd>ul. Przykładowa 12<br>30-001 Kraków, Podgórze</dd>
+        <dt>Kontakt</dt>
+        <dd>Dane kontaktowe uzupełniamy przed publikacją.</dd>
         <dt>Godziny</dt>
         <dd>[DO POTWIERDZENIA]</dd>
       </dl>
-      <a class="btn btn-jasny" href="https://www.google.com/maps/dir/?api=1&amp;destination=Krak%C3%B3w%20Podg%C3%B3rze" target="_blank" rel="noopener">Wyznacz trasę</a>
+      <a class="btn btn-jasny" href="mailto:kontakt@znajdowalni.pl">Napisz wiadomość</a>
     </div>
     <div>
       <form id="formularz" novalidate>
@@ -338,8 +314,8 @@
           <input id="pole-imie" name="imie" type="text" required autocomplete="name">
         </div>
         <div>
-          <label for="pole-telefon">Telefon</label>
-          <input id="pole-telefon" name="telefon" type="tel" required autocomplete="tel">
+          <label for="pole-email">E-mail</label>
+          <input id="pole-email" name="email" type="email" required autocomplete="email">
         </div>
         <div>
           <label for="pole-problem">Z czym przychodzisz?</label>
@@ -347,7 +323,7 @@
         </div>
         <label class="zgoda" for="pole-zgoda">
           <input id="pole-zgoda" name="zgoda" type="checkbox" required>
-          <span>Zgadzam się na kontakt telefoniczny w sprawie umówienia wizyty.</span>
+          <span>Zgadzam się na kontakt w sprawie umówienia wizyty.</span>
         </label>
         <button type="submit">Poproś o kontakt</button>
         <p id="status-formularza" role="status" aria-live="polite"></p>
@@ -362,10 +338,9 @@
   <div class="wrap stopka-grid">
     <div>
       <strong>Gabinet Ruchu</strong>
-      <p style="margin-top:6px">Fizjoterapia i rehabilitacja<br>ul. Przykładowa 12, 30-001 Kraków</p>
+      <p style="margin-top:6px">Fizjoterapia i rehabilitacja<br>Dane lokalizacji uzupełniamy przed publikacją</p>
     </div>
     <div>
-      <p><a href="tel:+48123456789">12 345 67 89</a></p>
       <p><a href="mailto:kontakt@przyklad.pl">kontakt@przyklad.pl</a></p>
     </div>
     <div>
@@ -382,10 +357,7 @@ const SITE = {
   demoMode: true,
   businessName: "Gabinet Ruchu",
   branza: "fizjoterapia",
-  phone: "+48123456789",
-  phoneDisplay: "12 345 67 89",
   email: "kontakt@przyklad.pl",
-  address: { street: "ul. Przykładowa 12", city: "Kraków", district: "Podgórze", zip: "30-001" },
   hours: "[DO POTWIERDZENIA]",
   mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Krak%C3%B3w%20Podg%C3%B3rze",
   services: [
@@ -395,11 +367,6 @@ const SITE = {
 };
 
 document.getElementById("rok").textContent = new Date().getFullYear();
-
-/* Demo nie może sugerować, że numer lub mapa należą do prawdziwej firmy. */
-if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.com/maps"]').forEach(function (link) {
-  link.addEventListener("click", function (e) { e.preventDefault(); alert("To wersja demonstracyjna. Numer telefonu i adres uzupełnimy na podstawie danych Twojej firmy."); });
-});
 
 /* menu mobilne */
 (function () {
@@ -449,14 +416,14 @@ if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.c
     e.preventDefault();
     if (!form.checkValidity()) {
       status.className = "blad";
-      status.textContent = "Uzupełnij imię, telefon i zaznacz zgodę.";
+      status.textContent = "Uzupełnij imię, e-mail i zaznacz zgodę.";
       form.reportValidity();
       return;
     }
     status.className = "ok";
     status.textContent = SITE.demoMode
       ? "To wersja demonstracyjna  -  wiadomość nie została wysłana. Na gotowej stronie trafi prosto na skrzynkę gabinetu."
-      : "Dziękujemy. Oddzwonimy najpóźniej następnego dnia roboczego.";
+      : "Dziękujemy. Odpowiemy najpóźniej następnego dnia roboczego.";
     form.reset();
   });
 })();

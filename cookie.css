@@ -57,6 +57,7 @@
   gap: 9px;
   margin-top: 16px;
 }
+.cookie-choices{display:flex;gap:12px;margin:8px 0;font:600 12px var(--sans)}.cookie-choices label{display:inline-flex;align-items:center;gap:4px}.cookie-choices input{width:16px;height:16px;accent-color:var(--teal)}
 
 /* Przyciski banera opisane wprost, bez polegania na .button  -
    ten styl jest rozrzucony po kilku arkuszach i różni się między nimi. */
@@ -109,6 +110,7 @@
   .cookie-banner a { font-size: 11px; }
   .cookie-banner-actions { flex-direction: row; gap: 7px; margin-top: 9px; }
   .cookie-banner .button { width: auto; min-height: 40px; padding: 0 8px; font-size: 11px; }
+  .cookie-choices{gap:9px;margin:5px 0;font-size:11px}
   /* dolne CTA i baner nie mogą walczyć o to samo miejsce */
   body.cookie-open .mobile-cta { display: none; }
 }

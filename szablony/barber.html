@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Barber Kuźnia | Strzyżenie i broda  -  Wrocław Nadodrze</title>
-<meta name="description" content="Barbershop na Nadodrzu we Wrocławiu. Strzyżenie męskie, broda, klasyczne golenie brzytwą. Rezerwacja online przez Booksy lub telefonicznie.">
+<meta name="description" content="Barbershop na Nadodrzu we Wrocławiu. Strzyżenie męskie, broda i klasyczne golenie brzytwą. Jasne zasady rezerwacji.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&display=swap" rel="stylesheet">
@@ -15,14 +15,6 @@
   "@type": "HairSalon",
   "name": "Barber Kuźnia",
   "description": "Barbershop we Wrocławiu  -  strzyżenie męskie, pielęgnacja brody, golenie brzytwą.",
-  "telephone": "+48987654321",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "ul. Przykładowa 8",
-    "addressLocality": "Wrocław",
-    "postalCode": "50-001",
-    "addressCountry": "PL"
-  },
   "areaServed": "Wrocław"
 }
 </script>
@@ -74,7 +66,8 @@
   /* hero pelnoekranowy */
   .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:60px 0 48px;overflow:hidden;border-bottom:1px solid var(--linia)}
   .hero-tlo{position:absolute;inset:0;z-index:0}
-  .hero-tlo svg{width:100%;height:100%}
+  .hero-tlo img{width:100%;height:100%;object-fit:cover;object-position:center;animation:hero-pan 18s ease-in-out infinite alternate}
+  .hero-tlo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,18,17,.98) 0%,rgba(17,18,17,.83) 40%,rgba(17,18,17,.35) 100%)}
   .hero .wrap{position:relative;z-index:1}
   .nadtytul{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mosiadz);font-weight:700;margin-bottom:20px}
   h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(2.7rem,12vw,6.2rem);line-height:.92;letter-spacing:-.035em;text-transform:uppercase;margin-bottom:22px}
@@ -108,8 +101,9 @@
 
   .galeria{display:grid;gap:12px}
   .kadr{position:relative;aspect-ratio:1/1;background:var(--karta);border:1px solid var(--linia);display:flex;align-items:flex-end;padding:16px;overflow:hidden}
-  .kadr svg{position:absolute;inset:0;width:100%;height:100%}
-  .kadr span{position:relative;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kosc-cien);background:var(--smola);padding:6px 10px;border:1px solid var(--linia)}
+  .kadr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s ease}
+  .kadr:hover img{transform:scale(1.05);filter:brightness(1.08)}
+  .kadr span{position:relative;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kosc);background:rgba(17,18,17,.82);padding:6px 10px;border:1px solid var(--linia)}
 
   .rezerwacja{background:var(--smola-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)}
   .rez-grid{display:grid;gap:34px}
@@ -130,6 +124,7 @@
 
   .odslon{opacity:0;transform:translateY(16px)}
   .odslon.widoczny{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+  @keyframes hero-pan{from{transform:scale(1)}to{transform:scale(1.045)}}
 
   @media(min-width:700px){
     .galeria{grid-template-columns:repeat(3,1fr)}
@@ -150,6 +145,7 @@
     .odslon{opacity:1;transform:none}
     .odslon.widoczny{transition:none}
     .burger span{transition:none}
+    .hero-tlo img{animation:none}
   }
 </style>
 </head>
@@ -185,20 +181,7 @@
 
 <section class="hero">
   <div class="hero-tlo" aria-hidden="true">
-    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" focusable="false">
-      <defs>
-        <linearGradient id="g-barber" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#1F211F"/>
-          <stop offset="60%" stop-color="#111211"/>
-        </linearGradient>
-      </defs>
-      <rect width="1200" height="800" fill="url(#g-barber)"/>
-      <g stroke="#C9973F" stroke-opacity=".14" stroke-width="1">
-        <path d="M780 0 L1200 420"/><path d="M860 0 L1200 340"/><path d="M940 0 L1200 260"/>
-      </g>
-      <circle cx="1010" cy="230" r="168" fill="none" stroke="#C9973F" stroke-opacity=".2"/>
-      <circle cx="1010" cy="230" r="104" fill="none" stroke="#A8433A" stroke-opacity=".26"/>
-    </svg>
+    <img src="../assets/templates/barber-hero.webp" alt="" width="1664" height="936" fetchpriority="high" decoding="async">
   </div>
   <div class="wrap">
     <p class="nadtytul">Wrocław · Nadodrze</p>
@@ -206,7 +189,7 @@
     <p class="lead">Barbershop dla tych, którzy wracają co cztery tygodnie. Bez pośpiechu, bez improwizacji, bez tłumaczenia za każdym razem od nowa.</p>
     <div class="cta-rzad">
       <a class="btn btn-pelny" href="#rezerwacja">Rezerwuj wizytę</a>
-      <a class="btn btn-pusty" href="tel:+48987654321">Zadzwoń · 98 765 43 21</a>
+      <a class="btn btn-pusty" href="#rezerwacja">Napisz wiadomość</a>
     </div>
   </div>
 </section>
@@ -259,20 +242,11 @@
 <section id="wnetrze">
   <div class="wrap">
     <h2 class="odslon">Wnętrze i realizacje</h2>
-    <p class="sek-wstep odslon">Miejsce na zdjęcia salonu i efektów pracy. To one sprzedają najmocniej  -  tu wstawimy zdjęcia klienta.</p>
+    <p class="sek-wstep odslon">Dobre światło, precyzja i miejsce, do którego chce się wracać.</p>
     <div class="galeria odslon">
-      <div class="kadr">
-        <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false"><rect width="300" height="300" fill="#1F211F"/><path d="M0 210 L300 130 L300 300 L0 300 Z" fill="#C9973F" fill-opacity=".08"/><circle cx="90" cy="100" r="42" fill="none" stroke="#C9973F" stroke-opacity=".3"/></svg>
-        <span>Zdjęcie salonu</span>
-      </div>
-      <div class="kadr">
-        <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false"><rect width="300" height="300" fill="#1F211F"/><g stroke="#A8433A" stroke-opacity=".28"><path d="M40 40 L260 260"/><path d="M100 40 L260 200"/></g></svg>
-        <span>Efekt strzyżenia</span>
-      </div>
-      <div class="kadr">
-        <svg viewBox="0 0 300 300" aria-hidden="true" focusable="false"><rect width="300" height="300" fill="#1F211F"/><rect x="60" y="60" width="180" height="180" fill="none" stroke="#C9973F" stroke-opacity=".25"/><rect x="105" y="105" width="90" height="90" fill="#C9973F" fill-opacity=".07"/></svg>
-        <span>Stanowisko</span>
-      </div>
+      <figure class="kadr"><img src="../assets/templates/barber-interior.webp" alt="Stanowisko w ciemnym, kameralnym barbershopie" width="1280" height="1280" loading="lazy" decoding="async"><span>Wnętrze</span></figure>
+      <figure class="kadr"><img src="../assets/templates/barber-hero.webp" alt="Precyzyjne strzyżenie w barbershopie" width="1664" height="936" loading="lazy" decoding="async"><span>Rzemiosło</span></figure>
+      <figure class="kadr"><img src="../assets/templates/barber-interior.webp" alt="Detale miejsca do pielęgnacji" width="1280" height="1280" loading="lazy" decoding="async"><span>Detale</span></figure>
     </div>
   </div>
 </section>

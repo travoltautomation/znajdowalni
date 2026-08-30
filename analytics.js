@@ -65,6 +65,11 @@
     track("generate_lead", { form_id: detail.formId || "form", lead_type: detail.type || "contact", industry: detail.industry || "not_set" });
   });
 
+  document.addEventListener("znajdowalni:cta", function (event) {
+    var detail = event.detail || {};
+    track("contact_cta_click", { industry: detail.industry || "home", cta_label: detail.label || "cta", location: detail.location || "page" });
+  });
+
   if (zgodaNaAnalityke()) uruchomGA();
 
   // consent.js rozgłasza to zdarzenie po kliknięciu w banerze

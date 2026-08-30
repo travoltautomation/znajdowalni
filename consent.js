@@ -25,7 +25,14 @@
     }));
   }
 
-  if (!consent) showBanner();
+  if (!consent) {
+    // Na małym ekranie nie przykrywamy pierwszego CTA. Brak zgody nadal oznacza brak analityki.
+    if (window.matchMedia("(max-width: 760px)").matches && window.scrollY === 0) {
+      window.addEventListener("scroll", showBanner, { once: true, passive: true });
+    } else {
+      showBanner();
+    }
+  }
   document.addEventListener("click", (event) => {
     if (event.target.closest(".cookie-settings")) {
       localStorage.removeItem(storageKey);

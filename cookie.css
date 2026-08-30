@@ -101,11 +101,14 @@
     right: 12px;
     bottom: 12px;
     width: auto;
-    padding: 18px 18px 16px;
+    padding: 12px;
     box-shadow: 4px 4px 0 var(--ink);
   }
-  .cookie-banner-actions { flex-direction: column-reverse; gap: 8px; }
-  .cookie-banner .button { width: 100%; }
+  .cookie-banner b { margin-bottom: 3px; font-size: 14px; }
+  .cookie-banner p { margin-bottom: 5px; font-size: 12px; line-height: 1.35; }
+  .cookie-banner a { font-size: 11px; }
+  .cookie-banner-actions { flex-direction: row; gap: 7px; margin-top: 9px; }
+  .cookie-banner .button { width: auto; min-height: 40px; padding: 0 8px; font-size: 11px; }
   /* dolne CTA i baner nie mogą walczyć o to samo miejsce */
   body.cookie-open .mobile-cta { display: none; }
 }

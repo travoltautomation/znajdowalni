@@ -23,6 +23,10 @@ const buildMessage = (payload) => {
     ["Branża", payload.business],
     ["Miasto", payload.city],
     ["Wiadomość", payload.message],
+    ["Źródło kampanii", payload.utm_source],
+    ["Medium", payload.utm_medium],
+    ["Kampania", payload.utm_campaign],
+    ["Google Click ID", payload.gclid],
   ].filter(([, value]) => value);
   const text = [intro, "", ...fields.map(([label, value]) => `${label}: ${value}`)].join("\n");
   const rows = fields.map(([label, value]) => `<tr><td style="padding:10px 0;color:#59615f;font-size:13px;vertical-align:top;width:35%">${escapeHtml(label)}</td><td style="padding:10px 0;color:#121416;font-size:15px;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("");

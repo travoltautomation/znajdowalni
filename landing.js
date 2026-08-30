@@ -10,6 +10,7 @@
   const path = location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
   const industry = industryByPath[path] || document.body.dataset.industry || 'home';
   const formId = `contact-form-${industry}`;
+  const campaignData = () => Object.fromEntries([...new URLSearchParams(location.search)].filter(([key]) => /^(utm_(source|medium|campaign|term|content)|gclid|gbraid|wbraid)$/i.test(key)));
 
   const status = (form, type, title, message) => {
     form.innerHTML = `<div class="form-status ${type}" role="${type === 'success' ? 'status' : 'alert'}" aria-live="polite" tabindex="-1"><span>${type === 'success' ? '✓' : '!'}</span><h3>${title}</h3><p>${message}</p></div>`;
@@ -29,7 +30,7 @@
       button.disabled = true;
       button.textContent = 'Wysyłamy…';
       try {
-        const response = await fetch('/api/preview-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'contact-request', industry, ...Object.fromEntries(new FormData(form)) }) });
+        const response = await fetch('/api/preview-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'contact-request', industry, ...campaignData(), ...Object.fromEntries(new FormData(form)) }) });
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error);
         document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId, type: 'contact', industry } }));

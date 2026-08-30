@@ -1,4 +1,5 @@
 const q = (selector, scope = document) => scope.querySelector(selector);
+const campaignData = () => Object.fromEntries([...new URLSearchParams(location.search)].filter(([key]) => /^(utm_(source|medium|campaign|term|content)|gclid|gbraid|wbraid)$/i.test(key)));
 const previewForm = (id, final = false) => `<form class="preview-form" id="${id}" data-compact-preview novalidate>
   <div class="preview-start"><label class="sr-only" for="${id}-source">Link do obecnej strony</label><input id="${id}-source" name="source" type="url" inputmode="url" placeholder="Wklej link do obecnej strony" required><button type="button" class="button ink" data-next>Zobacz bezpłatny podgląd <span>→</span></button></div>
   <div class="form-details" hidden></div>
@@ -36,7 +37,7 @@ function initForm(form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); if (!form.reportValidity()) return;
     const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview(Object.fromEntries(new FormData(form))); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
+    try { const result = await sendPreview({ ...campaignData(), ...Object.fromEntries(new FormData(form)) }); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'preview', industry: new URLSearchParams(location.search).get('branza') || 'home' } })); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
     catch (error) { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
   });
 }
@@ -45,7 +46,7 @@ function initContactForm(form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); if (!form.reportValidity()) return;
     const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview({ type: 'contact-request', ...Object.fromEntries(new FormData(form)) }); showStatus(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail.'); }
+    try { const result = await sendPreview({ type: 'contact-request', ...campaignData(), ...Object.fromEntries(new FormData(form)) }); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'contact', industry: 'home' } })); showStatus(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail.'); }
     catch { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
   });
 }

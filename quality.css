@@ -1,0 +1,8 @@
+/* Ostatnia warstwa jakości: nie zmienia kompozycji, tylko czytelność i odbiór. */
+.nav nav a{font-size:14px;font-weight:500;letter-spacing:.01em}
+.nav-cta{padding:10px 0;font-weight:700}
+.preview-start{border-color:#8f9a98;box-shadow:3px 3px 0 var(--ink);border-radius:2px}
+.preview-start:focus-within{border-color:var(--teal);box-shadow:3px 3px 0 var(--teal)}
+.preview-start .button{min-height:48px}
+.hero-reassurance{max-width:520px;color:#50605f;font-size:13px;line-height:1.45}
+@media(max-width:760px){.preview-start{box-shadow:3px 3px 0 var(--ink)}.nav-cta{padding:0}.hero-reassurance{font-size:12px}}

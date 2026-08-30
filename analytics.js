@@ -58,7 +58,7 @@
     if (!el) return;
     if (el.matches("[data-next]")) track("preview_start", { source: "existing_site" });
     if (el.matches("[data-no-site]")) track("preview_start", { source: "no_site" });
-    if (el.matches("[data-scroll-contact], .nav-cta, .mobile-cta")) track("contact_cta_click", { location: el.className || "cta" });
+    if (el.matches("[data-scroll-contact], .nav-cta, .mobile-cta")) track("contact_cta_click", { industry: pageIndustry(), location: el.className || "cta" });
     if (el.matches(".case-link, .case-visual")) track("case_study_click", { case_name: "Pani Terapia" });
     if (el.closest(".szablon")) track("template_click", { template: el.closest(".szablon").getAttribute("href") || "demo" });
     if (el.closest(".plan") || el.closest(".plans")) track("pricing_cta_click", { page: location.pathname });
@@ -78,6 +78,18 @@
     var detail = event.detail || {};
     track("contact_cta_click", { industry: detail.industry || "home", cta_label: detail.label || "cta", location: detail.location || "page" });
   });
+
+  function pageIndustry() {
+    var path = window.location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
+    var industries = {
+      "/strony-dla-fizjoterapeutow": "fizjoterapia",
+      "/strony-dla-gabinetow": "gabinety",
+      "/strony-dla-beauty": "beauty",
+      "/strony-dla-warsztatow": "warsztaty",
+      "/cennik": "cennik"
+    };
+    return industries[path] || "home";
+  }
 
   if (zgodaNaAnalityke()) uruchomGA();
 

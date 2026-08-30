@@ -41,7 +41,9 @@
     document.querySelectorAll('a.button[href*="#kontakt"], [data-scroll-contact]').forEach((cta) => cta.addEventListener('click', () => {
       document.dispatchEvent(new CustomEvent('znajdowalni:cta', { detail: { industry, label: cta.textContent.trim(), location: 'landing' } }));
     }));
-    document.querySelector('.footer-inner')?.insertAdjacentHTML('beforeend', `<p class="footer-company">Krzysztof Stramski Marketing Solutions · NIP 8982136359 · REGON 527734808<br><a href="mailto:${contact}">${contact}</a></p>`);
+    if (!document.querySelector('.footer-company')) {
+      document.querySelector('.footer-inner')?.insertAdjacentHTML('beforeend', `<p class="footer-company">Krzysztof Stramski Marketing Solutions · NIP 8982136359 · REGON 527734808<br><a href="mailto:${contact}">${contact}</a></p>`);
+    }
   };
   document.addEventListener('DOMContentLoaded', mount);
 })();

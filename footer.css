@@ -1,0 +1,14 @@
+/* The requested footer is the only visual change from main. */
+#footer.zn-footer{display:block;background:#101114;color:#dce4ee;padding:100px 0 90px;border-top:1px solid #20232a}
+#footer.zn-footer .zn-footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1.1fr;gap:72px;align-items:start}
+#footer.zn-footer h2{font-family:inherit;font-size:14px;line-height:1.5;font-weight:700;letter-spacing:.14em;color:#43d8dd;margin:0 0 26px}
+#footer.zn-footer a,#footer.zn-footer button{color:#dce4ee;font-family:inherit;font-size:16px;line-height:1.6;text-decoration:none}
+#footer.zn-footer nav a,#footer.zn-footer .zn-footer-grid>div:last-child>a,#footer.zn-footer button{display:block;margin:0 0 14px}
+#footer.zn-footer button{border:0;background:none;padding:0;cursor:pointer;text-align:left}
+#footer.zn-footer a:hover,#footer.zn-footer button:hover{text-decoration:underline;text-underline-offset:5px}
+#footer.zn-footer .zn-footer-brand{display:inline-flex;align-items:center;gap:10px;color:white;font-weight:750;letter-spacing:-.04em}
+#footer.zn-footer .zn-footer-mark{display:inline-flex;align-items:center;justify-content:center;border:2px dashed white;width:25px;height:27px;color:#43d8dd;font-size:22px;line-height:1}
+#footer.zn-footer .zn-footer-about p{max-width:470px;font-size:16px;line-height:1.8;color:#a3b3c5;margin:32px 0 28px}
+#footer.zn-footer .zn-footer-email{color:white;text-decoration:underline;text-decoration-color:#43d8dd;text-underline-offset:6px;font-weight:600}
+#footer.zn-footer .zn-footer-note{font-size:14px;line-height:1.7;color:#8b9aaf;margin-top:36px}
+@media(max-width:760px){#footer.zn-footer{padding:56px 0 96px}#footer.zn-footer .zn-footer-grid{grid-template-columns:1fr;gap:36px}#footer.zn-footer h2{margin-bottom:18px}#footer.zn-footer .zn-footer-about p{margin-top:24px}#footer.zn-footer .zn-footer-note{margin-top:26px}}

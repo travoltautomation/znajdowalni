@@ -16,39 +16,17 @@ function openForm(form, noSite = false) {
   q('input', details)?.focus();
 }
 
-function showStatus(form, type, title, text) {
-  form.innerHTML = `<div class="form-status ${type}" role="${type === 'success' ? 'status' : 'alert'}" aria-live="${type === 'success' ? 'polite' : 'assertive'}" tabindex="-1"><span>${type === 'success' ? '✓' : '!'}</span><h3>${title}</h3><p>${text}</p></div>`;
-  form.querySelector('.form-status')?.focus();
-}
-
-async function sendPreview(data) {
-  const response = await fetch(SITE.contact.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.error || 'Nie udało się wysłać formularza.');
-  return result;
-}
-
 function initForm(form) {
   form.addEventListener('click', (event) => {
         if (event.target.closest('[data-next]')) { const input = q('[name="source"]', form); if (input && !input.checkValidity()) { input.reportValidity(); return; } openForm(form, false); return; }
     if (event.target.closest('[data-no-site]')) { openForm(form, true); return; }
     if (event.target.closest('[data-back]')) { q('.preview-start', form).hidden = false; q('[name="source"]', q('.preview-start', form)).disabled = false; q('.form-details', form).hidden = true; }
   });
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault(); if (!form.reportValidity()) return;
-    const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview({ ...campaignData(), ...Object.fromEntries(new FormData(form)) }); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'preview', industry: new URLSearchParams(location.search).get('branza') || 'home' } })); showStatus(form, 'success', 'Dzięki. Sprawdzimy Twoją firmę i przygotujemy prywatny podgląd.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail. To nie jest automatyczna publikacja. To tylko pierwszy krok.'); }
-    catch (error) { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
-  });
+  window.bindLeadForm(form);
 }
 
 function initContactForm(form) {
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault(); if (!form.reportValidity()) return;
-    const button = q('[type="submit"]', form); button.disabled = true; button.textContent = 'Wysyłamy…';
-    try { const result = await sendPreview({ type: 'contact-request', ...campaignData(), ...Object.fromEntries(new FormData(form)) }); document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId: form.id, type: 'contact', industry: 'home' } })); showStatus(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa obecnie w trybie demonstracyjnym. Dane nie zostały jeszcze przekazane. Skonfigurujemy wysyłkę przed publikacją.' : 'Odezwemy się na podany e-mail.'); }
-    catch { showStatus(form, 'demo', 'Formularz jest gotowy, ale działa jeszcze w trybie demonstracyjnym.', 'Nie wysłaliśmy Twoich danych, ponieważ produkcyjna wysyłka nie została jeszcze skonfigurowana. Napisz na ' + SITE.contact.email + '.'); }
-  });
+  window.bindLeadForm(form, {type:'contact-request'});
 }
 
 function init() {
@@ -108,12 +86,12 @@ function init() {
     const contactMessage = q('#contact-message');
     const contactSource = q('#contact-source');
     if (contactMessage && !contactMessage.value) contactMessage.value = `Interesuje mnie strona dla branży: ${industry}.`;
-    if (contactSource && !contactSource.value) contactSource.value = `Landing branżowy: ${industry}`;
+
   }
   q('#footer').before(q('.contact-section'));
   q('#contact-phone')?.closest('label')?.remove();
   document.querySelectorAll('.preview-form').forEach(initForm);
   initContactForm(q('#contact-form'));
-  document.querySelectorAll('[data-scroll-preview],[data-scroll-contact]').forEach(button => button.addEventListener('click', () => { q('#kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => q('#contact-name')?.focus(), 450); }));
+  document.querySelectorAll('[data-scroll-preview],[data-scroll-contact]').forEach(button => button.addEventListener('click', () => { q('#kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' }); setTimeout(() => q('#contact-name')?.focus({preventScroll:true}), 450); }));
 }
 document.addEventListener('DOMContentLoaded', init);

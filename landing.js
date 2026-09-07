@@ -23,22 +23,7 @@
     const footer = document.querySelector('footer');
     if (footer && !document.querySelector('.landing-contact')) footer.insertAdjacentHTML('beforebegin', renderContact());
     const form = document.getElementById(formId);
-    form?.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-      const button = form.querySelector('[type=submit]');
-      button.disabled = true;
-      button.textContent = 'Wysyłamy…';
-      try {
-        const response = await fetch('/api/preview-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'contact-request', industry, ...campaignData(), ...Object.fromEntries(new FormData(form)) }) });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.error);
-        document.dispatchEvent(new CustomEvent('znajdowalni:lead', { detail: { formId, type: 'contact', industry } }));
-        status(form, 'success', 'Dzięki za wiadomość.', result.demo ? 'Formularz działa w trybie demonstracyjnym. Dane nie zostały przekazane.' : 'Odezwemy się na podany e-mail.');
-      } catch {
-        status(form, 'demo', 'Nie udało się wysłać wiadomości.', `Spróbuj ponownie lub napisz na ${contact}.`);
-      }
-    });
+    window.bindLeadForm(form, {type:'contact-request', industry});
     document.querySelectorAll('a.button[href*="#kontakt"], [data-scroll-contact]').forEach((cta) => cta.addEventListener('click', () => {
       document.dispatchEvent(new CustomEvent('znajdowalni:cta', { detail: { industry, label: cta.textContent.trim(), location: 'landing' } }));
     }));

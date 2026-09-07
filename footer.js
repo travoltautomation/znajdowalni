@@ -1,0 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const footer = document.getElementById('footer');
+  footer.classList.add('zn-footer');
+  footer.innerHTML = `<div class="wrap zn-footer-grid"><div class="zn-footer-about"><a class="zn-footer-brand" href="#top" aria-label="Znajdowalni — strona główna"><span class="zn-footer-mark" aria-hidden="true">•</span>ZNAJDOWALNI</a><p>Projektujemy, publikujemy i prowadzimy strony dla lokalnych firm. Takie, które ułatwiają klientowi zadzwonić, zapytać lub zarezerwować termin.</p><a class="zn-footer-email" href="mailto:kontakt@znajdowalni.pl">kontakt@znajdowalni.pl</a></div><nav aria-label="Na skróty"><h2>NA SKRÓTY</h2><a href="#cennik">Cennik</a><a href="#realizacje">Realizacje</a><a href="#przyklady">Branże</a></nav><div><h2>FORMALNOŚCI</h2><a href="polityka-prywatnosci.html">Polityka prywatności</a><a href="pliki-cookie.html">Pliki cookie</a><button class="cookie-settings" type="button">Ustawienia cookies</button><p class="zn-footer-note">Strony internetowe dla lokalnych firm usługowych.</p></div></div>`;
+});

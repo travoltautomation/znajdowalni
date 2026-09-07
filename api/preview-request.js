@@ -1,84 +1,59 @@
-const required = ["email", "consent"];
-
-const escapeHtml = (value = "") => String(value)
-  .replace(/&/g, "&amp;")
-  .replace(/</g, "&lt;")
-  .replace(/>/g, "&gt;")
-  .replace(/\"/g, "&quot;")
-  .replace(/'/g, "&#39;");
-
-const buildMessage = (payload) => {
-  const isContact = payload.type === "contact-request";
-  const name = payload.name || "Nie podano";
-  const title = isContact ? `Nowe zapytanie kontaktowe · ${name}` : `Nowy bezpłatny preview · ${name}`;
-  const intro = isContact
-    ? "Ktoś napisał przez formularz kontaktowy na stronie Znajdowalni."
-    : "Ktoś poprosił o przygotowanie prywatnego podglądu strony.";
-  const fields = [
-    ["Imię", payload.name],
-    ["E-mail", payload.email],
-    ["Telefon", payload.phone],
-    ["Strona / Google / Booksy", payload.source],
-    ["Firma", payload.company],
-    ["Branża", payload.business],
-    ["Miasto", payload.city],
-    ["Wiadomość", payload.message],
-    ["Źródło kampanii", payload.utm_source],
-    ["Medium", payload.utm_medium],
-    ["Kampania", payload.utm_campaign],
-    ["Google Click ID", payload.gclid],
-  ].filter(([, value]) => value);
-  const text = [intro, "", ...fields.map(([label, value]) => `${label}: ${value}`)].join("\n");
-  const rows = fields.map(([label, value]) => `<tr><td style="padding:10px 0;color:#59615f;font-size:13px;vertical-align:top;width:35%">${escapeHtml(label)}</td><td style="padding:10px 0;color:#121416;font-size:15px;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`).join("");
-  const html = `<!doctype html><html lang="pl"><body style="margin:0;background:#f7f3ea;font-family:Arial,sans-serif;color:#121416"><div style="max-width:640px;margin:24px auto;padding:0 16px"><div style="background:#121416;color:#f7f3ea;padding:22px 24px;border-bottom:5px solid #17b2a6"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9f24a">Znajdowalni</div><h1 style="margin:12px 0 0;font-size:25px;line-height:1.2">${escapeHtml(title)}</h1></div><div style="background:#fffdf8;padding:22px 24px;border:1px solid #121416;border-top:0"><p style="margin:0 0 16px;font-size:16px;line-height:1.5">${escapeHtml(intro)}</p><table role="presentation" style="width:100%;border-collapse:collapse">${rows}</table><p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #d8ddd8;color:#59615f;font-size:12px">Odpowiedz bezpośrednio na tę wiadomość, aby odpisać klientowi.</p></div></div></body></html>`;
-  return { title, text, html };
-};
-
-module.exports = async function handler(request, response) {
-  if (request.method !== "POST") return response.status(405).json({ error: "Method not allowed" });
-  const payload = request.body || {};
-  if (required.some((key) => !payload[key])) return response.status(400).json({ error: "Uzupełnij wymagane pola." });
-
-  const webhook = process.env.PREVIEW_WEBHOOK_URL;
-  const resendKey = process.env.RESEND_API_KEY;
-  const recipient = process.env.PREVIEW_RECIPIENT_EMAIL;
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpRecipient = process.env.SMTP_RECIPIENT_EMAIL || recipient;
-  const smtpRecipients = Array.from(new Set([...smtpRecipient.split(","), smtpUser].map((address) => address.trim()).filter(Boolean)));
-
-  // Bez zmiennych środowiskowych endpoint nie zapisuje ani nie przekazuje danych.
-  if (!webhook && !(resendKey && recipient) && !(smtpHost && smtpUser && smtpPass && smtpRecipient)) return response.status(503).json({ demo: true, error: "Preview delivery is not configured." });
-
-  try {
-    const message = buildMessage(payload);
-    if (webhook) {
-      const upstream = await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: payload.type || "preview-request", submittedAt: new Date().toISOString(), ...payload }) });
-      if (!upstream.ok) throw new Error("Webhook failed");
-    } else if (resendKey && recipient) {
-      const upstream = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ from: process.env.RESEND_FROM_EMAIL || "Znajdowalni <onboarding@resend.dev>", to: [recipient], reply_to: payload.email, subject: message.title, text: message.text, html: message.html }) });
-      if (!upstream.ok) throw new Error("Resend failed");
-    } else {
-      const nodemailer = require("nodemailer");
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: Number(process.env.SMTP_PORT || 465),
-        secure: String(process.env.SMTP_SECURE || "true") !== "false",
-        auth: { user: smtpUser, pass: smtpPass },
-        connectionTimeout: 8000,
-        greetingTimeout: 8000,
-        socketTimeout: 10000,
-      });
-      await transporter.sendMail({
-        from: process.env.SMTP_FROM_EMAIL || smtpUser,
-        to: smtpRecipients,
-        replyTo: payload.email,
-        subject: message.title,
-        text: message.text,
-        html: message.html,
-      });
-    }
-    return response.status(200).json({ ok: true });
-  } catch { return response.status(502).json({ error: "Nie udało się przekazać zgłoszenia." }); }
+const {createHash} = require('node:crypto');
+const {validate,record,message,EMAIL} = require('../lib/lead');
+// Per-instance guard; use Vercel Firewall for durable edge rate limiting.
+const attempts = new Map(), delivered = new Map(), inFlight = new Map();
+const WINDOW = 15 * 60 * 1000;
+function prune(map, now) { for (const [key,value] of map) if (now-value.time>WINDOW) map.delete(key); }
+async function deliver(lead) {
+  const env = process.env, mail = message(lead);
+  const recipient = env.SMTP_RECIPIENT_EMAIL || env.PREVIEW_RECIPIENT_EMAIL || '';
+  const recipients = [...new Set([recipient, env.SMTP_USER || ''].join(',').split(',').map(v=>v.trim()).filter(v=>EMAIL.test(v)))];
+  if (env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS && recipients.length) {
+    const transporter = require('nodemailer').createTransport({host:env.SMTP_HOST,port:Number(env.SMTP_PORT||465),secure:env.SMTP_SECURE!=='false',auth:{user:env.SMTP_USER,pass:env.SMTP_PASS},connectionTimeout:8000,greetingTimeout:8000,socketTimeout:10000});
+    const result = await transporter.sendMail({from:env.SMTP_FROM_EMAIL||env.SMTP_USER,to:recipients,replyTo:lead.contact.email,subject:mail.title,text:mail.text,html:mail.html,headers:{'X-Znajdowalni-Lead-ID':lead.id},attachments:[{filename:`lead-${lead.id}.json`,content:JSON.stringify(lead,null,2),contentType:'application/json'}]});
+    if (!result.accepted?.length) throw new Error('No accepted recipient');
+    return;
+  }
+  if (env.PREVIEW_WEBHOOK_URL) {
+    const response = await fetch(env.PREVIEW_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json','Idempotency-Key':lead.id},body:JSON.stringify(lead),signal:AbortSignal.timeout(10000)});
+    if (!response.ok) throw new Error('Webhook failed');
+    return;
+  }
+  if (env.RESEND_API_KEY && env.PREVIEW_RECIPIENT_EMAIL) {
+    const response = await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${env.RESEND_API_KEY}`,'Content-Type':'application/json','Idempotency-Key':lead.id},body:JSON.stringify({from:env.RESEND_FROM_EMAIL||'Znajdowalni <onboarding@resend.dev>',to:env.PREVIEW_RECIPIENT_EMAIL.split(',').map(v=>v.trim()),reply_to:lead.contact.email,subject:mail.title,text:mail.text,html:mail.html}),signal:AbortSignal.timeout(10000)});
+    if (!response.ok) throw new Error('Mail failed');
+    return;
+  }
+  const error = new Error('Not configured'); error.code='CONFIG'; throw error;
 }
+function createHandler(send = deliver) {
+  return async (request,response) => {
+    response.setHeader('Cache-Control','no-store');
+    if (request.method !== 'POST') { response.setHeader('Allow','POST'); return response.status(405).json({error:'Użyj formularza na stronie.'}); }
+    if (!(request.headers['content-type']||'').includes('application/json')) return response.status(415).json({error:'Nieprawidłowy format żądania.'});
+    const origin = request.headers.origin, host = request.headers.host;
+    if (origin) {try {if (new URL(origin).host!==host) return response.status(403).json({error:'Wyślij formularz z naszej strony.'});} catch {return response.status(403).json({error:'Nieprawidłowe źródło żądania.'});}}
+    if (Number(request.headers['content-length']||0)>12000 || Buffer.byteLength(JSON.stringify(request.body||{}))>12000) return response.status(413).json({error:'Zgłoszenie jest zbyt duże.'});
+    const {data,error,field} = validate(request.body);
+    if (error) return response.status(400).json({error,field});
+    if (data.website) return response.status(400).json({error:'Nie udało się zweryfikować formularza.'});
+    const now = Date.now(); prune(attempts,now); prune(delivered,now);
+    const fingerprint = createHash('sha256').update(JSON.stringify(data)).digest('hex');
+    const cached = delivered.get(data.requestId);
+    if (cached?.fingerprint===fingerprint) return response.status(200).json({ok:true,id:data.requestId});
+    const key = createHash('sha256').update(`${request.headers['x-real-ip']||request.socket?.remoteAddress||'unknown'}`).digest('hex');
+    const quota = attempts.get(key)||{count:0,time:now};
+    if (quota.count>=8 || attempts.size>10000) {response.setHeader('Retry-After','900');return response.status(429).json({error:'Za dużo prób. Spróbuj za 15 minut lub napisz na kontakt@znajdowalni.pl.'});}
+    attempts.set(key,{count:quota.count+1,time:quota.time});
+    const lead = record(data,process.env.VERCEL_ENV!=='production');
+    if (inFlight.has(data.requestId)) return response.status(409).json({error:'Zgłoszenie jest właśnie wysyłane. Poczekaj chwilę.'});
+    try {
+      inFlight.set(data.requestId,true); await send(lead);
+      delivered.set(data.requestId,{time:now,fingerprint});
+      return response.status(200).json({ok:true,id:lead.id});
+    } catch (error) {return response.status(error.code==='CONFIG'?503:502).json({error:'Nie udało się potwierdzić wysłania. Spróbuj ponownie lub napisz na kontakt@znajdowalni.pl.'});}
+    finally {inFlight.delete(data.requestId);}
+  };
+}
+module.exports = createHandler();
+module.exports.createHandler = createHandler;

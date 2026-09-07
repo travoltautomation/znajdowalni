@@ -33,6 +33,18 @@
       stanNaglowka();
     }
 
+    // Cennik leads directly to the two packages, below the sticky header.
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('a[href="#cennik"]');
+      var plans = document.querySelector('.pricing .plans');
+      if (!link || !plans) return;
+      event.preventDefault();
+      // The panel's click handler has already restored normal body scrolling.
+      var offset = header ? header.getBoundingClientRect().height : 0;
+      window.scrollTo({top:window.scrollY + plans.getBoundingClientRect().top - offset - 12, behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+      history.pushState(null, '', '#cennik');
+    });
+
     if (!toggle || !panel) return;
 
     var ostatniFokus = null;

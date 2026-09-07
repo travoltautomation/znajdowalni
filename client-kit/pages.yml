@@ -1,0 +1,41 @@
+# Optional Pro adapter. Enable only on the selected client's repository/branch.
+media:
+  input: public/media
+  output: /media
+content:
+  - name: content
+    label: Treści strony
+    type: file
+    path: content.json
+    format: json
+    fields:
+      - {name: headline, label: Nagłówek, type: string}
+      - {name: description, label: Wprowadzenie, type: text}
+      - {name: imageUrl, label: Zdjęcie główne, type: image}
+      - {name: servicesTitle, label: Nagłówek oferty, type: string}
+      - name: services
+        label: Usługi i ceny
+        type: object
+        list: true
+        fields:
+          - {name: name, label: Nazwa usługi, type: string}
+          - {name: description, label: Opis, type: text}
+          - {name: price, label: Cena, type: string}
+      - {name: aboutTitle, label: Nagłówek o firmie, type: string}
+      - {name: about, label: O firmie, type: text}
+      - {name: hours, label: Godziny otwarcia, type: text}
+      - name: faq
+        label: Pytania i odpowiedzi
+        type: object
+        list: true
+        fields:
+          - {name: question, label: Pytanie, type: string}
+          - {name: answer, label: Odpowiedź, type: text}
+      - name: news
+        label: Aktualności
+        type: object
+        list: true
+        fields:
+          - {name: title, label: Tytuł, type: string}
+          - {name: date, label: Data, type: date}
+          - {name: body, label: Treść, type: text}

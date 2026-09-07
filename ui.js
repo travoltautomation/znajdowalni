@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-scroll-contact],[data-scroll-preview]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('kontakt')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});document.getElementById('lead-source')?.focus({preventScroll:true});}));

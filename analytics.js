@@ -2,6 +2,7 @@
    Dopóki MEASUREMENT_ID jest pusty, plik nic nie robi  -  żaden skrypt Google
    nie jest pobierany i żadne ciasteczko nie powstaje. */
 (function () {
+  if (document.body.dataset.preview === 'true') return;
   var MEASUREMENT_ID = "G-R88CM79RJV"; // np. "G-XXXXXXXXXX"
   // Uzupełnij dopiero po otrzymaniu danych z Google Ads. Puste wartości niczego nie ładują.
   var GOOGLE_ADS_ID = ""; // np. "AW-123456789"
@@ -46,7 +47,7 @@
   }
 
   function track(name, params) {
-    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+    if (zgodaNaAnalityke() && typeof window.gtag === "function") window.gtag("event", name, params || {});
   }
 
   function zgodaNaReklamy() {
@@ -95,6 +96,10 @@
 
   // consent.js rozgłasza to zdarzenie po kliknięciu w banerze
   document.addEventListener("znajdowalni:consent", function (e) {
+    if (typeof window.gtag === 'function') {
+      window['ga-disable-' + MEASUREMENT_ID] = !e.detail?.analytics;
+      window.gtag('consent', 'update', {analytics_storage:e.detail?.analytics?'granted':'denied',ad_storage:e.detail?.advertising?'granted':'denied',ad_user_data:e.detail?.advertising?'granted':'denied',ad_personalization:e.detail?.advertising?'granted':'denied'});
+    }
     if (e.detail && e.detail.analytics) uruchomGA();
   });
 })();

@@ -6,7 +6,7 @@
 
   function setConsent(analytics, advertising) {
     const value = { necessary: true, analytics: !!analytics, advertising: !!advertising, updatedAt: new Date().toISOString() };
-    localStorage.setItem(storageKey, JSON.stringify(value));
+    try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch {}
     document.dispatchEvent(new CustomEvent("znajdowalni:consent", { detail: value }));
   }
 
@@ -25,6 +25,7 @@
       setConsent(save && banner.querySelector('[data-choice="analytics"]').checked, save && banner.querySelector('[data-choice="advertising"]').checked);
       closeBanner();
     }));
+    try {const saved=JSON.parse(localStorage.getItem(storageKey));for(const kind of ['analytics','advertising'])banner.querySelector(`[data-choice="${kind}"]`).checked=!!saved?.[kind];} catch {}
   }
 
   if (!consent) {
@@ -37,7 +38,6 @@
   }
   document.addEventListener("click", (event) => {
     if (event.target.closest(".cookie-settings")) {
-      localStorage.removeItem(storageKey);
       showBanner();
     }
   });

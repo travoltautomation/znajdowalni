@@ -1,0 +1,24 @@
+const fs=require('node:fs'),path=require('node:path');
+const [slug,leadPath,plan='standard']=process.argv.slice(2);
+if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug||'')||!['standard','pro'].includes(plan))throw new Error('Użycie: npm run client:new -- nazwa-klienta [plik-lead.json] [standard|pro]');
+const root=path.resolve(__dirname,'..'),dest=path.join(root,'clients',slug),kit=path.join(root,'client-kit');
+if(fs.existsSync(dest))throw new Error('Projekt istnieje. Niczego nie nadpisano.');
+const lead=leadPath?JSON.parse(fs.readFileSync(path.resolve(leadPath),'utf8')):{business:{},research:{sources:[],facts:[],toConfirm:[]}};
+if(lead.schemaVersion&&lead.schemaVersion!==1)throw new Error('Nieobsługiwana wersja rekordu.');
+fs.mkdirSync(path.join(dest,'api'),{recursive:true});
+const write=(name,data)=>fs.writeFileSync(path.join(dest,name),typeof data==='string'?data:JSON.stringify(data,null,2)+'\n');
+for(const name of ['build.js','style.css','contact.js'])fs.copyFileSync(path.join(kit,name),path.join(dest,name));
+fs.copyFileSync(path.join(kit,'contact-api.js'),path.join(dest,'api/contact.js'));
+let api=fs.readFileSync(path.join(dest,'api/contact.js'),'utf8').replace("require('./site.json')","require('../site.json')");write('api/contact.js',api);
+const info=lead.business||{};
+write('site.json',{name:info.company||'[DO POTWIERDZENIA] Nazwa firmy',city:info.city||'[DO POTWIERDZENIA] Miejscowość',industry:info.industry||'',domain:'',approved:false,plan,theme:'calm',sections:['services','about','trust','faq','news','contact'],email:'',phone:'',address:'',bookingUrl:'',mapUrl:'',imageUrl:'',imageAlt:'',cta:'',privacyText:''});
+write('content.json',{headline:'[DO POTWIERDZENIA] Główna potrzeba klienta',description:'[DO POTWIERDZENIA] Konkretna oferta i pierwszy krok.',servicesTitle:'W czym możemy pomóc',services:[],aboutTitle:'Poznaj nas',about:'[DO POTWIERDZENIA] Informacje o firmie',trust:[],hours:'',faq:[],news:[]});
+// Private operations stay outside deployment output and outside the Git repository.
+write('lead.private.json',lead);
+write('research.private.json',{sourceLink:info.source||'',sources:[],facts:[],toConfirm:['Dane firmy i kontakt','Zakres i ceny usług','Zdjęcia i prawa do materiałów','Domena, rezerwacje, godziny','Polityka prywatności'],direction:{audience:'',mainAction:'',tone:'',sections:[],references:[]}});
+write('package.json',{private:true,scripts:{build:'node build.js'},engines:{node:'24.x'},dependencies:{nodemailer:'^10.0.0'}});
+write('vercel.json',{buildCommand:'npm run build',outputDirectory:'dist',headers:[{source:'/(.*)',headers:[{key:'X-Content-Type-Options',value:'nosniff'},{key:'Referrer-Policy',value:'strict-origin-when-cross-origin'}]},{source:'/(.*)',has:[{type:'host',value:'.*\\.vercel\\.app'}],headers:[{key:'X-Robots-Tag',value:'noindex, nofollow'}]}]});
+write('.gitignore','node_modules/\ndist/\n.vercel/\n.env*\n*.private.json\n');
+if(plan==='pro')fs.copyFileSync(path.join(kit,'pages.yml'),path.join(dest,'.pages.yml'));
+write('README.md',`# ${slug}\n\n1. Zweryfikuj research.private.json: każdy fakt = źródło + data odczytu + potwierdzenie.\n2. Uzupełnij site.json i content.json. Theme: calm, editorial, workshop; kolejność sekcji w site.json.\n3. npm install; npm run build. Powstaje dist z noindex.\n4. Osobne repo klienta, branch preview i osobny projekt Vercel. Nie publikuj prywatnych rekordów.\n5. Ustaw SMTP w Vercel; test wyłącznie na własną skrzynkę. Zweryfikuj telefon, mapę, rezerwacje i formularz.\n6. Po akceptacji danych, treści i domeny ustaw approved=true; publikuj z VERCEL_ENV=production.\n7. Pro: .pages.yml ogranicza panel do treści. Włącz Pages CMS tylko dla tego repo; zaproś klienta wyłącznie do jego repo przez e-mail. Najpierw sprawdź edycję na branchu preview.\n8. Analityka domyślnie wyłączona. Dodaj GA4 wraz z polityką i zgodą wyłącznie na życzenie klienta.\n`);
+console.log(`Utworzono ${dest} (${plan}). Dane wymagają sprawdzenia; publikacja produkcyjna jest zablokowana.`);

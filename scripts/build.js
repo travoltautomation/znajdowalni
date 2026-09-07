@@ -46,6 +46,7 @@ for(const file of pages){
     doc.body.insertAdjacentHTML('beforeend','<script src="/lead-form.js" defer></script><script src="/ui.js" defer></script>');
   }
   const footer=doc.querySelector('footer');
+  for(const table of doc.querySelectorAll('.plan-table-wrap')){table.tabIndex=0;table.setAttribute('role','region');table.setAttribute('aria-label','Porównanie pakietów — przewiń tabelę w poziomie');}
   if(footer&&!demo&&!footer.querySelector('.cookie-settings'))footer.insertAdjacentHTML('beforeend','<button type="button" class="cookie-settings link-like">Ustawienia cookies</button>');
   if(!doc.querySelector('meta[name=description]')){const meta=doc.createElement('meta');meta.name='description';meta.content=doc.querySelector('h1')?.textContent||'Znajdowalni — strony lokalnych firm';doc.head.append(meta);}
   // Demo contact details must not route visitors to an unrelated real number.
@@ -56,3 +57,4 @@ fs.writeFileSync(path.join(out,'robots.txt'),preview?'User-agent: *\nDisallow: /
 const routes=['','cennik','strony-dla-fizjoterapeutow','strony-dla-gabinetow','strony-dla-beauty','strony-dla-warsztatow'];
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${preview?'':routes.map(r=>`<url><loc>https://znajdowalni.pl/${r}</loc></url>`).join('')}</urlset>`);
 console.log(`Built ${pages.length} pages for ${preview?'PREVIEW (noindex)':'PRODUCTION'}.`);
+

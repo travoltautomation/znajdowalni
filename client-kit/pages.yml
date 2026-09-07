@@ -11,6 +11,7 @@ content:
     fields:
       - {name: headline, label: Nagłówek, type: string}
       - {name: description, label: Wprowadzenie, type: text}
+      - {name: imageUrl, label: Zdjęcie główne, type: image}
       - {name: servicesTitle, label: Nagłówek oferty, type: string}
       - name: services
         label: Usługi i ceny

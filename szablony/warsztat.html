@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://znajdowalni.pl/szablony/warsztat/">
 <title>Serwis Zamkowa | Warsztat samochodowy Warszawa Śródmieście</title>
 <meta name="description" content="Warsztat samochodowy w centrum Warszawy. Jawny cennik robocizny, wycena przed naprawą, 24 miesiące gwarancji. Diagnostyka, mechanika, hamulce, klimatyzacja.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +75,8 @@
   /* HERO ze zdjęciem */
   .hero{position:relative;color:var(--papier);overflow:hidden;background:var(--stal)}
   .hero-foto{position:absolute;inset:0}
-  .hero-foto img{width:100%;height:100%;object-fit:cover}
+  .hero-foto picture,.hero-foto img{width:100%;height:100%;display:block}
+  .hero-foto img{object-fit:cover}
   .hero-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(21,24,28,.96) 0%,rgba(21,24,28,.9) 42%,rgba(21,24,28,.5) 100%)}
   .hero-in{position:relative;z-index:1;padding:44px 0 40px}
   .ocena{display:inline-flex;align-items:center;gap:10px;background:rgba(244,245,243,.1);border:1px solid rgba(244,245,243,.22);padding:8px 14px;margin-bottom:20px;font-size:14px}
@@ -137,7 +139,8 @@
 
   /* zespol */
   .zespol-grid{display:grid;gap:26px;align-items:center}
-  .zespol-foto{border:1px solid var(--linia)}
+  .zespol-foto{border:1px solid var(--linia);background:var(--stal);overflow:hidden;aspect-ratio:16/10}
+  .zespol-foto img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
   .osoby{display:grid;gap:16px;margin-top:20px}
   .osoba{border-left:3px solid var(--sygnal);padding-left:14px}
   .osoba b{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.2rem;text-transform:uppercase;display:block}
@@ -185,12 +188,18 @@
   #status-formularza.ok{display:block;background:rgba(30,138,95,.16);border-color:var(--zielen)}
   #status-formularza.blad{display:block;background:rgba(228,97,15,.12);border-color:var(--sygnal)}
 
-  footer{background:var(--grafit);color:#8E979F;padding:36px 0 26px;font-size:14.5px}
-  .stopka-grid{display:grid;gap:22px}
+  footer{background:var(--grafit);color:#AAB3BA;padding:0 0 26px;font-size:14.5px}
+  .stopka-cta{display:grid;gap:18px;align-items:center;padding:34px 0;border-bottom:1px solid var(--linia-c);margin-bottom:30px}
+  .stopka-cta h2{margin:0;color:var(--papier);max-width:620px}
+  .stopka-cta p{color:#96A0A9;max-width:48ch}
+  .stopka-grid{display:grid;gap:26px;align-items:start}
+  .stopka-kolumna{display:grid;gap:9px}
+  .stopka-kolumna p{margin:0}
+  .stopka-kolumna .label{display:block;margin-bottom:4px;color:var(--sygnal);font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.08em}
   footer strong{color:var(--papier);font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.3rem;text-transform:uppercase}
-  footer a{text-decoration:none}
+  footer a{text-decoration:none;color:var(--papier)}
   footer a:hover{color:var(--sygnal)}
-  .prawa{border-top:1px solid var(--linia-c);margin-top:24px;padding-top:16px;font-size:12.5px;color:#6B747C}
+  .prawa{border-top:1px solid var(--linia-c);margin-top:28px;padding-top:16px;font-size:12.5px;color:#78828A}
 
   /* przyklejony pasek na mobile */
   .pasek-mobilny{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1fr;background:var(--stal);border-top:1px solid var(--linia-c)}
@@ -198,7 +207,7 @@
   .pasek-mobilny a.glowny{background:var(--sygnal);color:#fff}
   body{padding-bottom:56px}
 
-  .odslon{opacity:0;transform:translateY(14px)}
+  .odslon{opacity:1;transform:none}
   .odslon.widoczny{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
 
   @media(min-width:620px){
@@ -208,21 +217,23 @@
     .opinie{grid-template-columns:repeat(2,1fr)}
   }
   @media(min-width:860px){
-    .duze-cta{grid-template-columns:1.3fr 1fr}
-    .proces{grid-template-columns:repeat(3,1fr)}
-    .zespol-grid{grid-template-columns:.8fr 1.2fr;gap:40px}
-    .kontakt-grid{grid-template-columns:1fr 1fr;gap:44px}
-    .gwarancje-in{grid-template-columns:repeat(4,1fr)}
-    .opinie{grid-template-columns:repeat(3,1fr)}
-  }
-  @media(min-width:1000px){
     .menu{display:flex}
     .tel-top{display:inline-flex}
     .burger{display:none}
     #menu-mobilne{display:none!important}
     .pasek-mobilny{display:none}
     body{padding-bottom:0}
+    .duze-cta{grid-template-columns:1.3fr 1fr}
+    .proces{grid-template-columns:repeat(3,1fr)}
+    .zespol-grid{grid-template-columns:.95fr 1.05fr;gap:48px}
+    .kontakt-grid{grid-template-columns:1fr 1fr;gap:44px}
+    .gwarancje-in{grid-template-columns:repeat(4,1fr)}
+    .opinie{grid-template-columns:repeat(3,1fr)}
+    .stopka-cta{grid-template-columns:1fr auto}
+  }
+  @media(min-width:1000px){
     .uslugi{grid-template-columns:repeat(4,1fr)}
+    .stopka-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
     section{padding:78px 0}
     .hero-in{padding:74px 0 66px}
     .mapa{height:380px}
@@ -236,7 +247,7 @@
 </head>
 <body>
 
-<div class="demo">WERSJA DEMONSTRACYJNA  -  dane firmy i opinie są przykładowe. Ceny odpowiadają średnim stawkom rynkowym w Warszawie.</div>
+<div class="demo">Przykładowy projekt demonstracyjny Znajdowalni. Dane warsztatu są fikcyjne.</div>
 
 <header>
   <div class="wrap nav">
@@ -268,8 +279,8 @@
 <section class="hero">
   <div class="hero-foto">
     <picture>
-      <source srcset="img/warsztat-hala.webp" type="image/webp">
-      <img src="img/warsztat-hala.jpg" alt="Hala warsztatu z samochodem na stanowisku serwisowym" width="1600" height="900" fetchpriority="high" decoding="async">
+      <source srcset="../assets/templates/warsztat-hero-2560.webp 2560w, ../assets/templates/template-warsztat.png 1600w" sizes="100vw" type="image/webp">
+      <img src="../assets/templates/template-warsztat.png" alt="Nowoczesny warsztat samochodowy z podnośnikiem, narzędziami i samochodem" width="2560" height="1440" fetchpriority="high" decoding="async">
     </picture>
   </div>
   <div class="wrap hero-in">
@@ -363,10 +374,6 @@
 
 <section id="zespol" style="background:var(--papier-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)">
   <div class="wrap zespol-grid">
-    <picture class="zespol-foto">
-      <source srcset="img/warsztat-mechanik.webp" type="image/webp">
-      <img src="img/warsztat-mechanik.jpg" alt="Mechanik przy pracy nad silnikiem samochodu" width="900" height="1200" loading="lazy" decoding="async">
-    </picture>
     <div>
       <p class="nadtytul odslon">Kto naprawia Twoje auto</p>
       <h2 class="odslon">Dwóch mechaników, żadnej rotacji</h2>
@@ -376,6 +383,10 @@
         <div class="osoba"><b>Tomek</b><span>Zawieszenie, hamulce, geometria. 11 lat w zawodzie, uprawnienia do obsługi klimatyzacji.</span></div>
       </div>
     </div>
+    <picture class="zespol-foto">
+      <source srcset="../assets/templates/warsztat-mechanik.webp" type="image/webp">
+      <img src="../assets/templates/warsztat-mechanik.jpg" alt="Mechanik przy pracy nad silnikiem samochodu" width="900" height="1200" loading="lazy" decoding="async">
+    </picture>
   </div>
 </section>
 
@@ -462,17 +473,34 @@
 </main>
 
 <footer>
-  <div class="wrap stopka-grid">
+  <div class="wrap stopka-cta">
     <div>
+      <p class="nadtytul">Serwis w centrum Warszawy</p>
+      <h2>Powiedz, co dzieje się z autem. Oddzwonimy z następnym krokiem.</h2>
+    </div>
+    <a class="cta-glowne" href="tel:+48221002030">
+      <span><b>22 100 20 30</b><small>Zadzwoń do serwisu</small></span>
+      <span class="strzalka" aria-hidden="true">→</span>
+    </a>
+  </div>
+  <div class="wrap stopka-grid">
+    <div class="stopka-kolumna">
       <strong>Serwis Zamkowa</strong>
       <p style="margin-top:8px">ul. Emilii Plater 49<br>00-125 Warszawa, Śródmieście</p>
     </div>
-    <div>
+    <div class="stopka-kolumna">
+      <span class="label">Kontakt</span>
       <p><a href="tel:+48221002030">22 100 20 30</a></p>
       <p><a href="mailto:kontakt@przyklad.pl">kontakt@przyklad.pl</a></p>
-      <p style="margin-top:8px">Pon  -  pt 8:00–18:00<br>Sob 9:00–14:00</p>
     </div>
-    <div>
+    <div class="stopka-kolumna">
+      <span class="label">Godziny</span>
+      <p>Pon  -  pt 8:00-18:00</p>
+      <p>Sob 9:00-14:00</p>
+      <p>Nd zamknięte</p>
+    </div>
+    <div class="stopka-kolumna">
+      <span class="label">Na stronie</span>
       <p><a href="#uslugi">Usługi</a></p>
       <p><a href="#cennik">Cennik</a></p>
       <p><a href="#faq">Pytania</a></p>

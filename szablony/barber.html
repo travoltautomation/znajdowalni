@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://znajdowalni.pl/szablony/barber/">
 <title>Barber Kuźnia | Strzyżenie i broda  -  Wrocław Nadodrze</title>
 <meta name="description" content="Barbershop na Nadodrzu we Wrocławiu. Strzyżenie męskie, broda i klasyczne golenie brzytwą. Jasne zasady rezerwacji.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +67,7 @@
   /* hero pelnoekranowy */
   .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:60px 0 48px;overflow:hidden;border-bottom:1px solid var(--linia)}
   .hero-tlo{position:absolute;inset:0;z-index:0}
-  .hero-tlo img{width:100%;height:100%;object-fit:cover;object-position:center;animation:hero-pan 18s ease-in-out infinite alternate}
+  .hero-tlo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(.92) contrast(1.08);animation:hero-pan 18s ease-in-out infinite alternate}
   .hero-tlo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,18,17,.98) 0%,rgba(17,18,17,.83) 40%,rgba(17,18,17,.35) 100%)}
   .hero .wrap{position:relative;z-index:1}
   .nadtytul{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mosiadz);font-weight:700;margin-bottom:20px}
@@ -101,8 +102,10 @@
 
   .galeria{display:grid;gap:12px}
   .kadr{position:relative;aspect-ratio:1/1;background:var(--karta);border:1px solid var(--linia);display:flex;align-items:flex-end;padding:16px;overflow:hidden}
-  .kadr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s ease}
-  .kadr:hover img{transform:scale(1.05);filter:brightness(1.08)}
+  .kadr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.06);transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s ease}
+  .kadr:hover img{transform:scale(1.05);filter:brightness(1.08) saturate(.95) contrast(1.08)}
+  .kadr:nth-child(2) img{object-position:58% 50%}
+  .kadr:nth-child(3) img{object-position:30% 50%}
   .kadr span{position:relative;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kosc);background:rgba(17,18,17,.82);padding:6px 10px;border:1px solid var(--linia)}
 
   .rezerwacja{background:var(--smola-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)}
@@ -115,14 +118,17 @@
   .godziny th{font-weight:400;color:var(--kosc-cien)}
   .godziny td{text-align:right;font-variant-numeric:tabular-nums}
 
-  footer{background:var(--smola);padding:44px 0 30px;font-size:14.5px;color:var(--kosc-cien);border-top:1px solid var(--linia)}
-  .stopka-grid{display:grid;gap:26px}
+  footer{background:var(--smola);padding:0 0 30px;font-size:14.5px;color:var(--kosc-cien);border-top:1px solid var(--linia)}
+  .stopka-cta{display:grid;gap:18px;align-items:center;padding:38px 0;border-bottom:1px solid var(--linia);margin-bottom:30px}
+  .stopka-cta h2{margin:0;max-width:620px}
+  .stopka-grid{display:grid;gap:26px;align-items:start}
+  .stopka-grid p{margin:0 0 7px}
   footer strong{color:var(--kosc);font-family:Syne,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
   footer a{text-decoration:none}
   footer a:hover{color:var(--mosiadz)}
   .prawa{border-top:1px solid var(--linia);margin-top:30px;padding-top:18px;font-size:12.5px;color:#6E6A64}
 
-  .odslon{opacity:0;transform:translateY(16px)}
+  .odslon{opacity:1;transform:none}
   .odslon.widoczny{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
   @keyframes hero-pan{from{transform:scale(1)}to{transform:scale(1.045)}}
 
@@ -131,6 +137,7 @@
     .atuty{grid-template-columns:repeat(3,1fr)}
     .rez-grid{grid-template-columns:1fr 1fr;gap:54px}
     .stopka-grid{grid-template-columns:1.4fr 1fr 1fr}
+    .stopka-cta{grid-template-columns:1fr auto}
     .poz-opis{flex-basis:auto;width:100%}
   }
   @media(min-width:980px){
@@ -151,7 +158,7 @@
 </head>
 <body>
 
-<div class="demo">WERSJA DEMONSTRACYJNA  -  dane przykładowe, do potwierdzenia z klientem</div>
+<div class="demo">Przykładowy projekt demonstracyjny Znajdowalni. Dane salonu są fikcyjne.</div>
 
 <header>
   <div class="wrap nav">
@@ -181,7 +188,10 @@
 
 <section class="hero">
   <div class="hero-tlo" aria-hidden="true">
-    <img src="../assets/templates/barber-hero.webp" alt="" width="1664" height="936" fetchpriority="high" decoding="async">
+    <picture>
+      <source srcset="../assets/templates/barber-hero-2560.webp 2560w, ../assets/templates/barber-hero.webp 1664w" sizes="100vw" type="image/webp">
+      <img src="../assets/templates/barber-hero.webp" alt="" width="2560" height="1435" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="wrap">
     <p class="nadtytul">Wrocław · Nadodrze</p>
@@ -245,8 +255,8 @@
     <p class="sek-wstep odslon">Dobre światło, precyzja i miejsce, do którego chce się wracać.</p>
     <div class="galeria odslon">
       <figure class="kadr"><img src="../assets/templates/barber-interior.webp" alt="Stanowisko w ciemnym, kameralnym barbershopie" width="1280" height="1280" loading="lazy" decoding="async"><span>Wnętrze</span></figure>
-      <figure class="kadr"><img src="../assets/templates/barber-hero.webp" alt="Precyzyjne strzyżenie w barbershopie" width="1664" height="936" loading="lazy" decoding="async"><span>Rzemiosło</span></figure>
-      <figure class="kadr"><img src="../assets/templates/barber-interior.webp" alt="Detale miejsca do pielęgnacji" width="1280" height="1280" loading="lazy" decoding="async"><span>Detale</span></figure>
+      <figure class="kadr"><img src="../assets/templates/barber-detail.webp" alt="Detal stanowiska barberskiego, narzędzia i światło przy fotelu" width="1280" height="1280" loading="lazy" decoding="async"><span>Detal</span></figure>
+      <figure class="kadr"><img src="../assets/templates/barber-finish.webp" alt="Gotowe stanowisko i efekt świeżo zakończonej wizyty w barbershopie" width="1280" height="1280" loading="lazy" decoding="async"><span>Efekt</span></figure>
     </div>
   </div>
 </section>
@@ -283,6 +293,13 @@
 </main>
 
 <footer>
+  <div class="wrap stopka-cta">
+    <div>
+      <p class="nadtytul">Nadodrze · rezerwacja online</p>
+      <h2>Dobry termin znika szybko. Zarezerwuj wizytę przed kolejnym tygodniem.</h2>
+    </div>
+    <a class="btn btn-pelny" href="#rezerwacja">Rezerwuj online</a>
+  </div>
   <div class="wrap stopka-grid">
     <div>
       <strong>Barber Kuźnia</strong>

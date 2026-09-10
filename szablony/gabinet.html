@@ -1,3 +1,50 @@
-<!doctype html>
-<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Pracownia Spokoju | Przykładowa strona gabinetu</title><style>body{margin:0;background:#f6f1e9;color:#263934;font:16px/1.5 Arial,sans-serif}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}header{padding:22px 0;border-bottom:1px solid #cbd5cf}.brand{font-weight:700;letter-spacing:.06em}.nav{display:flex;justify-content:space-between;align-items:center;gap:20px}.button{display:inline-block;padding:13px 17px;background:#315e50;color:#fff;text-decoration:none;border-radius:4px}.hero{padding:90px 0;background:linear-gradient(115deg,#e2eee8 0 52%,#f6f1e9 52%)}.hero-grid{display:grid;grid-template-columns:1fr .8fr;gap:64px;align-items:center}.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;color:#315e50}.hero h1{font:600 clamp(43px,6vw,76px)/1.02 Georgia,serif;margin:12px 0}.hero p{max-width:580px;font-size:19px}.card{padding:30px;background:#fff;border:1px solid #cbd5cf;box-shadow:18px 18px 0 #d4e4dd}.card h2{font:600 31px Georgia,serif;margin:0 0 12px}.section{padding:80px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.grid article{padding:26px;background:#fff;border-top:4px solid #315e50}.grid h2{font:600 27px Georgia,serif;margin:0 0 10px}.calm{background:#315e50;color:#fff}.calm h2{font:600 clamp(35px,5vw,58px)/1.1 Georgia,serif;margin:0 0 18px}.footer-demo{padding:22px;background:#182a25;color:#fff;text-align:center}.footer-demo a{color:#c8f08c}@media(max-width:720px){.hero{padding:58px 0}.hero-grid,.grid{grid-template-columns:1fr}.nav nav{display:none}.section{padding:58px 0}}</style></head>
-<body><header><div class="wrap nav"><span class="brand">PRACOWNIA SPOKOJU</span><nav>O gabinecie · Jak pracuję · Pierwsze spotkanie</nav><a class="button" href="#kontakt">Napisz wiadomość</a></div></header><main><section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow">GABINET TERAPEUTYCZNY · PRZYKŁADOWE DEMO</p><h1>Jest miejsce, żeby spokojnie zacząć.</h1><p>Strona pomaga zrozumieć, dla kogo jest pomoc, jak wygląda pierwszy kontakt i gdzie zadać pytanie bez przeklikiwania kilku profili.</p><a class="button" href="#kontakt">Napisz wiadomość</a></div><aside class="card"><p class="eyebrow">PIERWSZY KROK</p><h2>Nie musisz wiedzieć wszystkiego od razu.</h2><p>Krótka informacja o tym, z czym przychodzisz, wystarczy, by ustalić, czy ten gabinet będzie dobrym miejscem na rozmowę.</p></aside></div></section><section class="section"><div class="wrap"><p class="eyebrow">CO UŁATWIA DECYZJĘ</p><div class="grid"><article><h2>Dla kogo</h2><p>Jasny opis obszarów pracy, bez obietnic i medycznego żargonu.</p></article><article><h2>Jak wygląda kontakt</h2><p>Informacje organizacyjne i pierwszy krok dostępne od razu.</p></article><article><h2>Kim jest specjalista</h2><p>Doświadczenie, podejście i wartości pokazane w spokojnej formie.</p></article></div></div></section><section class="section calm" id="kontakt"><div class="wrap"><p class="eyebrow" style="color:#c8f08c">KONTAKT</p><h2>Masz pytanie przed pierwszym spotkaniem?</h2><p>Ten blok można połączyć z formularzem, kalendarzem rezerwacji albo mailem klienta.</p><a class="button" style="background:#c8f08c;color:#182a25" href="mailto:kontakt@znajdowalni.pl">Napisz wiadomość</a></div></section></main><footer class="footer-demo">Taką stronę zrobimy dla Twojej firmy. <a href="../index.html#kontakt">Zobacz bezpłatny podgląd</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://znajdowalni.pl/szablony/gabinet/">
+<title>Gabinet Spokojna Przestrzeń | Psychoterapia i konsultacje</title>
+<meta name="description" content="Przykładowa strona gabinetu terapeutycznego: spokojny opis pomocy, obszary pracy, FAQ, kontakt i umawianie konsultacji.">
+<style>
+  :root{--tlo:#F7F3EC;--tekst:#1D2420;--muted:#66736B;--akcent:#44695D;--linia:#DDD4C5;--jasny:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--tlo);color:var(--tekst);line-height:1.65;font-size:17px}
+  .wrap{width:min(1080px,calc(100% - 40px));margin:0 auto}
+  .demo{background:#26342F;color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+  header{border-bottom:1px solid var(--linia);background:rgba(247,243,236,.94);position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+  .nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+  .marka{text-decoration:none;font-weight:700}.marka span{display:block;font-size:12px;color:var(--muted);font-weight:400}
+  nav{display:flex;gap:22px}nav a,a.cta{color:inherit;text-decoration:none}.cta{background:var(--akcent);color:#fff!important;padding:12px 18px;border-radius:999px}
+  .hero{padding:82px 0 66px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--akcent);font-weight:700;margin-bottom:14px}
+  h1{font-family:Georgia,serif;font-size:clamp(2.4rem,6vw,5rem);line-height:1.02;margin-bottom:22px}h2{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.08;margin-bottom:18px}
+  .lead{font-size:1.17rem;color:var(--muted);max-width:620px}.panel{background:var(--jasny);border:1px solid var(--linia);padding:28px;box-shadow:0 18px 45px rgba(29,36,32,.08)}.hero-photo{grid-column:2;border:1px solid var(--linia);background:#fff;padding:10px;box-shadow:0 24px 60px rgba(29,36,32,.1)}.hero-photo img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+  .section{padding:72px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--linia);padding:24px}.card h3{margin-bottom:8px}
+  ul{padding-left:20px;color:var(--muted)}.contact{background:#25362F;color:#fff}.contact p{color:#DCE5DE}.contact a{color:#fff}
+  footer{background:#1F2B26;color:#C7D1CB;padding:0 0 30px}.footer-cta{padding:38px 0;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:28px}.footer-cta h2{color:#fff;max-width:720px}.footer-grid{display:grid;gap:24px}.footer-grid a{color:#fff;text-decoration:none}.footer-grid p{margin:0;color:#C7D1CB}
+  @media(min-width:760px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr}}
+  @media(max-width:760px){nav{display:none}.hero-grid,.grid{grid-template-columns:1fr}.hero-photo{grid-column:auto}.hero{padding:58px 0}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"PsychologicalTreatment","name":"Gabinet Spokojna Przestrzeń","description":"Przykładowa strona gabinetu terapeutycznego z obszarami pomocy, FAQ i kontaktem.","areaServed":"Polska"}</script>
+</head>
+<body>
+<div class="demo">Przykładowy projekt demonstracyjny Znajdowalni. Dane gabinetu są fikcyjne.</div>
+<header><div class="wrap nav"><a class="marka" href="#top">Spokojna Przestrzeń<span>gabinet terapeutyczny</span></a><nav><a href="#pomoc">Zakres pomocy</a><a href="#pierwsza">Pierwsza konsultacja</a><a href="#kontakt">Kontakt</a></nav><a class="cta" href="#kontakt">Umów konsultację</a></div></header>
+<main id="top">
+<section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow">PSYCHOTERAPIA I KONSULTACJE</p><h1>Spokojny pierwszy krok, kiedy potrzebujesz rozmowy.</h1><p class="lead">Strona pokazuje, z czym można się zgłosić, jak wygląda pierwsza konsultacja i jak bezpiecznie skontaktować się z gabinetem. Bez presji, obietnic i przeładowania treścią.</p></div><aside class="panel"><p class="eyebrow">Najważniejsze informacje</p><ul><li>konsultacje indywidualne dla dorosłych</li><li>spotkania online i w gabinecie</li><li>jasna ścieżka pierwszego kontaktu</li><li>FAQ dla osób, które umawiają się pierwszy raz</li></ul></aside><figure class="hero-photo"><img src="../assets/templates/template-gabinet.png" alt="Spokojny gabinet terapeutyczny z fotelami, roślinami i miękkim światłem" width="1600" height="900" loading="eager" decoding="async"></figure></div></section>
+<section class="section" id="pomoc"><div class="wrap"><p class="eyebrow">ZAKRES POMOCY</p><h2>Od razu wiadomo, czy to właściwe miejsce.</h2><div class="grid"><article class="card"><h3>Lęk i napięcie</h3><p>Krótki opis obszaru pomocy, językiem zrozumiałym dla osoby szukającej wsparcia.</p></article><article class="card"><h3>Relacje</h3><p>Informacje o tym, z jakimi trudnościami można zgłosić się na konsultację.</p></article><article class="card"><h3>Kryzys i zmiana</h3><p>Spokojne wyjaśnienie, kiedy pierwsza rozmowa może być dobrym krokiem.</p></article></div></div></section>
+<section class="section" id="pierwsza"><div class="wrap"><p class="eyebrow">PIERWSZA KONSULTACJA</p><h2>Osoba odwiedzająca wie, czego się spodziewać.</h2><p class="lead">Sekcja porządkuje czas trwania spotkania, formę kontaktu, zasady odwoływania wizyt i sposób przygotowania. To zmniejsza niepewność przed wysłaniem wiadomości.</p></div></section>
+<section class="section contact" id="kontakt"><div class="wrap"><p class="eyebrow">KONTAKT</p><h2>Umów pierwszą rozmowę.</h2><p>Napisz kilka zdań o tym, czego szukasz. Odpowiedź przychodzi zwykle w następnym dniu roboczym.</p><p><a href="mailto:kontakt@example.com">kontakt@example.com</a> · <a href="tel:+48123123123">+48 123 123 123</a></p></div></section>
+</main>
+<footer>
+  <div class="wrap footer-cta"><p class="eyebrow">SPOKOJNY KONTAKT</p><h2>Jeden jasny krok zamiast szukania informacji po kilku miejscach.</h2></div>
+  <div class="wrap footer-grid">
+    <div><strong>Spokojna Przestrzeń</strong><p>gabinet terapeutyczny<br>spotkania online i w gabinecie</p></div>
+    <div><p><a href="mailto:kontakt@example.com">kontakt@example.com</a></p><p><a href="tel:+48123123123">+48 123 123 123</a></p></div>
+    <div><p><a href="#pomoc">Zakres pomocy</a></p><p><a href="#pierwsza">Pierwsza konsultacja</a></p><p><a href="#kontakt">Kontakt</a></p></div>
+  </div>
+</footer>
+</body>
+</html>

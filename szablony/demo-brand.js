@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const ribbon = document.createElement('aside');
   ribbon.className = 'znajdowalni-demo-ribbon';
-  ribbon.innerHTML = 'To przykładowy kierunek strony. <a href="../index.html#kontakt">Taką stronę zrobimy dla Twojej firmy →</a>';
+  ribbon.innerHTML = 'To przykładowy kierunek strony. <a href="/#kontakt">Taką stronę zrobimy dla Twojej firmy →</a>';
   document.body.append(ribbon);
   document.querySelectorAll('a[href^="tel:"]').forEach((link) => link.hidden = true);
   const style = document.createElement('style');

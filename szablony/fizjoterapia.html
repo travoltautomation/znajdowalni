@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://znajdowalni.pl/szablony/fizjoterapia/">
 <title>Gabinet Ruchu | Fizjoterapia i rehabilitacja  -  Kraków Podgórze</title>
 <meta name="description" content="Fizjoterapia po urazach i operacjach w Krakowie. Terapia manualna, rehabilitacja pooperacyjna i jasny pierwszy krok do kontaktu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -134,14 +135,16 @@
   #status-formularza.ok{display:block;background:rgba(143,168,154,.22);border:1px solid var(--szalwia)}
   #status-formularza.blad{display:block;background:rgba(196,112,63,.18);border:1px solid var(--miedz)}
 
-  footer{background:var(--atrament);color:#B9C4BF;padding:40px 0 32px;font-size:14.5px}
-  .stopka-grid{display:grid;gap:24px}
+  footer{background:var(--atrament);color:#B9C4BF;padding:0 0 32px;font-size:14.5px}
+  .stopka-cta{display:grid;gap:18px;align-items:center;padding:38px 0;border-bottom:1px solid #2A3733;margin-bottom:28px}
+  .stopka-cta h2{margin:0;color:var(--kreda);max-width:680px}
+  .stopka-grid{display:grid;gap:24px;align-items:start}
   footer strong{color:var(--kreda);font-family:Newsreader,Georgia,serif;font-size:1.1rem;font-weight:600}
   footer a{text-decoration:none}
   footer a:hover{color:var(--kreda)}
   .prawa{border-top:1px solid #2A3733;margin-top:28px;padding-top:18px;font-size:13px;color:#7E8C87}
 
-  .odslon{opacity:0;transform:translateY(14px)}
+  .odslon{opacity:1;transform:none}
   .odslon.widoczny{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
 
   @media(min-width:760px){
@@ -150,6 +153,7 @@
     .uslugi{grid-template-columns:repeat(2,1fr)}
     .kontakt-grid{grid-template-columns:.9fr 1.1fr;gap:52px}
     .stopka-grid{grid-template-columns:1.3fr 1fr 1fr}
+    .stopka-cta{grid-template-columns:1fr auto}
   }
   @media(min-width:980px){
     .menu{display:flex}
@@ -170,7 +174,7 @@
 </head>
 <body>
 
-<div class="demo">Wersja demonstracyjna  -  <b>dane przykładowe</b>, do potwierdzenia z klientem.</div>
+<div class="demo">Przykładowy projekt demonstracyjny Znajdowalni. Dane gabinetu są fikcyjne.</div>
 
 <header>
   <div class="wrap nav">
@@ -285,7 +289,7 @@
       <p class="nadtytul">O gabinecie</p>
       <h2 class="serif odslon">Mały gabinet. Bez taśmy produkcyjnej.</h2>
       <p class="sek-wstep odslon">Prowadzimy jeden gabinet i sami przyjmujemy pacjentów. Nie ma tu wymiany terapeutów co wizytę ani dwóch osób na tej samej godzinie. Jeśli w trakcie leczenia okaże się, że problem wykracza poza fizjoterapię, powiemy to wprost i pokierujemy dalej.</p>
-      <p class="drobne">Adres i godziny otwarcia  -  <b>[DO POTWIERDZENIA z klientem]</b></p>
+      <p class="drobne">Adres i godziny otwarcia dopasujemy do gotowej strony gabinetu.</p>
     </div>
     <div class="foto-miejsce" style="aspect-ratio:1/1">
       <img src="../assets/templates/fizjoterapia-gabinet.webp" alt="Rozmowa w kameralnym gabinecie fizjoterapii" width="1280" height="1280" loading="lazy" decoding="async">
@@ -335,6 +339,13 @@
 </main>
 
 <footer>
+  <div class="wrap stopka-cta">
+    <div>
+      <p class="nadtytul">Pierwsza wizyta bez skierowania</p>
+      <h2 class="serif">Opisz problem. Oddzwonimy i powiemy, od czego zacząć.</h2>
+    </div>
+    <a class="btn btn-jasny" href="tel:+48123456789">Zadzwoń do gabinetu</a>
+  </div>
   <div class="wrap stopka-grid">
     <div>
       <strong>Gabinet Ruchu</strong>

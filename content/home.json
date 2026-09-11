@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "eyebrow": "STRONY WWW DLA LOKALNYCH FIRM USŁUGOWYCH",
+    "headline": "Pokażę Ci, jak może wyglądać lepsza strona Twojej firmy.",
+    "lead": "Wyślij obecną stronę, wizytówkę Google albo Booksy. Przygotujemy prywatny podgląd nowej strony, zanim podejmiesz decyzję o współpracy.",
+    "cta": "Wyślij firmę do podglądu"
+  },
+  "proof": ["dla gabinetów", "dla salonów beauty", "dla warsztatów", "dla lokalnych usług"],
+  "contact": {
+    "email": "kontakt@znajdowalni.pl",
+    "promise": "Najpierw dostajesz konkretny kierunek strony. Dopiero potem rozmawiamy o zakresie, terminie i warunkach."
+  }
+}

@@ -1,403 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://znajdowalni.pl/szablony/barber/">
-<title>Barber Kuźnia | Strzyżenie i broda  -  Wrocław Nadodrze</title>
-<meta name="description" content="Barbershop na Nadodrzu we Wrocławiu. Strzyżenie męskie, broda i klasyczne golenie brzytwą. Jasne zasady rezerwacji.">
+<title>Barber Kuźnia | Barbershop Wrocław Nadodrze</title>
+<meta name="description" content="Przykładowa strona barbershopu: mocny pierwszy ekran, usługi, cennik, galeria, opinie, rezerwacja i szybki kontakt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HairSalon",
-  "name": "Barber Kuźnia",
-  "description": "Barbershop we Wrocławiu  -  strzyżenie męskie, pielęgnacja brody, golenie brzytwą.",
-  "areaServed": "Wrocław"
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --smola:#111211;
-    --smola-2:#191A19;
-    --karta:#1F211F;
-    --kosc:#EFEAE0;
-    --kosc-cien:#A9A399;
-    --mosiadz:#C9973F;
-    --mosiadz-jasny:#E0B25C;
-    --linia:#2E312E;
-    --czerwien:#A8433A;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--smola);color:var(--kosc);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
-  }
-  .disp{font-family:Syne,Impact,"Arial Black",sans-serif;font-weight:800;letter-spacing:-.02em;text-transform:uppercase}
-  .wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
-  a{color:inherit}
-  :focus-visible{outline:2px solid var(--mosiadz);outline-offset:3px}
-
-  .demo{background:var(--mosiadz);color:var(--smola);font-size:13px;font-weight:600;padding:9px 16px;text-align:center}
-
-  header{position:sticky;top:0;z-index:40;background:rgba(17,18,17,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--linia)}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
-  .marka{font-family:Syne,sans-serif;font-weight:800;font-size:19px;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:10px}
-  .marka i{display:block;width:9px;height:9px;background:var(--mosiadz);transform:rotate(45deg)}
-  .menu{display:none;gap:30px}
-  .menu a{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;text-decoration:none;color:var(--kosc-cien)}
-  .menu a:hover{color:var(--mosiadz)}
-  .rezerwuj-top{display:none;background:var(--mosiadz);color:var(--smola);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
-  .rezerwuj-top:hover{background:var(--mosiadz-jasny)}
-  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:1px solid var(--linia);cursor:pointer;align-items:center}
-  .burger span{display:block;width:18px;height:2px;background:var(--kosc);transition:transform .2s,opacity .2s}
-  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
-  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  #menu-mobilne{position:fixed;inset:72px 0 auto;background:var(--smola-2);border-bottom:1px solid var(--linia);padding:8px 20px 24px;z-index:39}
-  #menu-mobilne[hidden]{display:none}
-  #menu-mobilne a{display:block;padding:16px 0;border-bottom:1px solid var(--linia);text-decoration:none;font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
-  #menu-mobilne .cta-m{margin-top:18px;text-align:center;background:var(--mosiadz);color:var(--smola);border-bottom:0}
-
-  /* hero pelnoekranowy */
-  .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:60px 0 48px;overflow:hidden;border-bottom:1px solid var(--linia)}
-  .hero-tlo{position:absolute;inset:0;z-index:0}
-  .hero-tlo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(.92) contrast(1.08);animation:hero-pan 18s ease-in-out infinite alternate}
-  .hero-tlo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,18,17,.98) 0%,rgba(17,18,17,.83) 40%,rgba(17,18,17,.35) 100%)}
-  .hero .wrap{position:relative;z-index:1}
-  .nadtytul{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mosiadz);font-weight:700;margin-bottom:20px}
-  h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(2.7rem,12vw,6.2rem);line-height:.92;letter-spacing:-.035em;text-transform:uppercase;margin-bottom:22px}
-  h1 span{display:block;color:var(--mosiadz)}
-  .lead{font-size:1.1rem;color:var(--kosc-cien);max-width:44ch;margin-bottom:30px}
-  .cta-rzad{display:flex;flex-wrap:wrap;gap:12px}
-  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 28px;font-size:13.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;border:1px solid var(--mosiadz);transition:background-color .18s,color .18s}
-  .btn-pelny{background:var(--mosiadz);color:var(--smola)}
-  .btn-pelny:hover{background:var(--mosiadz-jasny)}
-  .btn-pusty{background:transparent;color:var(--kosc);border-color:var(--linia)}
-  .btn-pusty:hover{border-color:var(--kosc)}
-
-  section{padding:64px 0}
-  h2{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.8rem,6vw,2.8rem);line-height:1;letter-spacing:-.028em;text-transform:uppercase;margin-bottom:14px}
-  .sek-wstep{color:var(--kosc-cien);max-width:52ch;margin-bottom:38px}
-
-  /* cennik jak karta w salonie */
-  .cennik{display:grid;gap:0}
-  .poz{display:flex;align-items:baseline;gap:14px;padding:19px 0;border-bottom:1px solid var(--linia)}
-  .poz:first-child{border-top:1px solid var(--linia)}
-  .poz-nazwa{font-family:Syne,sans-serif;font-weight:600;font-size:1.12rem;letter-spacing:-.01em;white-space:nowrap}
-  .poz-kropki{flex:1;border-bottom:1px dotted #3C403C;transform:translateY(-4px)}
-  .poz-cena{font-family:Syne,sans-serif;font-weight:800;font-size:1.12rem;color:var(--mosiadz);white-space:nowrap;font-variant-numeric:tabular-nums}
-  .poz-opis{flex-basis:100%;font-size:14px;color:var(--kosc-cien);margin-top:2px}
-  .cennik-nota{margin-top:22px;font-size:14px;color:var(--kosc-cien);border-left:2px solid var(--mosiadz);padding-left:14px}
-
-  .atuty{display:grid;gap:1px;background:var(--linia);border:1px solid var(--linia);margin-top:8px}
-  .atut{background:var(--smola-2);padding:26px 24px}
-  .atut b{display:block;font-family:Syne,sans-serif;font-weight:800;font-size:2rem;color:var(--mosiadz);line-height:1;margin-bottom:8px}
-  .atut span{font-size:14.5px;color:var(--kosc-cien)}
-
-  .galeria{display:grid;gap:12px}
-  .kadr{position:relative;aspect-ratio:1/1;background:var(--karta);border:1px solid var(--linia);display:flex;align-items:flex-end;padding:16px;overflow:hidden}
-  .kadr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.06);transition:transform .65s cubic-bezier(.22,.61,.36,1),filter .65s ease}
-  .kadr:hover img{transform:scale(1.05);filter:brightness(1.08) saturate(.95) contrast(1.08)}
-  .kadr:nth-child(2) img{object-position:58% 50%}
-  .kadr:nth-child(3) img{object-position:30% 50%}
-  .kadr span{position:relative;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--kosc);background:rgba(17,18,17,.82);padding:6px 10px;border:1px solid var(--linia)}
-
-  .rezerwacja{background:var(--smola-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)}
-  .rez-grid{display:grid;gap:34px}
-  dl dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mosiadz);margin-top:20px;font-weight:700}
-  dl dd{font-size:1.05rem;margin-top:4px}
-  dl dd a{text-decoration:none;border-bottom:1px solid #3C403C}
-  .godziny{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}
-  .godziny th,.godziny td{text-align:left;padding:9px 0;border-bottom:1px solid var(--linia)}
-  .godziny th{font-weight:400;color:var(--kosc-cien)}
-  .godziny td{text-align:right;font-variant-numeric:tabular-nums}
-
-  footer{background:var(--smola);padding:0 0 30px;font-size:14.5px;color:var(--kosc-cien);border-top:1px solid var(--linia)}
-  .stopka-cta{display:grid;gap:18px;align-items:center;padding:38px 0;border-bottom:1px solid var(--linia);margin-bottom:30px}
-  .stopka-cta h2{margin:0;max-width:620px}
-  .stopka-grid{display:grid;gap:26px;align-items:start}
-  .stopka-grid p{margin:0 0 7px}
-  footer strong{color:var(--kosc);font-family:Syne,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
-  footer a{text-decoration:none}
-  footer a:hover{color:var(--mosiadz)}
-  .prawa{border-top:1px solid var(--linia);margin-top:30px;padding-top:18px;font-size:12.5px;color:#6E6A64}
-
-  .odslon{opacity:1;transform:none}
-  .odslon.widoczny{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
-  @keyframes hero-pan{from{transform:scale(1)}to{transform:scale(1.045)}}
-
-  @media(min-width:700px){
-    .galeria{grid-template-columns:repeat(3,1fr)}
-    .atuty{grid-template-columns:repeat(3,1fr)}
-    .rez-grid{grid-template-columns:1fr 1fr;gap:54px}
-    .stopka-grid{grid-template-columns:1.4fr 1fr 1fr}
-    .stopka-cta{grid-template-columns:1fr auto}
-    .poz-opis{flex-basis:auto;width:100%}
-  }
-  @media(min-width:980px){
-    .menu{display:flex}
-    .rezerwuj-top{display:inline-flex}
-    .burger{display:none}
-    #menu-mobilne{display:none!important}
-    section{padding:88px 0}
-  }
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    .odslon{opacity:1;transform:none}
-    .odslon.widoczny{transition:none}
-    .burger span{transition:none}
-    .hero-tlo img{animation:none}
-  }
+:root{--bg:#11110f;--panel:#191916;--soft:#24231f;--text:#f5efe2;--muted:#b7ad9c;--gold:#d7a84f;--gold2:#f0c46f;--line:#353229}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:58px}img{display:block;max-width:100%}a{color:inherit}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.demo{background:var(--gold);color:#16120b;text-align:center;padding:9px 16px;font-size:13px;font-weight:800}.top{position:sticky;top:0;z-index:30;background:rgba(17,17,15,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font:700 24px/1 Oswald,sans-serif;text-transform:uppercase;text-decoration:none}.brand span{display:block;font:600 11px/1.2 Inter,sans-serif;letter-spacing:.18em;color:var(--gold);margin-top:4px}.menu{display:none;gap:24px}.menu a{font-size:13px;text-transform:uppercase;letter-spacing:.12em;text-decoration:none;color:var(--muted);font-weight:800}.menu a:hover{color:var(--gold)}.top-cta{display:none;text-decoration:none;background:var(--gold);color:#16120b;padding:12px 18px;font-weight:900;text-transform:uppercase;font-size:13px}
+.hero{position:relative;min-height:calc(100vh - 120px);display:grid;align-items:end;overflow:hidden}.hero-bg{position:absolute;inset:0}.hero-bg picture,.hero-bg img{width:100%;height:100%}.hero-bg img{object-fit:cover;filter:saturate(.86) contrast(1.08)}.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,15,.96),rgba(17,17,15,.78) 43%,rgba(17,17,15,.24))}.hero-in{position:relative;z-index:1;padding:70px 0}.rating{display:inline-flex;gap:10px;align-items:center;background:rgba(245,239,226,.08);border:1px solid rgba(245,239,226,.16);padding:8px 12px;margin-bottom:22px;color:var(--muted);font-size:14px}.stars{color:var(--gold2);letter-spacing:2px}.hero h1{font:700 clamp(3.2rem,11vw,7.6rem)/.9 Oswald,sans-serif;text-transform:uppercase;max-width:850px;margin-bottom:22px}.hero h1 span{color:var(--gold)}.lead{font-size:1.14rem;color:var(--muted);max-width:570px;margin-bottom:28px}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 22px;border:1px solid var(--gold);text-decoration:none;text-transform:uppercase;font-weight:900;font-size:13px;letter-spacing:.08em}.btn-primary{background:var(--gold);color:#16120b}.btn-secondary{color:var(--text);border-color:rgba(245,239,226,.24)}.btn:hover{transform:translateY(-1px)}
+.trust{background:#0c0c0b;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.trust-grid{display:grid;gap:1px;background:var(--line)}.trust-grid div{background:#0f0f0d;padding:22px}.trust b{display:block;font:700 25px/1 Oswald,sans-serif;color:var(--gold);text-transform:uppercase}.trust span{color:var(--muted);font-size:14px}
+section{padding:72px 0}.section-head{display:grid;gap:12px;margin-bottom:30px}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:900}.section-head h2,h2{font:700 clamp(2rem,5vw,3.3rem)/1 Oswald,sans-serif;text-transform:uppercase}.section-head p{color:var(--muted);max-width:650px}.services{display:grid;gap:14px}.service{background:var(--panel);border:1px solid var(--line);padding:22px}.service h3{font:700 24px/1.1 Oswald,sans-serif;text-transform:uppercase;margin-bottom:8px}.service p{color:var(--muted);font-size:14.5px}.service strong{display:block;color:var(--gold);margin-top:16px;font-size:18px}
+.booking{background:var(--text);color:#171612}.booking .eyebrow{color:#70501b}.booking-grid{display:grid;gap:26px}.booking-card{background:#fff;border:1px solid #d8d0c1;padding:24px}.booking-card h3{font:700 28px/1 Oswald,sans-serif;text-transform:uppercase;margin-bottom:12px}.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}.slots span{border:1px solid #d8d0c1;padding:10px;text-align:center;font-weight:800}.booking p{color:#4d463b}.booking .btn-secondary{color:#171612;border-color:#b9aa8c}
+.gallery{display:grid;gap:14px}.shot{position:relative;min-height:310px;background:var(--panel);border:1px solid var(--line);overflow:hidden}.shot img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:saturate(.9) contrast(1.05)}.shot span{position:absolute;left:16px;bottom:16px;background:rgba(17,17,15,.86);border:1px solid var(--line);padding:8px 10px;text-transform:uppercase;font-size:11px;letter-spacing:.12em;font-weight:900}
+.reviews{background:var(--soft)}.review-grid{display:grid;gap:14px}.review{background:var(--bg);border:1px solid var(--line);padding:22px}.review p{margin:10px 0;color:#ded5c4}.review cite{font-style:normal;color:var(--muted);font-size:14px}.faq details{border-bottom:1px solid var(--line)}.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;font:700 22px/1.1 Oswald,sans-serif;text-transform:uppercase}.faq summary:after{content:"+";position:absolute;right:0;color:var(--gold)}.faq details[open] summary:after{content:"x"}.faq p{color:var(--muted);padding:0 0 18px;max-width:720px}
+.contact{background:#0c0c0b}.contact-grid{display:grid;gap:28px}.contact-panel{background:var(--panel);border:1px solid var(--line);padding:24px}.contact-panel dl{display:grid;gap:14px}.contact-panel dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:900}.contact-panel dd{color:var(--muted)}footer{padding:34px 0;border-top:1px solid var(--line);color:var(--muted)}.footer-grid{display:grid;gap:18px}.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1fr}.mobile-bar a{background:#0c0c0b;color:var(--text);text-align:center;padding:16px 10px;text-decoration:none;font-weight:900;text-transform:uppercase;border-top:1px solid var(--line)}.mobile-bar a:first-child{background:var(--gold);color:#16120b}
+@media(min-width:720px){body{padding-bottom:0}.trust-grid{grid-template-columns:repeat(4,1fr)}.services{grid-template-columns:repeat(4,1fr)}.booking-grid,.contact-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1.2fr .8fr .8fr}.review-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.4fr 1fr 1fr}.mobile-bar{display:none}}@media(min-width:960px){.menu,.top-cta{display:flex}}
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HairSalon","name":"Barber Kuźnia","description":"Przykładowy barbershop z rezerwacją online, cennikiem, galerią i opiniami.","areaServed":"Wrocław"}</script>
 </head>
 <body>
-
 <div class="demo">Przykładowy projekt demonstracyjny Znajdowalni. Dane salonu są fikcyjne.</div>
-
-<header>
-  <div class="wrap nav">
-    <a class="marka" href="#gora"><i></i>Barber Kuźnia</a>
-    <nav class="menu" aria-label="Menu główne">
-      <a href="#cennik">Cennik</a>
-      <a href="#atuty">Dlaczego my</a>
-      <a href="#wnetrze">Wnętrze</a>
-      <a href="#rezerwacja">Kontakt</a>
-    </nav>
-    <a class="rezerwuj-top" href="#rezerwacja">Rezerwuj</a>
-    <button class="burger" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="menu-mobilne">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<div id="menu-mobilne" hidden>
-  <a href="#cennik">Cennik</a>
-  <a href="#atuty">Dlaczego my</a>
-  <a href="#wnetrze">Wnętrze</a>
-  <a href="#rezerwacja">Kontakt</a>
-  <a class="cta-m" href="#rezerwacja">Rezerwuj wizytę</a>
-</div>
-
-<main id="gora">
-
-<section class="hero">
-  <div class="hero-tlo" aria-hidden="true">
-    <picture>
-      <source srcset="../assets/templates/barber-hero-2560.webp 2560w, ../assets/templates/barber-hero.webp 1664w" sizes="100vw" type="image/webp">
-      <img src="../assets/templates/barber-hero.webp" alt="" width="2560" height="1435" fetchpriority="high" decoding="async">
-    </picture>
-  </div>
-  <div class="wrap">
-    <p class="nadtytul">Wrocław · Nadodrze</p>
-    <h1>Strzyżenie,<span>które trzyma formę.</span></h1>
-    <p class="lead">Barbershop dla tych, którzy wracają co cztery tygodnie. Bez pośpiechu, bez improwizacji, bez tłumaczenia za każdym razem od nowa.</p>
-    <div class="cta-rzad">
-      <a class="btn btn-pelny" href="#rezerwacja">Rezerwuj wizytę</a>
-      <a class="btn btn-pusty" href="#rezerwacja">Napisz wiadomość</a>
-    </div>
-  </div>
-</section>
-
-<section id="cennik">
-  <div class="wrap">
-    <h2 class="odslon">Cennik</h2>
-    <p class="sek-wstep odslon">Ceny podane wprost. Bez dopłat, o których dowiadujesz się przy kasie.</p>
-    <div class="cennik odslon">
-      <div class="poz">
-        <span class="poz-nazwa">Strzyżenie</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Mycie, strzyżenie, stylizacja. Około 45 minut.</span>
-      </div>
-      <div class="poz">
-        <span class="poz-nazwa">Broda</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Modelowanie, konturowanie brzytwą, olejek.</span>
-      </div>
-      <div class="poz">
-        <span class="poz-nazwa">Strzyżenie i broda</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Pełen serwis. Około 75 minut.</span>
-      </div>
-      <div class="poz">
-        <span class="poz-nazwa">Golenie brzytwą</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Klasyczne, na gorącym ręczniku.</span>
-      </div>
-      <div class="poz">
-        <span class="poz-nazwa">Strzyżenie maszynką</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Jedna długość, szybki serwis.</span>
-      </div>
-      <div class="poz">
-        <span class="poz-nazwa">Ojciec i syn</span><span class="poz-kropki"></span><span class="poz-cena">[DO POTWIERDZENIA]</span>
-        <span class="poz-opis">Dwie wizyty pod rząd, jeden termin.</span>
-      </div>
-    </div>
-    <p class="cennik-nota">Ceny do uzupełnienia przez klienta  -  w wersji demonstracyjnej celowo nie wpisujemy zmyślonych kwot.</p>
-  </div>
-</section>
-
-<section id="atuty" style="background:var(--smola-2);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)">
-  <div class="wrap">
-    <h2 class="odslon">Dlaczego tutaj</h2>
-    <div class="atuty odslon">
-      <div class="atut"><b>45 min</b><span>Tyle trwa strzyżenie. Nie nakładamy terminów, żeby zmieścić więcej osób.</span></div>
-      <div class="atut"><b>Ten sam</b><span>Rezerwujesz konkretnego barbera, nie „kogoś kto będzie wolny".</span></div>
-      <div class="atut"><b>Bez kolejki</b><span>Wchodzisz o swojej godzinie. Jeśli się spóźnimy, następna wizyta na nasz koszt.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="wnetrze">
-  <div class="wrap">
-    <h2 class="odslon">Wnętrze i realizacje</h2>
-    <p class="sek-wstep odslon">Dobre światło, precyzja i miejsce, do którego chce się wracać.</p>
-    <div class="galeria odslon">
-      <figure class="kadr"><img src="../assets/templates/barber-interior.webp" alt="Stanowisko w ciemnym, kameralnym barbershopie" width="1280" height="1280" loading="lazy" decoding="async"><span>Wnętrze</span></figure>
-      <figure class="kadr"><img src="../assets/templates/barber-detail.webp" alt="Detal stanowiska barberskiego, narzędzia i światło przy fotelu" width="1280" height="1280" loading="lazy" decoding="async"><span>Detal</span></figure>
-      <figure class="kadr"><img src="../assets/templates/barber-finish.webp" alt="Gotowe stanowisko i efekt świeżo zakończonej wizyty w barbershopie" width="1280" height="1280" loading="lazy" decoding="async"><span>Efekt</span></figure>
-    </div>
-  </div>
-</section>
-
-<section id="rezerwacja" class="rezerwacja">
-  <div class="wrap rez-grid">
-    <div>
-      <h2>Rezerwacja</h2>
-      <p class="sek-wstep">Najwygodniej online  -  widzisz wolne terminy i wybierasz barbera. Telefonicznie też chętnie, ale w trakcie strzyżenia nie odbieramy.</p>
-      <a class="btn btn-pelny" href="#rezerwacja" id="przycisk-booksy">Rezerwuj online</a>
-      <dl>
-        <dt>Telefon</dt>
-        <dd><a href="tel:+48987654321">98 765 43 21</a></dd>
-        <dt>Adres</dt>
-        <dd>ul. Przykładowa 8<br>50-001 Wrocław, Nadodrze</dd>
-      </dl>
-      <p style="margin-top:22px"><a class="btn btn-pusty" href="https://www.google.com/maps/dir/?api=1&amp;destination=Wroc%C5%82aw%20Nadodrze" target="_blank" rel="noopener">Wyznacz trasę</a></p>
-    </div>
-    <div>
-      <h2 style="font-size:1.4rem;margin-bottom:12px">Godziny otwarcia</h2>
-      <table class="godziny">
-        <caption class="sek-wstep" style="text-align:left;caption-side:top;margin-bottom:10px">Do potwierdzenia z klientem przed publikacją.</caption>
-        <tbody>
-          <tr><th scope="row">Poniedziałek  -  piątek</th><td>[DO POTWIERDZENIA]</td></tr>
-          <tr><th scope="row">Sobota</th><td>[DO POTWIERDZENIA]</td></tr>
-          <tr><th scope="row">Niedziela</th><td>[DO POTWIERDZENIA]</td></tr>
-        </tbody>
-      </table>
-      <p class="cennik-nota" style="margin-top:26px">Salon korzysta z systemu rezerwacji? Podłączymy go do przycisku „Rezerwuj online" bez dodatkowych opłat.</p>
-    </div>
-  </div>
-</section>
-
+<header class="top"><div class="wrap nav"><a class="brand" href="#top">Barber Kuźnia<span>Wrocław Nadodrze</span></a><nav class="menu"><a href="#uslugi">Usługi</a><a href="#rezerwacja">Rezerwacja</a><a href="#galeria">Galeria</a><a href="#kontakt">Kontakt</a></nav><a class="top-cta" href="#rezerwacja">Rezerwuj online</a></div></header>
+<main id="top">
+<section class="hero"><div class="hero-bg" aria-hidden="true"><picture><source srcset="../assets/templates/barber-hero-2560.webp 2560w, ../assets/templates/barber-hero.webp 1664w" sizes="100vw" type="image/webp"><img src="../assets/templates/barber-hero.webp" alt="" width="2560" height="1435" fetchpriority="high"></picture></div><div class="wrap hero-in"><p class="rating"><span class="stars">★★★★★</span><b>4,9</b> · 312 opinii · terminy dziś</p><h1>Fryzura, która wygląda dobrze <span>także po wyjściu z fotela.</span></h1><p class="lead">Strzyżenie męskie, broda i klasyczne golenie. Jasny cennik, rezerwacja w dwóch kliknięciach i konkretny barber przypisany do wizyty.</p><div class="actions"><a class="btn btn-primary" href="#rezerwacja">Wybierz termin</a><a class="btn btn-secondary" href="#uslugi">Zobacz usługi</a></div></div></section>
+<div class="trust"><div class="wrap trust-grid"><div><b>45 min</b><span>pełne strzyżenie bez taśmy</span></div><div><b>1 barber</b><span>wybierasz osobę przy rezerwacji</span></div><div><b>od 79 zł</b><span>ceny widoczne przed wizytą</span></div><div><b>Booksy</b><span>rezerwacja bez telefonu</span></div></div></div>
+<section id="uslugi"><div class="wrap"><div class="section-head"><p class="eyebrow">USŁUGI I CENNIK</p><h2>Wybierasz usługę bez zgadywania.</h2><p>Najważniejsze pozycje są podane od razu. Klient rozumie różnicę między szybką usługą a pełnym serwisem.</p></div><div class="services"><article class="service"><h3>Strzyżenie</h3><p>Konsultacja, mycie, strzyżenie nożyczkami lub maszynką i stylizacja.</p><strong>99 zł</strong></article><article class="service"><h3>Broda</h3><p>Modelowanie, kontur brzytwą, gorący ręcznik i pielęgnacja.</p><strong>79 zł</strong></article><article class="service"><h3>Combo</h3><p>Strzyżenie i broda w jednej wizycie, z dopracowaniem całości.</p><strong>159 zł</strong></article><article class="service"><h3>Golenie</h3><p>Klasyczne golenie brzytwą z przygotowaniem skóry.</p><strong>89 zł</strong></article></div></div></section>
+<section class="booking" id="rezerwacja"><div class="wrap booking-grid"><div><p class="eyebrow">SZYBKA REZERWACJA</p><h2>Klient widzi wolne terminy, zanim napisze.</h2><p>Na gotowej stronie przycisk prowadzi do Booksy, Calendly albo własnego formularza. Tu pokazujemy, jak układ skraca drogę od decyzji do rezerwacji.</p><div class="actions"><a class="btn btn-primary" href="#kontakt">Rezerwuj online</a><a class="btn btn-secondary" href="tel:+48987654321">Zadzwoń</a></div></div><aside class="booking-card"><h3>Dziś dostępne</h3><p>Barber: Kuba</p><div class="slots"><span>12:30</span><span>15:00</span><span>18:15</span></div><p>Wybrany termin trafia prosto do systemu rezerwacji. Bez długiego formularza.</p></aside></div></section>
+<section id="galeria"><div class="wrap"><div class="section-head"><p class="eyebrow">WNĘTRZE I EFEKT</p><h2>Galeria pracuje na zaufanie.</h2><p>Nie powtarzamy jednego zdjęcia. Każdy kadr ma własną rolę: klimat miejsca, detal usługi, efekt po wizycie.</p></div><div class="gallery"><figure class="shot"><img src="../assets/templates/barber-interior.webp" alt="Ciemne, eleganckie wnętrze barbershopu z fotelem" loading="lazy"><span>Wnętrze</span></figure><figure class="shot"><img src="../assets/templates/barber-detail.webp" alt="Detal stanowiska barberskiego i narzędzi" loading="lazy"><span>Detal</span></figure><figure class="shot"><img src="../assets/templates/barber-finish.webp" alt="Gotowy efekt po wizycie w barbershopie" loading="lazy"><span>Efekt</span></figure></div></div></section>
+<section class="reviews"><div class="wrap"><div class="section-head"><p class="eyebrow">OPINIE</p><h2>Dowód społeczny przed kliknięciem terminu.</h2></div><div class="review-grid"><blockquote class="review"><span class="stars">★★★★★</span><p>Konkretnie, punktualnie i dokładnie tak, jak ustaliliśmy na początku.</p><cite>Michał · strzyżenie</cite></blockquote><blockquote class="review"><span class="stars">★★★★★</span><p>Najlepsze combo na Nadodrzu. Cena znana wcześniej, bez wciskania dodatków.</p><cite>Adam · combo</cite></blockquote><blockquote class="review"><span class="stars">★★★★★</span><p>Rezerwacja zajęła minutę, a barber pamiętał poprzednie ustawienia.</p><cite>Piotr · stały klient</cite></blockquote></div></div></section>
+<section class="faq"><div class="wrap"><div class="section-head"><p class="eyebrow">FAQ</p><h2>Pytania, które zdejmują tarcie z rezerwacji.</h2></div><details><summary>Czy trzeba rezerwować termin?</summary><p>Tak, dzięki temu klient nie czeka i trafia do wybranego barbera.</p></details><details><summary>Ile trwa wizyta?</summary><p>Strzyżenie trwa około 45 minut, combo około 75 minut. Czas jest widoczny przy rezerwacji.</p></details><details><summary>Czy można płacić kartą?</summary><p>Tak. Informacja o płatności jest widoczna jeszcze przed wizytą.</p></details></div></section>
+<section class="contact" id="kontakt"><div class="wrap contact-grid"><div><p class="eyebrow">KONTAKT</p><h2>Jeden ekran, wszystkie decyzje.</h2><p class="lead">Telefon, adres, godziny, mapa i formularz są w jednym miejscu. Na mobile klient ma też stały pasek z akcją.</p></div><div class="contact-panel"><dl><dt>Telefon</dt><dd><a href="tel:+48987654321">98 765 43 21</a></dd><dt>Adres</dt><dd>ul. Przykładowa 8, Wrocław Nadodrze</dd><dt>Godziny</dt><dd>Pon-pt 10:00-20:00 · Sob 9:00-15:00</dd></dl></div></div></section>
 </main>
-
-<footer>
-  <div class="wrap stopka-cta">
-    <div>
-      <p class="nadtytul">Nadodrze · rezerwacja online</p>
-      <h2>Dobry termin znika szybko. Zarezerwuj wizytę przed kolejnym tygodniem.</h2>
-    </div>
-    <a class="btn btn-pelny" href="#rezerwacja">Rezerwuj online</a>
-  </div>
-  <div class="wrap stopka-grid">
-    <div>
-      <strong>Barber Kuźnia</strong>
-      <p style="margin-top:8px">ul. Przykładowa 8<br>50-001 Wrocław, Nadodrze</p>
-    </div>
-    <div>
-      <p><a href="tel:+48987654321">98 765 43 21</a></p>
-      <p><a href="mailto:kontakt@przyklad.pl">kontakt@przyklad.pl</a></p>
-    </div>
-    <div>
-      <p><a href="#cennik">Cennik</a></p>
-      <p><a href="#wnetrze">Wnętrze</a></p>
-      <p><a href="#rezerwacja">Rezerwacja</a></p>
-    </div>
-  </div>
-  <div class="wrap prawa">© <span id="rok"></span> Barber Kuźnia · Strona demonstracyjna przygotowana przez Znajdowalni</div>
-</footer>
-
-<script>
-const SITE = {
-  demoMode: true,
-  businessName: "Barber Kuźnia",
-  branza: "barbershop",
-  phone: "+48987654321",
-  phoneDisplay: "98 765 43 21",
-  email: "kontakt@przyklad.pl",
-  address: { street: "ul. Przykładowa 8", city: "Wrocław", district: "Nadodrze", zip: "50-001" },
-  hours: "[DO POTWIERDZENIA]",
-  bookingUrl: "[DO POTWIERDZENIA  -  link do Booksy lub innego systemu]",
-  mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Wroc%C5%82aw%20Nadodrze",
-  services: [
-    { name: "Strzyżenie", price: "[DO POTWIERDZENIA]" },
-    { name: "Broda", price: "[DO POTWIERDZENIA]" },
-    { name: "Strzyżenie i broda", price: "[DO POTWIERDZENIA]" },
-    { name: "Golenie brzytwą", price: "[DO POTWIERDZENIA]" },
-    { name: "Strzyżenie maszynką", price: "[DO POTWIERDZENIA]" },
-    { name: "Ojciec i syn", price: "[DO POTWIERDZENIA]" }
-  ]
-};
-
-document.getElementById("rok").textContent = new Date().getFullYear();
-
-/* Demo nie może sugerować, że numer lub mapa należą do prawdziwej firmy. */
-if (SITE.demoMode) document.querySelectorAll('a[href^="tel:"], a[href*="google.com/maps"]').forEach(function (link) {
-  link.addEventListener("click", function (e) { e.preventDefault(); alert("To wersja demonstracyjna. Numer telefonu, adres i rezerwacja uzupełnimy na podstawie danych Twojej firmy."); });
-});
-
-/* przycisk rezerwacji  -  w demo tlumaczy, co sie stanie na gotowej stronie */
-(function () {
-  var b = document.getElementById("przycisk-booksy");
-  if (!b) return;
-  b.addEventListener("click", function (e) {
-    if (SITE.demoMode) {
-      e.preventDefault();
-      alert("W wersji demonstracyjnej rezerwacja nie jest podpięta.\n\nNa gotowej stronie ten przycisk prowadzi prosto do systemu rezerwacji salonu  -  Booksy, Calendly albo innego.");
-    }
-  });
-})();
-
-/* menu mobilne */
-(function () {
-  var przycisk = document.querySelector(".burger");
-  var panel = document.getElementById("menu-mobilne");
-  if (!przycisk || !panel) return;
-  przycisk.addEventListener("click", function () {
-    var otwarte = przycisk.getAttribute("aria-expanded") === "true";
-    przycisk.setAttribute("aria-expanded", String(!otwarte));
-    przycisk.setAttribute("aria-label", otwarte ? "Otwórz menu" : "Zamknij menu");
-    panel.hidden = otwarte;
-  });
-  panel.addEventListener("click", function (e) {
-    if (e.target.tagName === "A") {
-      panel.hidden = true;
-      przycisk.setAttribute("aria-expanded", "false");
-      przycisk.setAttribute("aria-label", "Otwórz menu");
-    }
-  });
-})();
-
-/* odsloniecia */
-(function () {
-  var elementy = [].slice.call(document.querySelectorAll(".odslon"));
-  if (!elementy.length) return;
-  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    elementy.forEach(function (el) { el.classList.add("widoczny"); });
-    return;
-  }
-  var io = new IntersectionObserver(function (wpisy) {
-    wpisy.forEach(function (w) { if (w.isIntersecting) { w.target.classList.add("widoczny"); io.unobserve(w.target); } });
-  }, { threshold: .12 });
-  elementy.forEach(function (el) { io.observe(el); });
-  window.addEventListener("scroll", function () {
-    elementy.forEach(function (el) {
-      if (!el.classList.contains("widoczny") && el.getBoundingClientRect().top < window.innerHeight) el.classList.add("widoczny");
-    });
-  }, { passive: true });
-})();
-</script>
-<script src="demo-brand.js"></script>
+<footer><div class="wrap footer-grid"><div><strong>Barber Kuźnia</strong><p>Przykładowa strona barbershopu przygotowana przez Znajdowalni.</p></div><p><a href="#uslugi">Usługi</a><br><a href="#rezerwacja">Rezerwacja</a><br><a href="#kontakt">Kontakt</a></p><p>© <span id="rok"></span> Barber Kuźnia</p></div></footer>
+<div class="mobile-bar"><a href="#rezerwacja">Rezerwuj</a><a href="tel:+48987654321">Zadzwoń</a></div>
+<script>document.getElementById("rok").textContent=new Date().getFullYear();</script><script src="demo-brand.js"></script>
 </body>
 </html>

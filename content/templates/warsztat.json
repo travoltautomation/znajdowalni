@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "Serwis Zamkowa | Warsztat samochodowy Warszawa",
+    "description": "Przykładowa strona warsztatu samochodowego z usługami, cennikiem, opiniami, mapą i szybkim kontaktem."
+  },
+  "business": {
+    "name": "Serwis Zamkowa",
+    "city": "Warszawa",
+    "district": "Śródmieście",
+    "phone": "22 100 20 30",
+    "email": "kontakt@przyklad.pl",
+    "address": "ul. Emilii Plater 49, 00-125 Warszawa"
+  },
+  "hero": {
+    "eyebrow": "WARSZTAT SAMOCHODOWY",
+    "headline": "Powiemy, ile to kosztuje, zanim zaczniemy.",
+    "lead": "Warsztat w centrum Warszawy z jawnym cennikiem robocizny. Diagnozujemy, dzwonimy z wyceną i zaczynamy dopiero po Twojej zgodzie.",
+    "image": "../assets/templates/warsztat-hero-2560.webp",
+    "ctaPrimary": "Zadzwoń do serwisu",
+    "ctaSecondary": "Umów termin"
+  },
+  "services": [
+    { "name": "Diagnostyka komputerowa", "description": "Odczyt błędów i sprawdzenie, co je naprawdę wywołuje.", "price": "150 zł" },
+    { "name": "Wymiana oleju i filtrów", "description": "Olej silnikowy, filtr oleju, powietrza i kabinowy.", "price": "od 190 zł" },
+    { "name": "Klocki hamulcowe", "description": "Jedna oś, z kontrolą tarcz i płynu hamulcowego.", "price": "od 220 zł" },
+    { "name": "Klimatyzacja", "description": "Kontrola szczelności, uzupełnienie czynnika i odgrzybianie.", "price": "od 260 zł" }
+  ],
+  "faq": [
+    { "question": "Czy muszę się umawiać?", "answer": "Przy prostych usługach zwykle znajdzie się szybki termin. Przy diagnostyce i większych naprawach lepiej zadzwonić wcześniej." },
+    { "question": "Czy dostanę wycenę przed naprawą?", "answer": "Tak. Naprawa zaczyna się dopiero po akceptacji kosztu." },
+    { "question": "Czy wystawiacie fakturę VAT?", "answer": "Tak. Warsztat obsługuje też auta firmowe i floty." }
+  ]
+}

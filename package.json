@@ -1,5 +1,9 @@
 {
   "private": true,
+  "scripts": {
+    "cms:check": "node silnik/waliduj.mjs content/templates/warsztat.json",
+    "cms:render:warsztat": "node silnik/render-warsztat.mjs content/templates/warsztat.json out/warsztat/index.html"
+  },
   "dependencies": {
     "nodemailer": "^7.0.6"
   }

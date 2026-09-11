@@ -1,0 +1,16 @@
+import fs from "node:fs";
+import path from "node:path";
+
+const [input = "content/templates/warsztat.json", output = "out/warsztat/index.html"] = process.argv.slice(2);
+const data = JSON.parse(fs.readFileSync(input, "utf8"));
+const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+const tel = data.business.phone.replace(/\D/g, "");
+
+const services = data.services.map((item) => `<article class="service"><h3>${esc(item.name)}</h3><p>${esc(item.description)}</p><strong>${esc(item.price)}</strong></article>`).join("");
+const faq = data.faq.map((item) => `<details><summary>${esc(item.question)}</summary><p>${esc(item.answer)}</p></details>`).join("");
+
+const html = `<!doctype html><html lang="pl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>${esc(data.meta.title)}</title><meta name="description" content="${esc(data.meta.description)}"><style>body{margin:0;background:#f4f5f3;color:#191c20;font:17px/1.6 system-ui,sans-serif}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}.hero{position:relative;color:#fff;background:#15181c;overflow:hidden}.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38}.hero .wrap{position:relative;padding:92px 0}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#e4610f;font-weight:800}h1{font-size:clamp(42px,8vw,86px);line-height:.95;margin:10px 0 18px}.lead{max-width:620px;font-size:19px;color:#d8dde1}.btn{display:inline-block;background:#e4610f;color:#fff;padding:15px 20px;text-decoration:none;font-weight:800;margin-right:8px}.section{padding:64px 0}.services{display:grid;gap:14px}.service{background:#fff;border:1px solid #d6dad5;padding:22px}.service h3{margin:0 0 8px}.service strong{color:#e4610f}.faq details{border-bottom:1px solid #d6dad5;padding:16px 0}.contact{background:#20242a;color:#fff}@media(min-width:760px){.services{grid-template-columns:repeat(4,1fr)}}</style></head><body><main><section class="hero"><img src="${esc(data.hero.image)}" alt=""><div class="wrap"><p class="eyebrow">${esc(data.hero.eyebrow)}</p><h1>${esc(data.hero.headline)}</h1><p class="lead">${esc(data.hero.lead)}</p><a class="btn" href="tel:+48${tel}">${esc(data.hero.ctaPrimary)}</a><a class="btn" href="#kontakt">${esc(data.hero.ctaSecondary)}</a></div></section><section class="section"><div class="wrap"><p class="eyebrow">USŁUGI</p><h2>Najważniejsze informacje przed telefonem</h2><div class="services">${services}</div></div></section><section class="section faq"><div class="wrap"><p class="eyebrow">FAQ</p><h2>Najczęstsze pytania</h2>${faq}</div></section><section class="section contact" id="kontakt"><div class="wrap"><p class="eyebrow">KONTAKT</p><h2>${esc(data.business.name)}</h2><p>${esc(data.business.address)}<br><a href="tel:+48${tel}">${esc(data.business.phone)}</a><br><a href="mailto:${esc(data.business.email)}">${esc(data.business.email)}</a></p></div></section></main></body></html>`;
+
+fs.mkdirSync(path.dirname(output), { recursive: true });
+fs.writeFileSync(output, html);
+console.log(output);

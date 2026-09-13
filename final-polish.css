@@ -1,7 +1,7 @@
 /* Finalny szlif przed publikacją: jeden prawdziwy krój, spokojniejszy rytm i czytelny proces. */
 :root{font-synthesis:none}
 
-h1,h2,h3,.signal-card b,.card-two strong,.price strong,.old-price,.new-price,.onboarding h3,.form-status h3{
+.hero h1,h1,h2,h3,.signal-card b,.card-two strong,.price strong,.old-price,.new-price,.onboarding h3,.form-status h3{
   font-weight:600;
   font-synthesis:none;
   text-rendering:optimizeLegibility;
@@ -49,7 +49,7 @@ h1,h2,h3,.signal-card b,.card-two strong,.price strong,.old-price,.new-price,.on
 .process .steps p{max-width:335px;margin:0;color:#4e5c5a;font-size:16px;line-height:1.6}
 
 @media(max-width:760px){
-  .hero h1{letter-spacing:-.042em;line-height:1.04}
+  .hero h1{font-size:48px;letter-spacing:-.042em;line-height:1.02}
   .lead-strip{padding:24px 0}.lead-strip strong{font-size:23px}.lead-strip span{font-size:15px}
   .process .section-heading{display:block}.process .section-heading h2{font-size:clamp(43px,12vw,57px)}
   .process .section-heading>p{margin:24px 0 0;font-size:16px}

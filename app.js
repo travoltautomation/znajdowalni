@@ -51,14 +51,6 @@ function initContactForm(form) {
 }
 
 function init() {
-  const evoHeadline = q('.evo-headline');
-  if (evoHeadline && evoHeadline.tagName === 'H3') {
-    const replacement = document.createElement('p');
-    replacement.className = evoHeadline.className;
-    replacement.innerHTML = evoHeadline.innerHTML;
-    evoHeadline.replaceWith(replacement);
-  }
-
   const industry = new URLSearchParams(window.location.search).get('branza');
   if (industry) {
     const contactMessage = q('#contact-message');

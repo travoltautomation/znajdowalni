@@ -42,7 +42,7 @@
     document.head.appendChild(s);
 
     gtag("js", new Date());
-    gtag("config", MEASUREMENT_ID, { anonymize_ip: true });
+    gtag("config", MEASUREMENT_ID);
   }
 
   function track(name, params) {

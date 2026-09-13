@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0F1115" />
+    <title>Nie znaleźliśmy tej strony | Znajdowalni</title>
+    <link rel="preload" href="assets/fonts/Montserrat-pl.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/PlayfairDisplay-pl.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="bundle.css" />
+    <link rel="stylesheet" href="final-polish.css" />
+    <link rel="stylesheet" href="typografia-fix.css" />
+    <link rel="icon" href="assets/brand/znajdowalni-kadr-final-icon.svg" type="image/svg+xml" />
+    <style>
+      .not-found { min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; text-align: center; }
+      .not-found__inner { max-width: 680px; }
+      .not-found__code { font: 500 14px/1 var(--mono); letter-spacing: .12em; color: var(--coral); margin: 0 0 20px; }
+      .not-found h1 { margin: 0; }
+      .not-found p { max-width: 500px; margin: 24px auto 32px; }
+    </style>
+  </head>
+  <body>
+    <main class="not-found">
+      <div class="not-found__inner">
+        <p class="not-found__code">BŁĄD 404</p>
+        <h1>Tej strony<br><em>tu nie ma.</em></h1>
+        <p>Możliwe, że adres jest nieaktualny. Wróć na stronę główną i znajdź to, czego potrzebujesz.</p>
+        <a class="button coral" href="/">Wróć na stronę główną <span>→</span></a>
+      </div>
+    </main>
+  </body>
+</html>

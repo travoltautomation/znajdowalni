@@ -1,0 +1,59 @@
+/* Finalny szlif przed publikacją: jeden prawdziwy krój, spokojniejszy rytm i czytelny proces. */
+:root{font-synthesis:none}
+
+h1,h2,h3,.signal-card b,.card-two strong,.price strong,.old-price,.new-price,.onboarding h3,.form-status h3{
+  font-weight:600;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  font-kerning:normal;
+}
+
+.hero h1,h2{
+  letter-spacing:-.047em;
+  line-height:1.01;
+}
+
+.hero h1{max-width:750px}
+
+.lead-strip{padding:22px 0}
+.lead-strip strong{font:600 21px/1.15 var(--serif);letter-spacing:-.025em}
+.lead-strip span{font-size:15px;line-height:1.5}
+
+.process{background:#f7f3ea}
+.process .section-heading{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);
+  gap:70px;
+  align-items:start;
+}
+.process .section-heading h2{max-width:780px;font-size:clamp(46px,5.1vw,74px)}
+.process .section-heading>p{max-width:330px;margin:39px 0 0;font-size:17px;line-height:1.55}
+.process .steps{
+  margin-top:58px;
+  border-top-color:#28302e;
+}
+.process .steps article{min-height:240px;padding:32px 34px 0 0}
+.process .steps article+article{padding-left:34px}
+.process .steps span{
+  display:block;
+  color:#17b2a6;
+  font:700 clamp(42px,4.25vw,60px)/.9 var(--sans);
+  letter-spacing:-.07em;
+  font-variant-numeric:tabular-nums;
+}
+.process .steps h3{
+  margin:30px 0 12px;
+  font:600 clamp(25px,2vw,31px)/1.06 var(--sans);
+  letter-spacing:-.048em;
+}
+.process .steps p{max-width:335px;margin:0;color:#4e5c5a;font-size:16px;line-height:1.6}
+
+@media(max-width:760px){
+  .hero h1{letter-spacing:-.042em;line-height:1.04}
+  .lead-strip{padding:24px 0}.lead-strip strong{font-size:23px}.lead-strip span{font-size:15px}
+  .process .section-heading{display:block}.process .section-heading h2{font-size:clamp(43px,12vw,57px)}
+  .process .section-heading>p{margin:24px 0 0;font-size:16px}
+  .process .steps{margin-top:39px}
+  .process .steps article,.process .steps article+article{min-height:0;padding:27px 0 28px}
+  .process .steps span{font-size:49px}.process .steps h3{margin:20px 0 10px;font-size:27px}
+}

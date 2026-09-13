@@ -56,5 +56,5 @@
   .process .steps{margin-top:39px}
   .process .steps article,.process .steps article+article{min-height:0;padding:27px 0 28px}
   .process .steps span{font-size:49px}.process .steps h3{margin:20px 0 10px;font-size:27px}
-  .plan>p:not(.price-note){min-height:96px}
+  .plan>p:not(.price-note){min-height:72px!important}
 }
